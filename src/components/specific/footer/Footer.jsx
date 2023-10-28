@@ -1,24 +1,39 @@
-// import React from 'react'
+import React from 'react';
+import iconLogo from '../../../assets/Icon/Icon.svg';
+import styleFooter from './Footer.module.css';
+import ButtonLink from '../butonLink/ButtonLink';
+import { Instagram, Facebook, Twitter } from 'react-bootstrap-icons'
 
-// const Footer = () => {
-//     return (
-//         <div>
-//             <ul className="nav justify-content-center fixed-bottom bg-dark bg-gradient">
-//                 <li className="nav-item">
-//                     <a className="nav-link active" aria-current="page" href="#">Active</a>
-//                 </li>
-//                 <li className="nav-item">
-//                     <a className="nav-link" href="#">Link</a>
-//                 </li>
-//                 <li className="nav-item">
-//                     <a className="nav-link" href="#">Link</a>
-//                 </li>
-//                 <li className="nav-item">
-//                     <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-//                 </li>
-//             </ul>
-//         </div>
-//     )
-// }
+const Footer = () => {
+    const { logoIconStyle } = styleFooter;
 
-// export default Footer;
+    return (
+        <footer>
+            <nav className="navbar bg-dark  justify-content-center" data-bs-theme="dark">
+                <div>
+                    <div className='d-flex justify-content-center'>
+                        <img src={iconLogo} id={logoIconStyle} alt="" />
+                        <h1 className='text-light fst-italic ms-3'>GoalKeep Organizer</h1>
+                    </div>
+                    <ul className="nav justify-content-center">
+                        <ButtonLink Text={'text'}/>
+                        <ButtonLink Text={'text'}/>
+                        <ButtonLink Text={'text'}/>
+                        <ButtonLink Text={'text'}/>
+                        <ButtonLink Text={'text'}/>
+                    </ul>
+                    <ul className="nav justify-content-evenly m-2">
+                        <Instagram color='#919847' size={25}/>
+                        <Facebook color='#919847' size={25}/>
+                        <Twitter color='#919847' size={25}/>         
+                    </ul>
+                </div>
+            </nav>
+            <div className='d-flex justify-content-center bg-secondary'>
+                <p className='text-info'>COPYRIGHT &copy; {new Date().getFullYear()} GoalKeep Organizer</p>
+            </div>
+        </footer>
+    )
+}
+
+export default Footer;
