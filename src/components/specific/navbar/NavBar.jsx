@@ -38,11 +38,11 @@ const NavBar = () => {
                                 </div>
                                 <div className={conteinerIcon}>
                                     <Flag color='#919847' size={30} />
-                                    <ButtonLink Text={'Canchas'} link={'/productos'} />
+                                    <ButtonLink Text={'Canchas'} link={'/fields'} />
                                 </div>
                                 <div className={conteinerIcon}>
                                     <Shop color='#919847' size={30} />
-                                    <ButtonLink Text={'Productos'} link={'/canchas'} />
+                                    <ButtonLink Text={'Productos'} link={'/products'} />
                                 </div>
                                 <div className={conteinerIcon}>
                                     <CardImage color='#919847' size={30} />
@@ -66,7 +66,7 @@ const NavBar = () => {
                             <ButtonLink Text={'Productos'} link={'/products'} />
                             <ButtonLink Text={'Galeria'} link={'/galery'} />
                             <div className="dropdown my-auto">
-                                <Dropdown text={'Mas'} dataBS={'dropdown'} />
+                                <Dropdown text={'Mas'} dropdownStyle={'text-light'}/>
                                 <ul className="dropdown-menu bg-dark bg-gradient">
                                     <ButtonLink Text={'Sobre Nosotros'} link={'/about'} />
                                     <ButtonLink Text={'Contacto'} link={'/contact'} />
