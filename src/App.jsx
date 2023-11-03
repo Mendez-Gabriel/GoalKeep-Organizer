@@ -4,6 +4,7 @@ import Footer from './components/specific/footer/Footer';
 import Home from './pages/Home/Home';
 import Products from './pages/products/Products';
 import ErrorPage from './pages/Error/ErrorPage';
+import ProductItem from './pages/productItem/ProductItem';
 
 function App() {
   
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' Component={Home}/>
         <Route path='/products' Component={Products}/>
+        <Route path='/product/:id' Component={ProductItem}/>
         <Route path='*' Component={ErrorPage}/>
       </Routes>
     <Footer/>

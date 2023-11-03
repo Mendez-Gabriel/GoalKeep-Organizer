@@ -7,15 +7,19 @@ import Input from '../../components/general/input/input';
 import Dropdown from '../../components/specific/dropdown/Dropdown';
 import ButtonDropdown from '../../components/general/buttonDropdown/ButtonDropdown';
 import ButtonGeneral from '../../components/general/buttonGeneral/ButtonGeneral';
+import Pagination from '../../components/general/pagination/Pagination';
 
 const Products = () => {
 
-    const BaseApi = 'http://127.0.0.1:8000/products';
+    const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
+    const BaseApi = `${url}products`;
 
     const [products, setProducts] = useState([]);
+    const [urlApi, setUrlApi] = useState(BaseApi)
     const [searchProduct, setSearchProduct] = useState("");
     const [filteredProducts, setFilteredProducts] = useState([]);
-    const [activeBtn, setActiveBtn] = useState("")
+    const [activeBtn, setActiveBtn] = useState("");
+    const [page, setPage] = useState([]);
 
     const handleButton = (click) => {
         setSearchProduct(click);
@@ -23,13 +27,14 @@ const Products = () => {
     }
 
     useEffect(() => {
-        axios.get(BaseApi)
+        axios.get(urlApi)
             .then(({ data }) => {
-                setProducts(data.allProducts);
-                setFilteredProducts(data.allProducts);
+                setProducts(data.allProducts.docs);
+                setFilteredProducts(data.allProducts.docs);
+                setPage(data.allProducts);
             })
             .catch((err) => { console.log(err) })
-    }, [])
+    }, [urlApi])
 
     useEffect(() => {
         const results = products.filter(product =>
@@ -37,7 +42,6 @@ const Products = () => {
         );
         setFilteredProducts(results);
     }, [searchProduct, products]);
-
 
     return (
         <>
@@ -52,27 +56,34 @@ const Products = () => {
                     </div>
                     <div className='d-flex justify-content-center'>
                         <Dropdown text={'Accesorios'} dropdownStyle={'btn-secondary'} />
-                        <div className="dropdown-menu">                          
+                        <div className="dropdown-menu">
                             <ButtonDropdown text={'Pelotas'} click={() => { handleButton('pelota') }} buttonStyle={activeBtn === 'pelota' ? 'active' : ''} />
                         </div>
                         <Dropdown text={'Indumentaria'} dropdownStyle={'btn-secondary'} />
-                        <div className="dropdown-menu">        
+                        <div className="dropdown-menu">
                             <ButtonDropdown text={'Camisetas'} click={() => { handleButton('Camiseta') }} buttonStyle={activeBtn === 'Camiseta' ? 'active' : ''} />
                             <ButtonDropdown text={'Pantalones'} click={() => { handleButton('pantalones') }} buttonStyle={activeBtn === 'pantalones' ? 'active' : ''} />
-                            <ButtonDropdown text={'Botines'} click={() => { handleButton('botines') }} buttonStyle={activeBtn === 'botines' ? 'active' : ''} />   
+                            <ButtonDropdown text={'Botines'} click={() => { handleButton('botines') }} buttonStyle={activeBtn === 'botines' ? 'active' : ''} />
                         </div>
                     </div>
                 </div>
                 <div className='container d-flex justify-content-center'>
-                    <div className='row m-3'>
+                    <div className='row m-3 w-100'>
                         {
                             filteredProducts.map((product) => (
-                                <div className={`d-flex col-9 col-sm-6 col-xl-4 mx-auto my-3 ${card}`} key={product.id}>
+                                <div className={`d-flex col-9 col-sm-6 col-xl-4 mx-auto my-3 ${card}`} key={product._id}>
                                     <CardProducts products={product} />
                                 </div>
                             ))
                         }
                     </div>
+                </div>
+                <div className='d-flex justify-content-center'>
+                    <Pagination 
+                        totalPages={page.totalPages}
+                        setUrlApi={setUrlApi}
+                        BaseApi={BaseApi}
+                    />
                 </div>
             </div>
 
