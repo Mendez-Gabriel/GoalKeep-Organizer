@@ -16,31 +16,23 @@ const Products = () => {
     const BaseApi = `${url}products?`;
 
     const [products, setProducts] = useState([]);
-    const [urlApi, setUrlApi] = useState(BaseApi)
-    const [searchProduct, setSearchProduct] = useState("");
-    const [filteredPageProducts, setFilteredPageProducts] = useState([]);
-    const [activeBtn, setActiveBtn] = useState("");
+    const [urlApi, setUrlApi] = useState(BaseApi);
     const [page, setPage] = useState([]);
+    const [activeBtn, setActiveBtn] = useState('')
+    
 
-    const [allProducts, setallProducts] = useState([])
-    const [filtrado, setFiltrado] = useState([])
-
-    const handleButton = (click) => {
+    const handleSearch = (click) => {
+        console.log(click)
+        setActiveBtn(click);
         const Search = `${BaseApi}name=${click}`;
         setUrlApi(Search);
     }
-
-    console.log(urlApi)
-    
 
     useEffect(() => {
         axios.get(urlApi)
             .then(({ data }) => {
                 setPage(data.info.totalPages);
                 setProducts(data.info.docs);
-                setFilteredPageProducts(data.info.docs);
-                setallProducts(data.results);
-                setFiltrado(data.results);
             })
             .catch((err) => { console.log(err) })
     }, [urlApi])
@@ -49,27 +41,31 @@ const Products = () => {
     return (
         <>
             <div className={`flex-column mt-5 pt-5 ${bgOscuroMedio}`}>
-                <h1 className='text-center'>Nuestros productos</h1>
+
+                <h1 className='text-center fst-italic text-warning mb-5'>Nuestros productos</h1>
+
                 <div className='flex-column justify-content-center'>
                     <div className='d-flex justify-content-center'>
-                        <Input setSearchProduct={handleButton} placeholder={'Buscar Productos'} />
+                        <Input setSearchProduct={handleSearch} placeholder={'Buscar Productos'} />
                     </div>
                     <div className='d-flex justify-content-center mt-3'>
-                        <ButtonGeneral text={'Borrar filtros'} buttonStyle={'bg-danger text-light btn-sm m-3'} click={() => { handleButton('') }} />
+                        <ButtonGeneral text={'Borrar filtros'} buttonStyle={'bg-danger text-light btn-sm m-3'} click={() => { handleSearch('') }} />
                     </div>
                     <div className='d-flex justify-content-center'>
                         <Dropdown text={'Accesorios'} dropdownStyle={'btn-secondary'} />
                         <div className="dropdown-menu">
-                            <ButtonDropdown text={'Pelotas'} click={() => { handleButton('pelota') }} buttonStyle={activeBtn === 'pelota' ? 'active' : ''} />
+                            <ButtonDropdown text={'Pelotas'} click={() => handleSearch('pelota')} buttonStyle={activeBtn === 'pelota' ? 'active' : ''} />
                         </div>
                         <Dropdown text={'Indumentaria'} dropdownStyle={'btn-secondary'} />
                         <div className="dropdown-menu">
-                            <ButtonDropdown text={'Camisetas'} click={() => { handleButton('Camiseta') }} buttonStyle={activeBtn === 'Camiseta' ? 'active' : ''} />
-                            <ButtonDropdown text={'Pantalones'} click={() => { handleButton('pantalones') }} buttonStyle={activeBtn === 'pantalones' ? 'active' : ''} />
-                            <ButtonDropdown text={'Botines'} click={() => { handleButton('botines') }} buttonStyle={activeBtn === 'botines' ? 'active' : ''} />
+                            <ButtonDropdown text={'Camisetas'} click={() => { handleSearch('Camiseta') }} buttonStyle={activeBtn === 'Camiseta' ? 'active' : ''} />
+                            <ButtonDropdown text={'Pantalones'} click={() => { handleSearch('pantalones') }} buttonStyle={activeBtn === 'pantalones' ? 'active' : ''} />
+                            <ButtonDropdown text={'Botines'} click={() => { handleSearch('botines') }} buttonStyle={activeBtn === 'botines' ? 'active' : ''} />
                         </div>
                     </div>
                 </div>
+
+
                 <div className='container d-flex justify-content-center'>
                     <div className='row m-3 w-100 justify-content-center'>
                         {
@@ -81,6 +77,8 @@ const Products = () => {
                         }
                     </div>
                 </div>
+
+
                 <div className='d-flex justify-content-center'>
                     <Pagination 
                         totalPages={page}

@@ -25,7 +25,7 @@ const CardProducts = ({products, onItemClick}) => {
                                 <h5 className={`${title} ${textColorCream}`}>{name}</h5>
                             </div>
                             <h5 className="text-warning">${price}</h5>
-                            <p className={`${textColorCream} ${available === true ? bgClaroMedio : ('text-bg-danger')} w-25`}>{avalible}</p>
+                            <p className={`fw-bold ${available === true ? ('text-success') : ('text-danger')} w-50`}>{avalible}</p>
                         </div>
                     </div>        
             </Link>
