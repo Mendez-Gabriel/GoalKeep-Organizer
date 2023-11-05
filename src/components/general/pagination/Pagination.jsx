@@ -3,9 +3,8 @@ import ReactPaginate from 'react-paginate';
 
 const Pagination = ({ totalPages, setUrlApi, BaseApi }) => {
 
-
     const handlePageClick = (event) => {
-        setUrlApi(`${BaseApi}?page=${event.selected+1}`);
+        setUrlApi(`${BaseApi}page=${event.selected+1}`);
     }
 
   return (

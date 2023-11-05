@@ -3,6 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CardProducts from '../../specific/cardProducts/CardProducts';
 import ImageLink from '../imageLink/ImageLink';
+import { bgOscuroMedio } from './Carrousel.module.css';
 
 const Carrousel = ({ infoCarrousel, updateSelectedItem }) => {
 
@@ -28,13 +29,14 @@ const Carrousel = ({ infoCarrousel, updateSelectedItem }) => {
       const handleItemClick = (selectedItem) => {
         updateSelectedItem(selectedItem);
     };
+    
 
   return (
 
-    <div className='pb-5 mt-5'>
+    <div className={`py-5 ${bgOscuroMedio}`}>
       <h3>Otros Productos</h3>
       <div className='pt-3 '>
-        <Carousel responsive={responsive}>
+        <Carousel responsive={responsive} infinite={true} containerClass='p-5'>
           {infoCarrousel.map((product) => (
             <CardProducts products={product}  key={product._id} onItemClick={handleItemClick}/>
           ))}
