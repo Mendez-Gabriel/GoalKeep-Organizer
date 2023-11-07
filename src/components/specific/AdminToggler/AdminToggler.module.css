@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #111;
+  --primary-color: #454545;
   --secondary-color: #a8adb3;
 }
 
@@ -12,9 +12,7 @@
 .tabs {
   display: flex;
   position: relative;
-  background-color: #fff;
-  box-shadow: 0 0 1px 0 rgb(233 234 236 / 15%),
-    0 6px 12px 0 rgb(241 244 248 / 15%);
+  background-color: #FFFFFF; 
   padding: 0.75rem;
   border-radius: 99px;
 }
