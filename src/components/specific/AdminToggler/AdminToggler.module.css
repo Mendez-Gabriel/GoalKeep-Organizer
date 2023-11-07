@@ -87,8 +87,13 @@ input[id="products"]:checked ~ .glider {
   transition: 0.25s ease-out;
 }
 
-@media (max-width: 700px) {
+@media (width<=720px) {
   .tabs {
-    transform: scale(0.6);
+    transform: scale(0.5,0.8)
+  }
+}
+@media (720px<width<=823px) {
+  .tabs {
+    transform: scale(0.8)
   }
 }
