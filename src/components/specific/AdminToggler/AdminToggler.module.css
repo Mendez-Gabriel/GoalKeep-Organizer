@@ -81,13 +81,17 @@ input[id="products"]:checked ~ .glider {
   display: flex;
   height: 54px;
   width: 200px;
-  background-color: var(--secondary-color);
+  background-color: #61bc84;
   z-index: 1;
   border-radius: 99px;
   transition: 0.25s ease-out;
 }
-
-@media (width<=720px) {
+@media (width<=420px) {
+  .tabs {
+    transform: scale(0.35,0.7)
+  }
+}
+@media (420px<width<=720px) {
   .tabs {
     transform: scale(0.5,0.8)
   }
