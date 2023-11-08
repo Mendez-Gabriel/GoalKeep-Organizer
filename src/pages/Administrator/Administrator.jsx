@@ -5,6 +5,7 @@ import FootballFieldAdminView from '../../components/specific/FootballFieldAdmin
 import UsersAdminView from '../../components/specific/UsersAdminView/UsersAdminView';
 import ReservationsAdminView from '../../components/specific/ReservationsAdminView/ReservationsAdminView';
 import ProductsAdminView from '../../components/specific/ProductsAdminView/ProductsAdminView';
+import { adminSection } from './Administrator.module.css'
 
 const Administrator = ({view}) => {
 
@@ -15,7 +16,7 @@ const Administrator = ({view}) => {
   const [CurrentView, setCurrentView] = useState('footballFields');
 
   return (
-    <section  className='container-fluid  row justify-content-around  mt-5 py-5 px-0 mx-0'>
+    <section  className={`container-fluid  row justify-content-around  mt-5 py-5 px-0 mx-0 gap-5 ${adminSection}`}>
       <h2 className='text-center'>Elija que coleccion desea administrar</h2>
       <AdminToggler handleViewChange={ changeView }/>
       {
