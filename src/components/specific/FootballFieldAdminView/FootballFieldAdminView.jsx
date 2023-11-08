@@ -10,21 +10,56 @@ const FootballFieldAdminView = () => {
   const urlBase = 'http://localhost:8080/footballfields'
   const [footballFieldData, setfootballFieldData] = useState([]);
   const [apiUrl, setapiUrl]  = useState(urlBase);
+  const [queryParams, setQueryParams] = useState({});
+  const [dataForm, setDataForm] = useState({
+    name:'',
+    grassType:'',
+    players:'',
+    imgUrl:''
+  });
 
+
+  const clearFiltters = ()=>{
+    setQueryParams({});
+  };
+  const addFilters = (params) =>{
+    setQueryParams(params);
+  };
+
+  const handleChange= (e) =>{
+    const { name, value } = e.target;
+    
+    setDataForm((dataForm)=>({
+      ...dataForm,[name]:value  
+    }))
+  };
+  const handleSubmit = (e)=> {
+    e.preventDefault();
+    postFootballField();
+    setapiUrl(urlBase);
+  }
+
+  const postFootballField  = async () => {
+    try {
+      const newFootballField = await axios.post(urlBase,dataForm);
+      console.log(newFootballField)
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
 
   useEffect(()=>{
     const fetchFootballFieldsData = async () => {
       try {
-        const  {data}  = await axios.get(apiUrl);
-        console.log(footballFieldData)
+        const  {data}  = await axios.get(apiUrl,queryParams);
         setfootballFieldData(data.footballFields);
       } catch (error) {
         console.log(error);
       }
     }
     fetchFootballFieldsData();
-  },[apiUrl]);
-
+  },[apiUrl,queryParams])
 
   return (
     <>
@@ -42,25 +77,33 @@ const FootballFieldAdminView = () => {
               </div>
               <div className="modal-body">
                 <div className="form-floating mb-3">
-                  <input type="text" className="form-control" id="nameInput" placeholder="name@example.com"/>
+                  <input type="text" className="form-control" name='name' id="nameInput" placeholder="name@example.com"
+                  onChange={(e)=>{handleChange(e)}}/>
                     <label htmlFor="nameInput">Nombre</label>
                 </div>
+                <select className="form-select form-select-md mb-3" name='players' aria-label="Large select example"
+                onChange={(e)=>{handleChange(e)}}>
+                  <option defaultValue>Nro. de Jugadores</option>
+                  <option value="3-5">Futbol 5</option>
+                  <option value="5-7">Futbol 7</option>
+                  <option value="8-11">Futbol 11</option>
+                </select>
+                <select className="form-select form-select-md mb-3" name='grassType' aria-label="Large select example"
+                onChange={(e)=>{handleChange(e)}}>
+                  <option defaultValue>Tipo de Cesped</option>
+                  <option value="Natural">Natural</option>
+                  <option value="Sintetico">Sintetico</option>
+                  <option value="Mixto">Mixto</option>
+                </select>
                 <div className="form-floating mb-3">
-                  <input type="text" className="form-control" id="grassTypeInput" placeholder="name@example.com"/>
-                    <label htmlFor="grassTypeInput">Tipo de cesped</label>
-                </div>
-                <div className="form-floating mb-3">
-                  <input type="text" className="form-control" id="playersInput" placeholder="name@example.com"/>
-                    <label htmlFor="playersInput">Jugadores</label>
-                </div>
-                <div className="form-floating mb-3">
-                  <input type="text" className="form-control" id="imgUrlInput" placeholder="name@example.com"/>
+                  <input type="text" className="form-control" name='imgUrl' id="imgUrlInput" placeholder="name@example.com"
+                  onChange={(e)=>{handleChange(e)}}/>
                     <label htmlFor="imgUrlInput">URL Imagen</label>
                 </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className={createButton} data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" className={createButton}>Guardar Cancha</button>
+                <button type="button" className={createButton} onClick={(e)=>handleSubmit(e)}>Guardar Cancha</button>
               </div>
             </div>
           </div>
@@ -79,19 +122,19 @@ const FootballFieldAdminView = () => {
           </thead>
           <tbody>
             {
-              footballFieldData.map(footballField => {
-                <tr>
+              footballFieldData.map(footballField => (
+                <tr key={footballField._id}>
                   <td className="table-user">
                     {footballField.name}
                   </td>
                   <td>{footballField.grassType}</td>
                   <td>{footballField.players}</td>
-                  <td className="d-flex justify-content-around">
+                  <td className="d-flex justify-content-around" id={footballField._id}>
                     <PenFill color='#2E8B57' size={30} />
                     <Trash3Fill color='#c21d03' size={30} />
                   </td>
                 </tr>
-              })
+              ))
               }
           </tbody>
         </table>
