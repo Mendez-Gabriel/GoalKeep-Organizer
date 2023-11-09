@@ -21,7 +21,7 @@ function App() {
         <Route path='/products' Component={Products}/>
         <Route path='/product/:id' Component={ProductItem}/>
         <Route path='*' Component={ErrorPage}/>
-        <Route path='/canchas' element={<FootballFields/>}/>
+        <Route path='/fields' element={<FootballFields/>}/>
       </Routes>
     <Footer/>
     </BrowserRouter>
