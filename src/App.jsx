@@ -8,6 +8,7 @@ import ProductItem from './pages/productItem/ProductItem';
 import Administrator from './pages/Administrator/Administrator';
 
 
+import FootballFields from './pages/FootballFields/FootballFields';
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
         <Route path='/products' Component={Products}/>
         <Route path='/product/:id' Component={ProductItem}/>
         <Route path='*' Component={ErrorPage}/>
+        <Route path='/canchas' element={<FootballFields/>}/>
       </Routes>
     <Footer/>
     </BrowserRouter>
