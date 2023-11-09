@@ -67,6 +67,7 @@ const FootballFieldAdminView = () => {
         }
       })
       console.log(response.data);
+      alert('Cancha Borrada')
       setReload(!reload);
     } catch (error) {
       console.log(error);
