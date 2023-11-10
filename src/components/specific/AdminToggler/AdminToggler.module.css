@@ -21,7 +21,7 @@
   z-index: 2;
 }
 
-input[type="radio"] {
+.tabs input[type="radio"] {
   display: none;
 }
 
@@ -50,27 +50,27 @@ input[type="radio"] {
   transition: 0.15s ease-in;
 }
 
-input[type="radio"]:checked + label {
+.tabs input[type="radio"]:checked + label {
   color: var(--primary-color);
 }
 
-input[type="radio"]:checked + label > .notification {
+.tabs input[type="radio"]:checked + label > .notification {
   background-color: var(--primary-color);
   color: #fff;
 }
 
-input[id="footballFields"]:checked ~ .glider {
+.tabs input[id="footballFields"]:checked ~ .glider {
   transform: translateX(0);
 }
 
-input[id="users"]:checked ~ .glider {
+.tabs input[id="users"]:checked ~ .glider {
   transform: translateX(100%);
 }
 
-input[id="reservations"]:checked ~ .glider {
+.tabs input[id="reservations"]:checked ~ .glider {
   transform: translateX(200%);
 }
-input[id="products"]:checked ~ .glider {
+.tabs input[id="products"]:checked ~ .glider {
   transform: translateX(300%);
 }
 
