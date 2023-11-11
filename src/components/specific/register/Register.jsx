@@ -7,6 +7,7 @@ import Input from '../../general/input/input';
 import axios from 'axios';
 import { FaEyeSlash, FaEye } from 'react-icons/fa6';
 import InputReact from '../../general/inputReact/InputReact';
+import AlertError from '../../general/alertError/AlertError';
 
 const Register = () => {
 
@@ -16,6 +17,7 @@ const Register = () => {
     const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
     const BaseApi = `${url}user/register`;
 
+    const [error, setError] = useState(null);
     const [activeEye, setActiveEye] = useState(false);
     const [dataForm, setDataForm] = useState({
         name: '',
@@ -32,12 +34,13 @@ const Register = () => {
             ...dataForm,
             [name]: value
         }));
+        setError(null)
     };
 
     const handleClick = (click) => {
-        if(!activeEye){
+        if (!activeEye) {
             setActiveEye(true)
-        }else{
+        } else {
             setActiveEye(false)
         }
     }
@@ -46,7 +49,6 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(dataForm);
 
         axios.post(BaseApi, dataForm)
             .then((response) => {
@@ -54,7 +56,10 @@ const Register = () => {
                 console.log(response.data);
                 navigate('/user/login');
             })
-            .catch((err) => { console.log(err) })
+            .catch((err) => { 
+                // console.log(err.response.data.error)
+                setError(err.response.data.error);
+            })
             .finally(() => { console.log('Peticion Finalizada') })
     }
 
@@ -71,15 +76,18 @@ const Register = () => {
                                 <img src={iconLogo} className={logoIconStyle} alt="" />
                                 <h1 className={`text-light fw-bold fst-italic ms-3 ${textTitle}`}>GoalKeep Organizer</h1>
                             </div>
-                            <form className='m-3 pt-5' onSubmit={handleSubmit}>
-                                <Input margin={'mb-5'} placeholder={'Nombre'} setSearchProduct={handleChange} type={'text'} name={'name'} />
-                                <Input margin={'mb-5'} placeholder={'Apellido'} setSearchProduct={handleChange} type={'text'} name={'lastName'} />
-                                <Input margin={'mb-5'} placeholder={'Usuario'} setSearchProduct={handleChange} type={'text'} name={'userName'} />
-                                <InputReact placeholder={'Contraseña'} margin={'mb-5'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye/> : <FaEyeSlash/>} name={'password'}/>                       
-                                <Input margin={'mb-5'} placeholder={'Email'} setSearchProduct={handleChange} type={'email'} name={'email'} />
-                                <button type="submit" className="btn btn-primary">Finalizar Registro</button>
-                            </form>
-                            <div className='container d-flex mt-5 pt-5'>
+                            <form className='m-3 needs-validation' onSubmit={handleSubmit} noValidate>
+                                <Input margin={'mt-1'} placeholder={'Nombre'} setSearchProduct={handleChange} type={'text'} name={'name'} />
+                                <Input margin={'mt-1'} placeholder={'Apellido'} setSearchProduct={handleChange} type={'text'} name={'lastName'} />
+                                <Input margin={'mt-1'} placeholder={'Usuario'} setSearchProduct={handleChange} type={'text'} name={'userName'} />
+                                <InputReact placeholder={'Contraseña'} margin={'mt-1'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye /> : <FaEyeSlash />} name={'password'} error={error} setError={setError} />
+                                <Input margin={'mt-1 mb-2'} placeholder={'Email'} setSearchProduct={handleChange} type={'email'} name={'email'} />
+                                {error && (
+                                    <AlertError setError={setError} error={error}/>
+                                )}
+                                <button type="submit" className="btn btn-primary mt-1">Finalizar Registro</button>
+                            </form>                           
+                            <div className='container d-flex mt-5 pt-1'>
                                 <p className={`d-flex fw-bold ${textTitle}`}>
                                     Ya tienes cuenta?
                                     <Link to={'/user/login'} className='text-light mx-2 link-underline link-underline-opacity-0'>

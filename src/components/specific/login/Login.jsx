@@ -7,6 +7,8 @@ import Input from '../../general/input/input';
 import axios from 'axios';
 import { FaEyeSlash, FaEye } from 'react-icons/fa6';
 import InputReact from '../../general/inputReact/InputReact';
+import Alert from '../../general/alertError/AlertError';
+import AlertError from '../../general/alertError/AlertError';
 
 
 const Login = ({ setUser }) => {
@@ -17,6 +19,7 @@ const Login = ({ setUser }) => {
     const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
     const BaseApi = `${url}user/login`;
 
+    const [error, setError] = useState(null);
     const [activeEye, setActiveEye] = useState(false);
     const [dataForm, setDataForm] = useState({
         userName: '',
@@ -30,12 +33,13 @@ const Login = ({ setUser }) => {
             ...dataForm,
             [name]: value
         }));
+        setError(null)
     };
 
     const handleClick = (click) => {
-        if(!activeEye){
+        if (!activeEye) {
             setActiveEye(true)
-        }else{
+        } else {
             setActiveEye(false)
         }
     }
@@ -51,7 +55,10 @@ const Login = ({ setUser }) => {
                 setUser(response.data)
                 localStorage.setItem('user', JSON.stringify(response.data));
             })
-            .catch((err) => { console.log(err) })
+            .catch((err) => {
+                console.log('Error en :', err.response.data.error);
+                setError(err.response.data.error)
+            })
             .finally(() => { console.log('Peticion Finalizada') })
     }
 
@@ -68,9 +75,12 @@ const Login = ({ setUser }) => {
                                 <img src={iconLogo} className={logoIconStyle} alt="" />
                                 <h1 className={`fw-bold fst-italic ms-3 ${textTitle}`}>GoalKeep Organizer</h1>
                             </div>
-                            <form className='m-3 pt-5' onSubmit={handleSubmit}>
+                            <form className='m-3 pt-5 needs-validation' onSubmit={handleSubmit} noValidate>
+                                {error && (
+                                    <AlertError setError={setError} error={error}/>
+                                )}
                                 <Input margin={'mb-5'} placeholder={'Usuario o Email'} setSearchProduct={handleChange} type={'text'} name={'userName'} />
-                                <InputReact placeholder={'Contraseña'} margin={'mb-5'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye/> : <FaEyeSlash/>} name={'password'}/>  
+                                <InputReact placeholder={'Contraseña'} margin={'mb-5'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye /> : <FaEyeSlash />} name={'password'} />
                                 <button type="submit" className='btn btn-primary mb-5'>Iniciar Sesion</button>
                             </form>
                             <div className='container d-flex mt-5 pt-5'>
@@ -78,7 +88,7 @@ const Login = ({ setUser }) => {
                                     Aun no tienes una cuenta?
                                     <Link to={'/user/register'} className='text-light mx-2 link-underline link-underline-opacity-0'>
                                         Registrate
-                                    </Link>                                
+                                    </Link>
                                 </p>
                             </div>
                         </div>
