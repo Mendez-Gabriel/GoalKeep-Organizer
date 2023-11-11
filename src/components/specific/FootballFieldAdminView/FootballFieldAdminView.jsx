@@ -20,7 +20,6 @@ const FootballFieldAdminView = () => {
   const [selectedFootballField , setSelectedFootballField ] = useState({
     ...dataForm,_id:''
   });
-  const [updateForm, setUpdateForm] = useState(null);
   const [newName, setNewName] = useState('');
   const [newPlayers, setNewPlayers] = useState('');
   const [newGrassType, setNewGrassType] = useState('');
@@ -36,16 +35,9 @@ const FootballFieldAdminView = () => {
 
   const handleChange= (e, isUpdate) =>{
     const { name, value } = e.target;
-    if(isUpdate){
-      setUpdateForm((updateForm)=>({
-        ...updateForm,[name]:value
-      }))
-    }else{
       setDataForm((dataForm)=>({
         ...dataForm,[name]:value  
       }))
-    }
-
   };
   
   const handleSubmit = async ()=> {
@@ -74,7 +66,6 @@ const FootballFieldAdminView = () => {
     };
   };
   const handleUpdate = async ( footballFieldId ) => {
-    //if(!updateForm)return;
     const query = {
       newName : newName,
       newGrassType : newGrassType,
@@ -92,12 +83,7 @@ const FootballFieldAdminView = () => {
     } catch (error) {
       console.log(error)
     }
-    //al setear la cancha seleccionada se resetearan los inputs del 
-    //formulario de edicion a su valor predeterminado
     setSelectedFootballField(selectedFootballField);
-    //reseteamos datos de actualizacion para evitar actualizar 
-    //un registro con valores de una actualizacion anterior
-    setUpdateForm(null);
     setReload(!reload);
   } 
 
