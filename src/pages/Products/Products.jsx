@@ -13,14 +13,12 @@ import Pagination from '../../components/general/pagination/Pagination';
 const Products = () => {
 
     const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
-    const BaseApi = `${url}products?`;
+    const baseApi = `${url}products?`;
 
     const [products, setProducts] = useState([]);
-    const [urlApi, setUrlApi] = useState(BaseApi);
+    const [urlApi, setUrlApi] = useState(baseApi);
     const [page, setPage] = useState([]);
     const [activeBtn, setActiveBtn] = useState('');
-
-    //Vinculacion de Front y Backend
     const [dataForm, setDataForm] = useState({
         name: '',
         description: '',
@@ -56,21 +54,18 @@ const Products = () => {
 
         console.log(dataForm);
 
-        axios.post(BaseApi, dataForm)
+        axios.post(baseApi, dataForm)
          .then((responese) => {console.log(responese)})
          .catch((error) => {console.log(error)})
          .finally(() => {console.log('Peticion Finalizada')})
-    }
-
-
-    //Fin de Vinculacion de Front y Backend
+    };
 
     const handleSearch = (click) => {
         console.log(click.target.value)
         setActiveBtn(click.target.value);
-        const Search = `${BaseApi}name=${click.target.value}`;
+        const Search = `${baseApi}name=${click.target.value}`;
         setUrlApi(Search);
-    }
+    };
 
 
     useEffect(() => {
@@ -121,17 +116,7 @@ const Products = () => {
                                         </div>
                                         <div className="mb-3">
                                             <Input type={'number'} setSearchProduct={handleForm} name={'price'} placeholder={'Precio'} />
-                                        </div>
-                                        {/* <div class="form-floating">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Pelotas</option>
-                                                <option value="2">Camisetas</option>
-                                                <option value="3">Pantalones</option>
-                                                <option value="3">Botines</option>
-                                            </select>
-                                            <label for="floatingSelect">Works with selects</label>
-                                        </div> */}
+                                        </div>                                       
                                         <div className="mb-3">
                                             <Input type={'text'} setSearchProduct={handleForm} name={'productCategory'} placeholder={'Id de Categoria'} />
                                         </div>
@@ -186,7 +171,7 @@ const Products = () => {
                     <Pagination
                         totalPages={page}
                         setUrlApi={setUrlApi}
-                        BaseApi={BaseApi}
+                        baseApi={baseApi}
                     />
                 </div>
             </div>
