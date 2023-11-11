@@ -17,7 +17,8 @@ function App() {
     <BrowserRouter>
     <NavBar />
       <Routes>
-        <Route path='/admin' element={<Administrator/>}/>        <Route path='/' Component={Home}/>
+        <Route path='/admin' element={<Administrator/>}/>        
+        <Route path='/' Component={Home}/>
         <Route path='/products' Component={Products}/>
         <Route path='/product/:id' Component={ProductItem}/>
         <Route path='*' Component={ErrorPage}/>
