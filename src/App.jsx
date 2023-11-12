@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/specific/navbar/NavBar';
 import Footer from './components/specific/footer/Footer';
+import Administrator from './pages/Administrator/Administrator';
 import AboutUs from './components/specific/aboutUs/AboutUs';
 import CardsIntegrantes from './components/specific/Integrantes/Integrantes';
 import FootballFields from './pages/FootballFields/FootballFields';
@@ -39,6 +40,7 @@ function App() {
         <Route path='/products' element={<Products/>}/>
         <Route path='/canchas' element={<FootballFields/>}/>
         <Route path='/about' Component={AboutUs}/>
+        <Route path='/admin' element={<Administrator/>}/>
         <Route path='/Fundadores' Component={CardsIntegrantes}/>
         <Route path='/product/:id' element={<ProductItem/>}/>
         <Route path='/user/login' element={<Login setUser={setUser}/>} />
