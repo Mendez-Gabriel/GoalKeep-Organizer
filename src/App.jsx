@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/specific/navbar/NavBar';
 import Footer from './components/specific/footer/Footer';
+import FootballFields from './pages/FootballFields/FootballFields';
 import Home from './pages/Home/Home';
 import Products from './pages/products/Products';
 import ErrorPage from './pages/Error/ErrorPage';
@@ -10,6 +11,7 @@ import Register from './components/specific/register/Register';
 import { useState, useEffect } from 'react';
 
 function App() {
+
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -24,7 +26,7 @@ function App() {
     localStorage.removeItem('user');
     setUser(null);
   };
- 
+
 
   return (
     <BrowserRouter>
@@ -32,6 +34,7 @@ function App() {
       <Routes>
         <Route path='/' element={user ? <Home/> : <Login setUser={setUser}/>}/>
         <Route path='/products' element={<Products/>}/>
+        <Route path='/canchas' element={<FootballFields/>}/>
         <Route path='/product/:id' element={<ProductItem/>}/>
         <Route path='/user/login' element={<Login setUser={setUser}/>} />
         <Route path='/user/register' element={<Register/>}/>
