@@ -68,7 +68,7 @@ const Register = () => {
             <div className={`${card}`}>
                 <div className="row g-0 vh-100">
                     <div className="col-2 col-sm-4 col-md-7 col-xxl-9">
-                        <img src={imageMessi} className={`img-fluid vh-100 ${img}`} alt="..." />
+                        <img src={imageMessi} className={`img-fluid vh-100 ${img}`}/>
                     </div>
                     <div className={`col-10 col-sm-8 col-md-5 col-xxl-3 d-flex align-items-center ${bgImage}`}>
                         <div className="container">
