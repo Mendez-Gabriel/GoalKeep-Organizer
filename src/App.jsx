@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/specific/navbar/NavBar';
 import Footer from './components/specific/footer/Footer';
+import Gallery from './pages/Gallery/Gallery';
 import Administrator from './pages/Administrator/Administrator';
 import AboutUs from './components/specific/aboutUs/AboutUs';
 import CardsIntegrantes from './components/specific/Integrantes/Integrantes';
@@ -39,6 +40,7 @@ function App() {
         <Route path='/' element={user ? <Home/> : <Login setUser={setUser}/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path='/canchas' element={<FootballFields/>}/>
+        <Route path='/galeria' element={<Gallery/>}/>
         <Route path='/about' Component={AboutUs}/>
         <Route path='/admin' element={<Administrator/>}/>
         <Route path='/Fundadores' Component={CardsIntegrantes}/>
