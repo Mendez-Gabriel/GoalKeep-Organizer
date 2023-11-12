@@ -13,69 +13,71 @@ const NavBar = () => {
     const conteinerIcon = 'd-flex align-items-center my-2';
 
     return (
-        <nav className="navbar navbar-expand-lg fixed-top bg-dark bg-gradient">
+        <header>
+            <nav className="navbar navbar-expand-lg fixed-top bg-dark bg-gradient">
 
-            <div className="container-fluid">
-                <img src={logoIcon} alt="logoIcon" id={logoIconStyle} />
-                <BottonTonggler
-                    offcanvasHeader={
-                        <>  
-                            <div className={conteinerIcon}>
-                                <img src={logoIcon} alt="logoIcon" id={logoIconStyle} />
-                                <ul className='navbar-nav'>
-                                    <ButtonLink Text={'Iniciar Sesion'} link={'/login'} />
+                <div className="container-fluid">
+                    <img src={logoIcon} alt="logoIcon" id={logoIconStyle} />
+                    <BottonTonggler
+                        offcanvasHeader={
+                            <>  
+                                <div className={conteinerIcon}>
+                                    <img src={logoIcon} alt="logoIcon" id={logoIconStyle} />
+                                    <ul className='navbar-nav'>
+                                        <ButtonLink Text={'Iniciar Sesion'} link={'/login'} />
 
+                                    </ul>
+                                </div>
+                            </>      
+                        }
+                        offcanvas={
+                            <>
+                                <div className={conteinerIcon}>
+                                    <House color='#919847' size={30} />
+                                    <ButtonLink Text={'Home'} link={'/'} />
+                                </div>
+                                <div className={conteinerIcon}>
+                                    <Flag color='#919847' size={30} />
+                                    <ButtonLink Text={'Canchas'} link={'/fields'} />
+                                </div>
+                                <div className={conteinerIcon}>
+                                    <Shop color='#919847' size={30} />
+                                    <ButtonLink Text={'Productos'} link={'/products'} />
+                                </div>
+                                <div className={conteinerIcon}>
+                                    <CardImage color='#919847' size={30} />
+                                    <ButtonLink Text={'Galeria'} link={'/galeria'} />
+                                </div>
+                                <div className={conteinerIcon}>
+                                    <InfoCircle  color='#919847' size={30}/>
+                                    <ButtonLink Text={'Sobre Nosotros'} link={'/about'} />
+                                </div>
+                                <div className={conteinerIcon}>
+                                    <Phone  color='#919847' size={30}/>
+                                    <ButtonLink Text={'Contacto'} link={'/contactos'} />
+                                </div>
+                            </>
+                        }
+                    />
+                    <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul className="navbar-nav ">
+                            <ButtonLink Text={'Home'} link={'/'} />
+                            <ButtonLink Text={'Canchas'} link={'/fields'} />
+                            <ButtonLink Text={'Productos'} link={'/products'} />
+                            <ButtonLink Text={'Galeria'} link={'/galery'} />
+                            <div className="dropdown my-auto">
+                                <Dropdown text={'Mas'} dropdownStyle={'text-light'}/>
+                                <ul className="dropdown-menu bg-dark bg-gradient">
+                                    <ButtonLink Text={'Sobre Nosotros'} link={'/about'} />
+                                    <ButtonLink Text={'Contacto'} link={'/contact'} />
                                 </ul>
                             </div>
-                        </>      
-                    }
-                    offcanvas={
-                        <>
-                            <div className={conteinerIcon}>
-                                <House color='#919847' size={30} />
-                                <ButtonLink Text={'Home'} link={'/'} />
-                            </div>
-                            <div className={conteinerIcon}>
-                                <Flag color='#919847' size={30} />
-                                <ButtonLink Text={'Canchas'} link={'/productos'} />
-                            </div>
-                            <div className={conteinerIcon}>
-                                <Shop color='#919847' size={30} />
-                                <ButtonLink Text={'Productos'} link={'/canchas'} />
-                            </div>
-                            <div className={conteinerIcon}>
-                                <CardImage color='#919847' size={30} />
-                                <ButtonLink Text={'Galeria'} link={'/galeria'} />
-                            </div>
-                            <div className={conteinerIcon}>
-                                <InfoCircle  color='#919847' size={30}/>
-                                <ButtonLink Text={'Sobre Nosotros'} link={'/about'} />
-                            </div>
-                            <div className={conteinerIcon}>
-                                <Phone  color='#919847' size={30}/>
-                                <ButtonLink Text={'Contacto'} link={'/contactos'} />
-                            </div>
-                        </>
-                    }
-                />
-                <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul className="navbar-nav ">
-                        <ButtonLink Text={'Home'} link={'/'} />
-                        <ButtonLink Text={'Canchas'} link={'/productos'} />
-                        <ButtonLink Text={'Productos'} link={'/canchas'} />
-                        <ButtonLink Text={'Galeria'} link={'/galeria'} />
-                        <div className="dropdown my-auto">
-                            <Dropdown text={'Mas'} dataBS={'dropdown'} />
-                            <ul className="dropdown-menu bg-dark bg-gradient">
-                                <ButtonLink Text={'Sobre Nosotros'} link={'/about'} />
-                                <ButtonLink Text={'Contacto'} link={'/contactos'} />
-                            </ul>
-                        </div>
-                    </ul>
+                        </ul>
+                    </div>
+                    <button className='btn btn-success d-none d-lg-block'>Iniciar Sesion</button>
                 </div>
-                <button className='btn btn-success d-none d-lg-block'>Iniciar Sesion</button>
-            </div>
-        </nav>
+            </nav>
+        </header>
     )
 }
 
