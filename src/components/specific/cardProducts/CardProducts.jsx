@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import style from './CardProducts.module.css';
 
-const CardProducts = ({products, onItemClick}) => {
+const CardProducts = ({products, updateSelectedItem}) => {
 
     const { Image, name, price, available, _id} = products;
     const { img, div, card, title, bgOscuroBajo, bgClaroMedio,textColorCream, boxShadow} = style;
@@ -15,8 +15,8 @@ const CardProducts = ({products, onItemClick}) => {
     }
     
     return (     
-        <div className="">
-            <Link  to={`/product/${_id}`} onClick={() => onItemClick(products)} 
+        <div className="d-flex justify-content-center">
+            <Link  to={`/product/${_id}`} onClick={() => updateSelectedItem(products)} 
             className=' link-underline link-underline-opacity-0 '>
                     <div className={`card ${card} ${boxShadow}`}>
                         <img src={Image} className={`card-img-top  ${img}`} alt="..." />
