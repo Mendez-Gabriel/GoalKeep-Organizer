@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/specific/navbar/NavBar';
 import Footer from './components/specific/footer/Footer';
+import AboutUs from './components/specific/aboutUs/AboutUs';
+import CardsIntegrantes from './components/specific/Integrantes/Integrantes';
 import FootballFields from './pages/FootballFields/FootballFields';
 import Home from './pages/Home/Home';
 import Products from './pages/products/Products';
@@ -9,6 +11,7 @@ import ProductItem from './pages/productItem/ProductItem';
 import Login from './components/specific/login/Login';
 import Register from './components/specific/register/Register';
 import { useState, useEffect } from 'react';
+
 
 function App() {
 
@@ -35,6 +38,8 @@ function App() {
         <Route path='/' element={user ? <Home/> : <Login setUser={setUser}/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path='/canchas' element={<FootballFields/>}/>
+        <Route path='/about' Component={AboutUs}/>
+        <Route path='/Fundadores' Component={CardsIntegrantes}/>
         <Route path='/product/:id' element={<ProductItem/>}/>
         <Route path='/user/login' element={<Login setUser={setUser}/>} />
         <Route path='/user/register' element={<Register/>}/>
