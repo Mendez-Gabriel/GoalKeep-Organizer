@@ -18,15 +18,60 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [urlApi, setUrlApi] = useState(BaseApi);
     const [page, setPage] = useState([]);
-    const [activeBtn, setActiveBtn] = useState('')
-    
+    const [activeBtn, setActiveBtn] = useState('');
+
+    //Vinculacion de Front y Backend
+    const [dataForm, setDataForm] = useState({
+        name: '',
+        description: '',
+        brand: '',
+        Image: '',
+        price: '',
+        available: false,
+        productCategory: ''
+    });
+
+    const handleForm = (event) => {
+        const { value, name, type } = event.target
+
+        let newValue;
+
+        if (type === 'checkbox') {
+            newValue = !dataForm.available;
+        } else {
+            newValue = value;
+        }
+
+        setDataForm((dataForm) => ({
+            ...dataForm,
+            [name]: newValue
+        }));
+    };
+
+    useEffect(() => {
+    }, [dataForm]);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        console.log(dataForm);
+
+        axios.post(BaseApi, dataForm)
+         .then((responese) => {console.log(responese)})
+         .catch((error) => {console.log(error)})
+         .finally(() => {console.log('Peticion Finalizada')})
+    }
+
+
+    //Fin de Vinculacion de Front y Backend
 
     const handleSearch = (click) => {
-        console.log(click)
-        setActiveBtn(click);
-        const Search = `${BaseApi}name=${click}`;
+        console.log(click.target.value)
+        setActiveBtn(click.target.value);
+        const Search = `${BaseApi}name=${click.target.value}`;
         setUrlApi(Search);
     }
+
 
     useEffect(() => {
         axios.get(urlApi)
@@ -37,7 +82,7 @@ const Products = () => {
             .catch((err) => { console.log(err) })
     }, [urlApi])
 
-    
+
     return (
         <>
             <div className={`flex-column mt-5 pt-5 ${bgOscuroMedio}`}>
@@ -46,8 +91,66 @@ const Products = () => {
 
                 <div className='flex-column justify-content-center'>
                     <div className='d-flex justify-content-center'>
-                        <Input setSearchProduct={handleSearch} placeholder={'Buscar Productos'} />
+                        <Input type={'text'} setSearchProduct={handleSearch} placeholder={'Buscar Productos'} />
                     </div>
+
+
+                    {/* Comienzo de mi front modal */}
+
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">abrir input</button>
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h1 className="modal-title fs-5" id="exampleModalLabel">Agregar un producto</h1>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="mb-3">
+                                            <Input type={'text'} setSearchProduct={handleForm} name={'name'} placeholder={'Nombre de Producto'} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <Input type={'text'} setSearchProduct={handleForm} name={'description'} placeholder={'Descripcion'} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <Input type={'text'} setSearchProduct={handleForm} name={'brand'} placeholder={'Marca'} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <Input type={'url'} setSearchProduct={handleForm} name={'Image'} placeholder={'URL de imagen'} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <Input type={'number'} setSearchProduct={handleForm} name={'price'} placeholder={'Precio'} />
+                                        </div>
+                                        {/* <div class="form-floating">
+                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">Pelotas</option>
+                                                <option value="2">Camisetas</option>
+                                                <option value="3">Pantalones</option>
+                                                <option value="3">Botines</option>
+                                            </select>
+                                            <label for="floatingSelect">Works with selects</label>
+                                        </div> */}
+                                        <div className="mb-3">
+                                            <Input type={'text'} setSearchProduct={handleForm} name={'productCategory'} placeholder={'Id de Categoria'} />
+                                        </div>
+                                        <div className="form-check form-switch mb-3">
+                                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onChange={(event) => handleForm(event)} name={'available'} />
+                                            <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Diponibilidad</label>
+                                        </div>
+                                        <div>
+                                            <button type="submit" className="btn btn-primary" >Agregar Producto</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Fin de mi front modal */}
+
+
                     <div className='d-flex justify-content-center mt-3'>
                         <ButtonGeneral text={'Borrar filtros'} buttonStyle={'bg-danger text-light btn-sm m-3'} click={() => { handleSearch('') }} />
                     </div>
@@ -80,7 +183,7 @@ const Products = () => {
 
 
                 <div className='d-flex justify-content-center'>
-                    <Pagination 
+                    <Pagination
                         totalPages={page}
                         setUrlApi={setUrlApi}
                         BaseApi={BaseApi}
