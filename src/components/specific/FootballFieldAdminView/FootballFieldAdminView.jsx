@@ -40,7 +40,8 @@ const FootballFieldAdminView = () => {
       }))
   };
   
-  const handleSubmit = async ()=> {
+  const handleSubmit = async (e)=> {
+    e.preventDefault();
     try {
       const response = await axios.post(urlBase,dataForm);
       console.log(response.data);
@@ -50,41 +51,45 @@ const FootballFieldAdminView = () => {
     };
   }
   const handleDelete = async ( id ) => {
-    try {
-      const response = await axios({
-        url : urlBase,
-        method : 'delete',
-        params : {
-          footballFieldId : id
-        }
-      })
-      console.log(response.data);
-      alert('Cancha Borrada')
-      setReload(!reload);
-    } catch (error) {
-      console.log(error);
-    };
+    if(confirm('Desea Eliminar esta Cancha?')){
+      try {
+        const response = await axios({
+          url : urlBase,
+          method : 'delete',
+          params : {
+            footballFieldId : id
+          }
+        })
+        console.log(response.data);
+        alert('Cancha Borrada')
+        setReload(!reload);
+      } catch (error) {
+        console.log(error);
+      };
+    }else alert('Operacion Cancelada');
   };
   const handleUpdate = async ( footballFieldId ) => {
-    const query = {
-      newName : newName,
-      newGrassType : newGrassType,
-      newPlayers : newPlayers,
-      newImgUrl : newImgUrl,
-      footballFieldId : footballFieldId
-    };
-    try {
-      const response = await axios({
-        method: 'patch',
-        url: urlBase,
-        data: query
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error)
-    }
-    setSelectedFootballField(selectedFootballField);
-    setReload(!reload);
+    if(confirm('Desea actualizar esta cancha?')){
+      const query = {
+        newName : newName,
+        newGrassType : newGrassType,
+        newPlayers : newPlayers,
+        newImgUrl : newImgUrl,
+        footballFieldId : footballFieldId
+      };
+      try {
+        const response = await axios({
+          method: 'patch',
+          url: urlBase,
+          data: query
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.log(error)
+      }
+      setSelectedFootballField(selectedFootballField);
+      setReload(!reload);
+    }else alert('Operacion Cancelada.')
   } 
 
   useEffect(()=>{
@@ -121,34 +126,36 @@ const FootballFieldAdminView = () => {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                <div className="form-floating mb-3">
-                  <input type="text" className="form-control" name='name' id="nameInput" placeholder="name@example.com"
-                  onChange={(e)=>{handleChange(e)}}/>
-                    <label htmlFor="nameInput">Nombre</label>
-                </div>
-                <select className="form-select form-select-md mb-3" name='players' aria-label="Large select example"
-                onChange={(e)=>{handleChange(e)}}>
-                  <option defaultValue>Nro. de Jugadores</option>
-                  <option value="3-5">Futbol 5</option>
-                  <option value="5-7">Futbol 7</option>
-                  <option value="8-11">Futbol 11</option>
-                </select>
-                <select className="form-select form-select-md mb-3" name='grassType' aria-label="Large select example"
-                onChange={(e)=>{handleChange(e)}}>
-                  <option defaultValue>Tipo de Cesped</option>
-                  <option value="Natural">Natural</option>
-                  <option value="Sintetico">Sintetico</option>
-                  <option value="Mixto">Mixto</option>
-                </select>
-                <div className="form-floating mb-3">
-                  <input type="text" className="form-control" name='imgUrl' id="imgUrlInput" placeholder="name@example.com"
-                  onChange={(e)=>{handleChange(e)}}/>
-                    <label htmlFor="imgUrlInput">URL Imagen</label>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className={createButton} data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>handleSubmit()}>Guardar Cancha</button>
+                <form id='fieldCreationForm' onSubmit={(e)=>handleSubmit(e)}>
+                  <div className="form-floating mb-3">
+                    <input type="text" className="form-control" name='name' id="nameInput" placeholder="name@example.com"
+                    onChange={(e)=>{handleChange(e)}} required/>
+                      <label htmlFor="nameInput">Nombre</label>
+                  </div>
+                  <select className="form-select form-select-md mb-3" name='players' aria-label="Large select example"
+                  onChange={(e)=>{handleChange(e)}} required>
+                    <option defaultValue>Nro. de Jugadores</option>
+                    <option value="3-5">Futbol 5</option>
+                    <option value="5-7">Futbol 7</option>
+                    <option value="8-11">Futbol 11</option>
+                  </select>
+                  <select className="form-select form-select-md mb-3" name='grassType' aria-label="Large select example"
+                  onChange={(e)=>{handleChange(e)}} required>
+                    <option defaultValue>Tipo de Cesped</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Sintetico">Sintetico</option>
+                    <option value="Mixto">Mixto</option>
+                  </select>
+                  <div className="form-floating mb-3">
+                    <input type="text" className="form-control" name='imgUrl' id="imgUrlInput" placeholder="name@example.com"
+                    onChange={(e)=>{handleChange(e)}} required/>
+                      <label htmlFor="imgUrlInput">URL Imagen</label>
+                  </div>
+                  <div className='row gap-3 gap-md-0 justify-content-around'>
+                    <button type="button" className={`col-10 col-md-4 ${createButton}`} data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" className={`col-10 col-md-4 ${createButton}`} htmlFor='#fieldCreationForm'>Guardar Cancha</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -203,7 +210,7 @@ const FootballFieldAdminView = () => {
             <tr>
               <th>Cancha</th>
               <th>Cesped</th>
-              <th>Jugadores</th>
+              <th className='d-none d-md-block'>Jugadores</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -215,10 +222,10 @@ const FootballFieldAdminView = () => {
                     {footballField.name}
                   </td>
                   <td>{footballField.grassType}</td>
-                  <td>{footballField.players}</td>
-                  <td className="d-flex justify-content-around">
-                    <PenFill color='#2E8B57' size={30} role='button' onClick={()=>setSelectedFootballField(footballField)} data-bs-toggle="modal" data-bs-target="#updateFieldModal"/>
-                    <Trash3Fill color='#c21d03' size={30} role='button' onClick={()=>handleDelete(footballField._id)}/>
+                  <td className='d-none d-md-block'>{footballField.players}</td>
+                  <td >
+                    <PenFill color='#2E8B57' size={25} role='button' onClick={()=>setSelectedFootballField(footballField)} data-bs-toggle="modal" data-bs-target="#updateFieldModal"/>
+                    <Trash3Fill color='#c21d03' size={25} role='button' onClick={()=>handleDelete(footballField._id)}/>
                   </td>
                 </tr>
               ))
