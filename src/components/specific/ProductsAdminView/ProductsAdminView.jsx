@@ -51,12 +51,14 @@ const ProductsAdminView = () => {
   const handleSubmit = async (e,isCategory) => {
     e.preventDefault();
     if(isCategory){
-      try {
-        const { data } = await axios.post(`${urlBase}/productCategory`,categoryDataForm);
-        console.log(data)
-      } catch (error) {
-        console.log(error)
-      }
+      if(confirm('Desea Agregar esta categoria?')){
+        try {
+          const { data } = await axios.post(`${urlBase}/productCategory`,categoryDataForm);
+          console.log(data)
+        } catch (error) {
+          console.log(error)
+        }
+      }else alert('Operacion cancelada')
     }else{
       try {
         const { data } = await axios.post(`${urlBase}/products`,dataForm);
@@ -152,7 +154,7 @@ const ProductsAdminView = () => {
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h1 className="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <h1 className="modal-title fs-5" id="staticBackdropLabel">Crear Categoria</h1>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
