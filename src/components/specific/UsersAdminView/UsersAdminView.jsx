@@ -24,12 +24,13 @@ const UsersAdminView = () => {
       password: selectedUser.password,
       active: newActive,
       admin: newAdmin
-    }
+    };
+    console.log(query)
     try {
       const response = await axios({
-        method:'put',
-        url:`${urlBase}/user/${id}`,
-        data: query
+        method: 'put',
+        data: query,
+        url: `${urlBase}/user/${id}` 
       });
       console.log(response);
     } catch (error) {
