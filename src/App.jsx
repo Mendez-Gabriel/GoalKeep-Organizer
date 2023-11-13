@@ -7,7 +7,7 @@ import AboutUs from './components/specific/aboutUs/AboutUs';
 import CardsIntegrantes from './components/specific/Integrantes/Integrantes';
 import FootballFields from './pages/FootballFields/FootballFields';
 import Home from './pages/Home/Home';
-import Products from './pages/products/Products';
+import Products from './pages/Products/Products';
 import ErrorPage from './pages/Error/ErrorPage';
 import ProductItem from './pages/productItem/ProductItem';
 import Login from './components/specific/login/Login';
@@ -27,29 +27,24 @@ function App() {
   
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    setUser(null);
-  };
-
 
   return (
     <BrowserRouter>
-    {user && <NavBar handleLogout={handleLogout}/>}
+    <NavBar setUser={setUser} user={user}/>
       <Routes>
-        <Route path='/' element={user ? <Home/> : <Login setUser={setUser}/>}/>
-        <Route path='/products' element={<Products/>}/>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/products' element={<Products/>}/>       
         <Route path='/canchas' element={<FootballFields/>}/>
         <Route path='/galeria' element={<Gallery/>}/>
         <Route path='/about' Component={AboutUs}/>
         <Route path='/admin' element={<Administrator/>}/>
         <Route path='/Fundadores' Component={CardsIntegrantes}/>
-        <Route path='/product/:id' element={<ProductItem/>}/>
-        <Route path='/user/login' element={<Login setUser={setUser}/>} />
+        <Route path='/product/:id' element={<ProductItem  user={user}/>}/>
+        <Route path='/user/login' element={<Login setUser={setUser} user={user}/>} />
         <Route path='/user/register' element={<Register/>}/>
         <Route path='*' element={<ErrorPage/>}/>
       </Routes>
-    {user && <Footer/>}
+    <Footer/>
     </BrowserRouter>
   )
 }
