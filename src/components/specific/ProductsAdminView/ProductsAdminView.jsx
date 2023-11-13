@@ -277,8 +277,13 @@ const ProductsAdminView = () => {
                     <label htmlFor="imgUrlInput">URL Imagen</label>
                   </div>
                   <div className="form-check form-switch mb-3">
-											<input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onChange={(e) => {setNewAvailable(!newAvailable)}} name={'available'} />
-											<label className="form-check-label" htmlFor="flexSwitchCheckChecked">Cambiar Diponibilidad</label>
+                    {
+                      newAvailable?
+                      <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onChange={(e) => {setNewAvailable(!newAvailable)}} name={'available'} checked/>
+											:
+                      <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onChange={(e) => {setNewAvailable(!newAvailable)}} name={'available'} />
+                    }
+											<label className="form-check-label" htmlFor="flexSwitchCheckChecked">{newAvailable?'Declarar faltante':'Declarar en stock'}</label>
 										</div>
                   <div className='row gap-3 gap-md-0 justify-content-around'>
                     <button type="button" className={`col-10 col-md-4 ${createButton}`} data-bs-dismiss="modal">Cerrar</button>

@@ -17,26 +17,24 @@ const UsersAdminView = () => {
 
   const handleUpdate = async (e, id) => {
     e.preventDefault();
-    let query = {
-      name: selectedUser.name,
-      lastName: selectedUser.lastName,
-      userName: selectedUser.userName,
-      password: selectedUser.password,
-      active: newActive,
-      admin: newAdmin
-    };
-    console.log(query)
-    try {
-      const response = await axios({
-        method: 'put',
-        data: query,
-        url: `${urlBase}/user/${id}` 
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    };
-    setReload(!reload);
+    if(confirm('Desea Actualizar este  usuario?')){
+      let query = {
+        active: newActive,
+        admin: newAdmin
+      };
+      console.log(query)
+      try {
+        const response = await axios({
+          method: 'put',
+          data: query,
+          url: `${urlBase}/user/${id}` 
+        });
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      };
+      setReload(!reload);
+    }else alert('Operacion Cancelada.')
   };
 
   useEffect(()=>{
