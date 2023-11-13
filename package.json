@@ -13,12 +13,18 @@
     "axios": "^1.6.0",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
+    "cards": "^2.0.3",
+    "carrusel": "^1.2.3",
+    "cloudinary": "^1.41.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.9.1",
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18.2.0",
+    "react-multi-carousel": "^2.8.4",
     "react-icons": "^4.11.0",
     "react-multi-carousel": "^2.8.4",
     "react-paginate": "^8.2.0",
+
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {

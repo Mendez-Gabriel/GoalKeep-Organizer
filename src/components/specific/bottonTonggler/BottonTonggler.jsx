@@ -8,7 +8,7 @@ const BottonTonggler = ({offcanvas, offcanvasHeader}) => {
 
     const [click, setClick] = useState(false)
 
-    const { navicon, open } = style;
+    const { navicon, open, bgOffCanvas } = style;
 
     const handlerClick = () => {
         setClick(!click)
@@ -25,7 +25,7 @@ const BottonTonggler = ({offcanvas, offcanvasHeader}) => {
 
             </div>
 
-            <div className="offcanvas offcanvas-end bg-dark bg-gradient d-lg-none" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div className={`offcanvas offcanvas-end bg-dark bg-gradient d-lg-none`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div className="offcanvas-header">
                     <h5 className="offcanvas-title" id="offcanvasNavbarLabel">{offcanvasHeader}</h5>
                     <button type="button" className={`btn-close ${navicon} ${click ? open : ''}`} onClick={handlerClick} data-bs-dismiss="offcanvas" aria-label="Close"></button>
