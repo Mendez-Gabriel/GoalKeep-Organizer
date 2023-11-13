@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CardList.css';
+import './CardList.module.css';
 import axios from 'axios';
 import { useEffect } from 'react';
 
