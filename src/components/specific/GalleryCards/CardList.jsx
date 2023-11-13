@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 function CardList() {
 
-  const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS;
+  const url = import.meta.env.VITE_APP_URL_BASE;
   const baseurl =  `${url}/gallerycard`;
   const [selectedImage, setSelectedImage] = useState(null);
   const [cardData, setCardData] = useState([
