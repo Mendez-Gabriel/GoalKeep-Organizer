@@ -31,8 +31,8 @@ const Reservations = () => {
     },[]);
   return (
     <>
-      <section className={`${infoSection} container-fluid justify-content-center row mt-5 py-5 px-0 mx-0`}>
-        <div className='col-md-9 col-12 mx-0 px-0'>
+      <section className={`${infoSection} align-items-center container-fluid justify-content-center row mt-5 py-5 px-0 mx-0`}>
+        <div className='col-md-7 col-12 mx-0 px-0'>
           <img src={fieldData.imgUrl} alt={fieldData.name} className='img-fluid'/>
         </div>
         <div className='col-md-3 col-12 mx-0 py-0 '>

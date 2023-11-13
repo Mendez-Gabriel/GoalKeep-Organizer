@@ -1,8 +1,12 @@
 .infoSection{
-  background-color: #345e37;
+  background-color: #1E1E1E;
+  background-image: radial-gradient(#345e37 2px, transparent 0);
+  background-size: 30px 30px;
+  background-position: -5px -5px;
   align-items: center;
 }
 .infoSection li {
-  font-size: larger;
+  font-size: 2em;
+  font-weight: 700;
   color: #e0e0e0;
 }
