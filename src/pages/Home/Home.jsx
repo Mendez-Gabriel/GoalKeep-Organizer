@@ -10,7 +10,7 @@ import CarrouselProducts from '../../components/general/carrouselProducts/Carrou
 const Home = () => {
   const params = useParams();
 
-    const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
+    const url = import.meta.env.VITE_APP_URL_BASE
     const urlProducts = `${url}/products`;
 
     const item = [];

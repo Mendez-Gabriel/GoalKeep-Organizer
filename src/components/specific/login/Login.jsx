@@ -18,7 +18,7 @@ const Login = ({ setUser, user }) => {
     const { card, img, logoIconStyle, bgImage, textTitle } = style;
     const imageMessi = 'https://res.cloudinary.com/dptlgyfq5/image/upload/v1699462256/Login_oqbqnz.jpg';
 
-    const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
+    const url = import.meta.env.VITE_APP_URL_BASE
     const BaseApi = `${url}/user/login`;
 
     const [data, setData] = useState([]);

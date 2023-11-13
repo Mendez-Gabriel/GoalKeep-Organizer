@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const GalleryCarrusel = () => {
 
-  const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS;
+  const url = import.meta.env.VITE_APP_URL_BASE;
   const baseurl = `${url}/gallerycarrusel`; 
   const [ galleryData, setGalleryData ] = useState([
   ]);

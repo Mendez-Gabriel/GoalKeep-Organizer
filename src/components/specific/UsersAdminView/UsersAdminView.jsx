@@ -6,7 +6,7 @@ import { InfoCircle,  XCircle, CheckCircle } from 'react-bootstrap-icons';
 
 const UsersAdminView = () => {
   
-  const urlBase = import.meta.env.VITE_APP_URL_BASE_PRODUCTS;
+  const urlBase = import.meta.env.VITE_APP_URL_BASE;
   const [reload, setReload] = useState(false);
   const [userData, setUserData] = useState([]);
   const [queryParams, setQueryParams] = useState({});

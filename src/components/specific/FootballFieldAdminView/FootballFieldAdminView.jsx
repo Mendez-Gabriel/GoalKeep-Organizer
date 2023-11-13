@@ -7,7 +7,7 @@ import { Trash3Fill, PenFill } from 'react-bootstrap-icons';
 
 const FootballFieldAdminView = () => {
 
-  const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS;
+  const url = import.meta.env.VITE_APP_URL_BASE;
   const urlBase = `${url}/footballfields`;
   const [footballFieldData, setfootballFieldData] = useState([]);
   const [queryParams, setQueryParams] = useState({});
