@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/products' element={<Products/>}/>
-        <Route path='/product/:id' element={<ProductItem/>}/>
+        <Route path='/product/:id' element={<ProductItem  user={user}/>}/>
         <Route path='/user/login' element={<Login setUser={setUser} user={user}/>} />
         <Route path='/user/register' element={<Register/>}/>
         <Route path='*' element={<ErrorPage/>}/>

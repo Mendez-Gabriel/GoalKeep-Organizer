@@ -5,7 +5,7 @@ import CardProductsItem from '../../components/specific/cardProductsItem/CardPro
 import Carrousel from '../../components/general/carrouselProducts/CarrouselProducts';
 import { bgOscuroMedio } from './ProductItem.module.css';
 
-const ProductItem = () => {
+const ProductItem = ({ user }) => {
     const params = useParams();
 
     const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
@@ -22,7 +22,7 @@ const ProductItem = () => {
   return (
     <>
       <div className={`mt-5 pt-5 ${bgOscuroMedio}`}>
-        <CardProductsItem products={item}/>
+        <CardProductsItem products={item} user={user}/>
       </div>
       <div className='containter'>
         <Carrousel setItem={setItem} urlProducts={urlProducts} titleCarrousel={'Otros Productos'} titleColor={'ms-5 text-light'} bgCarousel={bgOscuroMedio}/>

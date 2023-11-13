@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import style from './Register.module.css';
 import iconLogo from '../../../assets/Icon/Icon.svg'
 import Input from '../../general/input/input';
@@ -10,8 +10,6 @@ import InputReact from '../../general/inputReact/InputReact';
 import AlertError from '../../general/alertError/AlertError';
 
 const Register = () => {
-    
-    const navigate = useNavigate();
 
     const { card, img, logoIconStyle, bgImage, textTitle } = style;
     const imageMessi = 'https://res.cloudinary.com/dptlgyfq5/image/upload/v1699462256/Login_oqbqnz.jpg';
@@ -51,8 +49,6 @@ const Register = () => {
             setActiveEye(false)
         }
     }
-
-    
 
     const handleSubmit = (event) => {
         event.preventDefault();

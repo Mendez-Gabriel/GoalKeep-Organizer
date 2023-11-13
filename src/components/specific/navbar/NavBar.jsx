@@ -100,7 +100,7 @@ const NavBar = ({ setUser, user }) => {
                                 <Link to={'/user/login'} className='btn btn-success'>Inicia Sesion</Link>
                                 <Link to={'user/register'} className='btn btn-warning'>Registrate</Link>
                             </div>)}
-                        <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} />
+                        <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} textBtn={'Cerrar Sesion'} textTitle={'¿Seguro que deseas cerrar sesion?'}/>
                     </div>
                 </div>
             </nav>
