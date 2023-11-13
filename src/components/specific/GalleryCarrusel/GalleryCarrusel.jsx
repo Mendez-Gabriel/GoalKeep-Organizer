@@ -14,7 +14,7 @@ const GalleryCarrusel = () => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1200 },
-      items: 3  ,
+      items: 4,
     },
     desktop: {
       breakpoint: { max: 1200, min: 800 },

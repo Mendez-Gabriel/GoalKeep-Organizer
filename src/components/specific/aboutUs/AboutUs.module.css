@@ -1,35 +1,34 @@
-.about-us-container {
+.aboutUsContainer {
   padding: 50px;
   text-align: center;
   background-color: #2e8b57;
   background-image: linear-gradient(0deg, #2e8b57 0%, #61bc84 24%, #c6ffe6 49%, #8fbc8f 75%, #345e37 100%);
-
 }
 
-.about-us-content {
+.aboutUsContent {
   padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.about-us-image {
+.aboutUsImage {
   width: 200px;
   height: 200px;
   margin-bottom: 20px;
   object-fit: cover;
 }
 
-.about-us-text {
+.aboutUsText {
   max-width: 600px;
 }
 
-.about-us-text h1 {
+.aboutUsText h1 {
   font-size: 2em;
   margin-bottom: 10px;
 }
 
-.about-us-button {
+.aboutUsButton {
   padding: 10px;
   background-color: #2E8B57;
   color:  #e0e0e0;
@@ -39,7 +38,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  .about-us-image {
+  .aboutUsImage {
     width: 100%;
     height: 150px;
   }
