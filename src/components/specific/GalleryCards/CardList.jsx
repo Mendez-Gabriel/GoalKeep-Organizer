@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './CardList.css';
+import './CardList.module.css';
 import axios from 'axios';
 import { useEffect } from 'react';
 
 function CardList() {
-  const baseurl =  'http://localhost:8000/gallerycard'
+  const baseurl =  "http://localhost:8000/gallerycard";
   const [selectedImage, setSelectedImage] = useState(null);
   const [cardData, setCardData] = useState([
   ]);

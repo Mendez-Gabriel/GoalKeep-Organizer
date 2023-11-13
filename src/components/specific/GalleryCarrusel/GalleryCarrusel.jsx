@@ -4,7 +4,7 @@ import 'react-multi-carousel/lib/styles.css';
 import axios from 'axios';
 
 const GalleryCarrusel = () => {
-  const baseurl = 'http://localhost:8000/gallerycarrusel'; 
+  const url = "http://localhost:8000/gallerycarrusel"; 
   const [ galleryData, setGalleryData ] = useState([
   ]);
   
