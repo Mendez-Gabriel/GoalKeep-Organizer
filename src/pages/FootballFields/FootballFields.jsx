@@ -41,6 +41,7 @@ const FootballFields = () => {
           {
             footballFieldData.map(footballField => <FootballFieldCard
               key={footballField._id}
+              id={footballField._id}
               name={footballField.name}
               grassType={footballField.grassType}
               players={footballField.players}
