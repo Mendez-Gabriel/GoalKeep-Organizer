@@ -1,39 +1,36 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logoIcon from '../../../assets/Icon/Icon.svg';
 import styleNavBar from './Navbar.module.css';
 import BottonTonggler from '../../specific/BottonTonggler/BottonTonggler';
 import ButtonLink from '../butonLink/ButtonLink';
 import Dropdown from '../dropdown/Dropdown';
 import { House, Flag, Shop, CardImage, InfoCircle, Phone } from 'react-bootstrap-icons';
-import { useNavigate } from 'react-router-dom';
 import ModalM from '../modal/ModalM';
 import Button from 'react-bootstrap/Button';
+import login from '../login/Login';
 
 
 
-const NavBar = ({ handleLogout }) => {
+const NavBar = ({ setUser, user }) => {
 
-    const navigate = useNavigate();
     const [show, setShow] = useState(false);
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-
-    useEffect(() => {
-        if (!localStorage.getItem('user')) {
-            navigate('/user/login');
-        }
-    }, [])
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        setShow(false);
+        setUser(null);
+    };
 
     const { logoIconStyle } = styleNavBar;
     const conteinerIcon = 'd-flex align-items-center my-2';
 
-
     return (
         <header>
             <nav className="navbar navbar-expand-lg fixed-top bg-dark bg-gradient">
-
                 <div className="container-fluid">
                     <img src={logoIcon} alt="logoIcon" id={logoIconStyle} />
                     <BottonTonggler
@@ -42,7 +39,7 @@ const NavBar = ({ handleLogout }) => {
                                 <div className={conteinerIcon}>
                                     <img src={logoIcon} alt="logoIcon" id={logoIconStyle} />
                                     <ul className='navbar-nav'>
-                                        <ButtonLink Text={'Iniciar Sesion'} link={'/login'} />
+                                        <ButtonLink Text={'user.loginUser.userPasswordHidden.userName'} link={'/login'} className={'fs-3'} />
                                     </ul>
                                 </div>
                             </>
@@ -96,7 +93,13 @@ const NavBar = ({ handleLogout }) => {
                         </ul>
                     </div>
                     <div className='d-none d-lg-block'>
-                        <Button variant="danger" onClick={handleShow}>Cerrar Sesion</Button>
+                        {user ?
+                            (<Button variant="danger" onClick={handleShow}>Cerrar Sesion</Button>)
+                            :
+                            (<div className="btn-group me-2" role="group" aria-label="Second group">
+                                <Link to={'/user/login'} className='btn btn-success'>Inicia Sesion</Link>
+                                <Link to={'user/register'} className='btn btn-warning'>Registrate</Link>
+                            </div>)}
                         <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} />
                     </div>
                 </div>
