@@ -6,7 +6,8 @@ import Styles from './FootballFields.module.css'
 import FootballFieldFilter from '../../components/specific/FootballFieldFilter/FootballFieldFilter';
 
 const FootballFields = () => {
-  const urlBase = 'http://localhost:8080/footballfields'
+  const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS;
+  const urlBase = `${url}/footballfields`;
   const [footballFieldData, setfootballFieldData] = useState([]);
   const [apiUrl, setapiUrl]  = useState(urlBase);
   const [queryParams, setQueryParams] = useState({});

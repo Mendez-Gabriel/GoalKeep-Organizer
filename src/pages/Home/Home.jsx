@@ -11,7 +11,7 @@ const Home = () => {
   const params = useParams();
 
     const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
-    const urlProducts = `${url}products`;
+    const urlProducts = `${url}/products`;
 
     const item = [];
 
