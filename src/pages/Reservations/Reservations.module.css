@@ -1,0 +1,8 @@
+.infoSection{
+  background-color: #345e37;
+  align-items: center;
+}
+.infoSection li {
+  font-size: larger;
+  color: #e0e0e0;
+}
