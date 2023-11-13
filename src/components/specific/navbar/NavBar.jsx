@@ -55,7 +55,7 @@ const NavBar = ({ handleLogout }) => {
                                 </div>
                                 <div className={conteinerIcon}>
                                     <Flag color='#919847' size={30} />
-                                    <ButtonLink Text={'Canchas'} link={'/fields'} />
+                                    <ButtonLink Text={'Canchas'} link={'/canchas'} />
                                 </div>
                                 <div className={conteinerIcon}>
                                     <Shop color='#919847' size={30} />
@@ -83,9 +83,9 @@ const NavBar = ({ handleLogout }) => {
                     <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul className="navbar-nav ">
                             <ButtonLink Text={'Home'} link={'/'} />
-                            <ButtonLink Text={'Canchas'} link={'/fields'} />
+                            <ButtonLink Text={'Canchas'} link={'/canchas'} />
                             <ButtonLink Text={'Productos'} link={'/products'} />
-                            <ButtonLink Text={'Galeria'} link={'/galery'} />
+                            <ButtonLink Text={'Galeria'} link={'/galeria'} />
                             <div className="dropdown my-auto">
                                 <Dropdown text={'Mas'} dropdownStyle={'text-light'} />
                                 <ul className="dropdown-menu bg-dark bg-gradient">
