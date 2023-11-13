@@ -13,7 +13,7 @@ import Pagination from '../../components/general/pagination/Pagination';
 const Products = () => {
 
     const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
-    const baseApi = `${url}products?`;
+    const baseApi = `${url}/products?`;
 
     const [products, setProducts] = useState([]);
     const [urlApi, setUrlApi] = useState(baseApi);
