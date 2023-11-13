@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Dropdown = ({text, dataBS}) => {
+const Dropdown = ({text, dropdownStyle}) => {
     return (
         <>
-            <button className="btn bg-secundary text-light ms-2 dropdown-toggle" type="button" data-bs-toggle={dataBS}>
+            <button className={`btn ms-2 dropdown-toggle ${dropdownStyle}`} type="button" data-bs-toggle='dropdown'>
                 {text}
             </button>
         </>
