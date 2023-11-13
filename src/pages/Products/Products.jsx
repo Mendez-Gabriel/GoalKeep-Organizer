@@ -88,7 +88,6 @@ const Products = () => {
                     <div className='d-flex justify-content-center'>
                         <Input type={'text'} setSearchProduct={handleSearch} placeholder={'Buscar Productos'} />
                     </div>
-
                     <div className='d-flex justify-content-center mt-3'>
                         <ButtonGeneral text={'Borrar filtros'} buttonStyle={'bg-danger text-light btn-sm m-3'} click={() => { handleSearch('') }} />
                     </div>
