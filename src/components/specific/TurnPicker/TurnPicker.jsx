@@ -6,19 +6,6 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 const TurnPicker = ({ setStart, setEnd, setDay, disabledTurns }) => {
 
-  // const disabledTimeRanges = [
-  //   { start: '00', end: '09' },
-  //   { start: '22', end: '00' },
-  // ];
-
-  // disabledTurns.forEach((turn) => {
-  //   disabledTimeRanges.push({
-  //     start: turn.hour,
-  //     end: turn.hour,
-  //   });
-  // });
-  
-
   const [disabledTimeRanges, setDisabledTimeRanges] = useState([]);
 
   useEffect(() => {
