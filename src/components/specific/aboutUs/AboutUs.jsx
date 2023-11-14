@@ -4,7 +4,6 @@ import './styles.css';
 import logoIcon from '../../../assets/Icon/Icon.svg';
 
 const AboutUs = () => {
-  const imageUrl = {logoIcon}; 
 
   return (
     <div className="about-us-container">
