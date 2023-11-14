@@ -100,7 +100,7 @@ const Login = ({ setUser, user }) => {
                                         {error && (
                                             <AlertError setError={setError} error={error} />
                                         )}
-                                        <Input margin={'mb-5'} placeholder={'Usuario o Email'} setSearchProduct={handleChange} type={'text'} name={'userName'} />
+                                        <Input margin={'mb-5'} placeholder={'Nombre de Usuario'} setSearchProduct={handleChange} type={'text'} name={'userName'} />
                                         <InputReact placeholder={'Contraseña'} margin={'mb-5'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye /> : <FaEyeSlash />} name={'password'} />
                                         <button type="submit" className='btn btn-primary mb-5'>Iniciar Sesion</button>
                                     </form>
