@@ -1,9 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import styles from './FootballFieldCard.module.css';
+import styles from './footballFieldCard.module.css';
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import ModalM from '../modal/ModalM';
 
 
 function FootballFieldCard({  name, grassType, players, imgUrl, id, user }) {

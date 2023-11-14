@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link,  useNavigate } from 'react-router-dom';
 import style from './Login.module.css';
 import iconLogo from '../../../assets/Icon/Icon.svg'
-import Input from '../../general/input/input';
+import Input from '../../general/input/Input';
 import axios from 'axios';
 import { FaEyeSlash, FaEye } from 'react-icons/fa6';
 import InputReact from '../../general/inputReact/InputReact';

@@ -13,7 +13,9 @@ import Login from './components/specific/login/Login';
 import Register from './components/specific/register/Register';
 import { useState, useEffect } from 'react';
 import Reservations from './pages/Reservations/Reservations';
+import ContactPage from './pages/paginacontacto/PaginaContacto'
 import PaginaError404 from './components/general/paginaError404/PaginaError404'
+
 
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
     <BrowserRouter>
     <NavBar setUser={setUser} user={user}/>
       <Routes>
+      ContactPage
+        <Route path='/contact' element={<ContactPage/>}/> 
         <Route path='/' element={<Home/>}/>
         <Route path='/products' element={<Products/>}/>       
         <Route path='/canchas' element={<FootballFields user={ user }/>}/>

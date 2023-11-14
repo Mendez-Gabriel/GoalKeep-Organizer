@@ -18,7 +18,7 @@ const Footer = () => {
                     <ul className="nav justify-content-center">
                         <ButtonLink link={'*'} Text={'Terminos de uso'}/>
                         <ButtonLink link={'*'} Text={'Politicas de Privacidad'}/>
-                        <ButtonLink link={'*'} Text={'Contacto'}/>
+                        <ButtonLink link={'/contact'} Text={'Contacto'}/>
                         <ButtonLink link={'/about'} Text={'Acerca de Nosotros'}/>
                         <ButtonLink link={'*'} Text={'Informacion Legal'}/>
                     </ul>
