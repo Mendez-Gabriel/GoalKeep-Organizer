@@ -38,9 +38,9 @@ function App() {
         <Route path='/canchas' element={<FootballFields user={ user }/>}/>
         <Route path='/canchas/:id' element={<Reservations user={ user }/>}/>
         <Route path='/galeria' element={<Gallery/>}/>
-        <Route path='/about' Component={AboutUs}/>
+        <Route path='/about' element={<AboutUs/>}/>
         <Route path='/admin' element={<Administrator user={user}/>}/>
-        <Route path='/Fundadores' Component={CardsIntegrantes}/>
+        <Route path='/Fundadores' element={<CardsIntegrantes/>}/>
         <Route path='/product/:id' element={<ProductItem  user={user}/>}/>
         <Route path='/user/login' element={<Login setUser={setUser} user={user}/>} />
         <Route path='/user/register' element={<Register/>}/>

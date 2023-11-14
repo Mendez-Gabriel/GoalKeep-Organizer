@@ -16,11 +16,11 @@ const Footer = () => {
                         <h1 className='text-light fst-italic ms-3'>GoalKeep Organizer</h1>
                     </div>
                     <ul className="nav justify-content-center">
-                        <ButtonLink Text={'text'}/>
-                        <ButtonLink Text={'text'}/>
-                        <ButtonLink Text={'text'}/>
-                        <ButtonLink Text={'text'}/>
-                        <ButtonLink Text={'text'}/>
+                        <ButtonLink link={'*'} Text={'Terminos de uso'}/>
+                        <ButtonLink link={'*'} Text={'Politicas de Privacidad'}/>
+                        <ButtonLink link={'*'} Text={'Contacto'}/>
+                        <ButtonLink link={'/about'} Text={'Acerca de Nosotros'}/>
+                        <ButtonLink link={'*'} Text={'Informacion Legal'}/>
                     </ul>
                     <ul className="nav justify-content-evenly m-2">
                         <Instagram color='#919847' size={25}/>
