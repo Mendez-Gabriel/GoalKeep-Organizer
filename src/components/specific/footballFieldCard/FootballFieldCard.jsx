@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function FootballFieldCard({  name, grassType, players, imgUrl, id }) {
   return (
-    <div className ={`col-10 p-0 ${styles.cardContainer}`}>
+    <div className ={`col-12 p-0 ${styles.cardContainer}`}>
       <img src={ imgUrl } alt="img-estadio" />
       <div className={styles.info}>
         <h3>{ name }</h3>

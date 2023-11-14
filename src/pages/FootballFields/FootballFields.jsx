@@ -38,7 +38,7 @@ const FootballFields = () => {
         <aside className={`px-0 my-3 col-12 justify-content-center ${Styles.sideBar}`}>
           <FootballFieldFilter handleFilter={addFilters} deleteFiltters={clearFiltters}/>
         </aside>
-        <div className='container-fluid row col-11  justify-content-center mx-0 px-0 gap-3'>
+        <div className='container-fluid row col-11 col-md-8 col-lg-7  justify-content-center mx-0 px-0 gap-3'>
           {
             footballFieldData.map(footballField => <FootballFieldCard
               key={footballField._id}

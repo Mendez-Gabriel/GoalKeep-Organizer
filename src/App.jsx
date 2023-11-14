@@ -36,7 +36,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/products' element={<Products/>}/>       
         <Route path='/canchas' element={<FootballFields/>}/>
-        <Route path='/canchas/:id' element={<Reservations/>}/>
+        <Route path='/canchas/:id' element={<Reservations user={ user }/>}/>
         <Route path='/galeria' element={<Gallery/>}/>
         <Route path='/about' Component={AboutUs}/>
         <Route path='/admin' element={<Administrator/>}/>

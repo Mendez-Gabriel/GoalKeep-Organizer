@@ -1,5 +1,8 @@
 .seccionCanchas{
-  background-color: #222222;
+  background-color: #1E1E1E;
+  background-image: radial-gradient(#345e37 2px, transparent 0);
+  background-size: 30px 30px;
+  background-position: -5px -5px;
   color:white;
 }
 .sideBar{

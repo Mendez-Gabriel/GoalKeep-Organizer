@@ -6,12 +6,23 @@
   align-items: center;
 }
 .infoSection li {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 500;
-  color: #e0e0e0;
+  color: #1E1E1E;
 }
 .infoSection li strong{
   color: #61bc84;
   font-weight: 900;
   -webkit-text-stroke: 1px black;
 }
+.button {
+  text-align: center;
+  text-decoration: none;
+  width: 200px;
+  padding: 12px 48px;
+  text-align: center;
+  color: white;
+  background-color: #1E1E1E;
+  border: solid 2px white;
+}
+
