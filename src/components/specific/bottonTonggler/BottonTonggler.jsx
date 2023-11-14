@@ -4,17 +4,8 @@ import style from './BottonTonggler.module.css';
 import ButtonLink from '../butonLink/ButtonLink';
 import Dropdown from '../dropdown/Dropdown';
 
-const BottonTonggler = ({offcanvas, offcanvasHeader}) => {
-
-    const [click, setClick] = useState(false)
-
-    const { navicon, open, bgOffCanvas } = style;
-
-    const handlerClick = () => {
-        setClick(!click)
-
-    }
-
+const BottonTonggler = ({offcanvas, offcanvasHeader, handlerClick, click}) => {
+    const { navicon, open } = style;
 
     return (
         <>
@@ -22,7 +13,6 @@ const BottonTonggler = ({offcanvas, offcanvasHeader}) => {
                 <span></span>
                 <span></span>
                 <span></span>
-
             </div>
 
             <div className={`offcanvas offcanvas-end bg-dark bg-gradient d-lg-none`} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
