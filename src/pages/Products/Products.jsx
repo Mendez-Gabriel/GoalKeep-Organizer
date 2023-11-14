@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { card, bgOscuroMedio } from './Products.module.css';
 import axios from 'axios';
 import CardProducts from '../../components/specific/cardProducts/CardProducts';
-import Input from '../../components/general/input/input';
+import Input from '../../components/general/input/Input';
 import Dropdown from '../../components/specific/dropdown/Dropdown';
 import ButtonDropdown from '../../components/general/buttonDropdown/ButtonDropdown';
 import ButtonGeneral from '../../components/general/buttonGeneral/ButtonGeneral';
