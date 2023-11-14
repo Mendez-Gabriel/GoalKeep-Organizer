@@ -4,6 +4,7 @@ import style from './AboutUs.module.css';
 import logoIcon from '../../../assets/Icon/Icon.svg';
 
 const AboutUs = () => {
+  const {aboutUsContainer, aboutUsContent, aboutUsImage, aboutUsText, aboutUsButton} = style
   const imageUrl = {logoIcon}; 
 
   return (
