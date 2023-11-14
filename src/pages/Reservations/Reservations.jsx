@@ -48,6 +48,7 @@ const Reservations = ({ user }) => {
             data: dataForm
           });
           alert(`Reserva realizada para el dia ${dataForm.day} de ${dataForm.hour.start} a ${dataForm.hour.end}hs`);
+          setReload(!reload);
         } catch (error) {
           alert('Fecha no disponible');
           console.log(error);
