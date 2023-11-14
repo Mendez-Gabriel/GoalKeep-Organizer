@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import style from './CardList.module.css';
+import './CardList.module.css';
 import axios from 'axios';
 import { useEffect } from 'react';
 
 function CardList() {
-
   const {cardContainer, Card, overlay} = style;
-
   const url = import.meta.env.VITE_APP_URL_BASE;
 
   const baseurl =  `${url}/gallerycard`;

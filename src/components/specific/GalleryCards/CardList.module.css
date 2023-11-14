@@ -1,7 +1,11 @@
 .cardContainer {
+<<<<<<< HEAD
+  margin: 20px;
+=======
   margin-bottom: 50px;
   margin-left: 20px;
   margin-right: 20px;
+>>>>>>> 9b31743e953894b1a0eb7a5bf5ec2afa8ebc4c8a
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
