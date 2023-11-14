@@ -19,51 +19,17 @@ const Products = () => {
     const [urlApi, setUrlApi] = useState(baseApi);
     const [page, setPage] = useState([]);
     const [activeBtn, setActiveBtn] = useState('');
-    const [dataForm, setDataForm] = useState({
-        name: '',
-        description: '',
-        brand: '',
-        Image: '',
-        price: '',
-        available: false,
-        productCategory: ''
-    });
-
-    const handleForm = (event) => {
-        const { value, name, type } = event.target
-
-        let newValue;
-
-        if (type === 'checkbox') {
-            newValue = !dataForm.available;
-        } else {
-            newValue = value;
-        }
-
-        setDataForm((dataForm) => ({
-            ...dataForm,
-            [name]: newValue
-        }));
-    };
-
-    useEffect(() => {
-    }, [dataForm]);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        console.log(dataForm);
-
-        axios.post(baseApi, dataForm)
-         .then((responese) => {console.log(responese)})
-         .catch((error) => {console.log(error)})
-         .finally(() => {console.log('Peticion Finalizada')})
-    };
 
     const handleSearch = (click) => {
         console.log(click.target.value)
         setActiveBtn(click.target.value);
         const Search = `${baseApi}name=${click.target.value}`;
+        setUrlApi(Search);
+    };
+
+    const handleFilter = (searchValue) => {
+        console.log(searchValue);
+        const Search = `${baseApi}name=${searchValue}`;
         setUrlApi(Search);
     };
 
@@ -89,18 +55,18 @@ const Products = () => {
                         <Input type={'text'} setSearchProduct={handleSearch} placeholder={'Buscar Productos'} />
                     </div>
                     <div className='d-flex justify-content-center mt-3'>
-                        <ButtonGeneral text={'Borrar filtros'} buttonStyle={'bg-danger text-light btn-sm m-3'} click={() => { handleSearch('') }} />
+                        <ButtonGeneral text={'Borrar filtros'} buttonStyle={'bg-danger text-light btn-sm m-3'} click={() => { handleFilter('') }} />
                     </div>
                     <div className='d-flex justify-content-center'>
                         <Dropdown text={'Accesorios'} dropdownStyle={'btn-secondary'} />
                         <div className="dropdown-menu">
-                            <ButtonDropdown text={'Pelotas'} click={() => handleSearch('pelota')} buttonStyle={activeBtn === 'pelota' ? 'active' : ''} />
+                            <ButtonDropdown text={'Pelotas'} click={() => handleFilter('pelota')} buttonStyle={activeBtn === 'pelota' ? 'active' : ''} />
                         </div>
                         <Dropdown text={'Indumentaria'} dropdownStyle={'btn-secondary'} />
                         <div className="dropdown-menu">
-                            <ButtonDropdown text={'Camisetas'} click={() => { handleSearch('Camiseta') }} buttonStyle={activeBtn === 'Camiseta' ? 'active' : ''} />
-                            <ButtonDropdown text={'Pantalones'} click={() => { handleSearch('pantalones') }} buttonStyle={activeBtn === 'pantalones' ? 'active' : ''} />
-                            <ButtonDropdown text={'Botines'} click={() => { handleSearch('botines') }} buttonStyle={activeBtn === 'botines' ? 'active' : ''} />
+                            <ButtonDropdown text={'Camisetas'} click={() => { handleFilter('camiseta') }} buttonStyle={activeBtn === 'Camiseta' ? 'active' : ''} />
+                            <ButtonDropdown text={'Pantalones'} click={() => { handleFilter('short') }} buttonStyle={activeBtn === 'pantalones' ? 'active' : ''} />
+                            <ButtonDropdown text={'Botines'} click={() => { handleFilter('botines') }} buttonStyle={activeBtn === 'botines' ? 'active' : ''} />
                         </div>
                     </div>
                 </div>
