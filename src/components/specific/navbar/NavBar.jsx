@@ -6,7 +6,7 @@ import styleNavBar from './Navbar.module.css';
 import BottonTonggler from '../../specific/BottonTonggler/BottonTonggler';
 import ButtonLink from '../butonLink/ButtonLink';
 import Dropdown from '../dropdown/Dropdown';
-import { House, Flag, Shop, CardImage, InfoCircle, Phone } from 'react-bootstrap-icons';
+import { House, Flag, Shop, CardImage, InfoCircle, Phone, PersonFill } from 'react-bootstrap-icons';
 import ModalM from '../modal/ModalM';
 import Button from 'react-bootstrap/Button';
 
@@ -79,7 +79,7 @@ const NavBar = ({ setUser, user }) => {
                                 {user?.loginUser.userPasswordHidden.admin ?
                                     (
                                         <div className={conteinerIcon}>
-                                            <CardImage color='#919847' size={30} />
+                                            <PersonFill color='#919847' size={30} />
                                             <ButtonLink Text={'Administrador'} link={'/admin'}  />
                                         </div>
                                     ) : ('')

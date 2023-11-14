@@ -42,7 +42,6 @@ const GalleryCarrusel = () => {
 
     fetchCarruselData();
   }, []);
-  console.log(galleryData)
 
   return (
     <div className={`py-5`}>

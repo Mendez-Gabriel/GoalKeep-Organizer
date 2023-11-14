@@ -13,7 +13,7 @@ const Administrator = ({ view, user }) => {
   const changeView = (newView) => {
     setCurrentView(newView);
   }
-console.log(user?.loginUser.userPasswordHidden.admin)
+
   const [CurrentView, setCurrentView] = useState('footballFields');
 
   return (
