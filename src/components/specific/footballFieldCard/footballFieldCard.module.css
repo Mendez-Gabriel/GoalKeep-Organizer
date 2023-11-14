@@ -78,6 +78,25 @@
   z-index: 1;
 }
 
+.buttonModal {
+  text-decoration: none;
+  width: 200px;
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  left:0;
+  bottom: 50px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+
+
+.cardContainer:hover .buttonModal {
+  opacity: 1;
+}
+
 .cardContainer:hover .button {
   opacity: 1;
 }

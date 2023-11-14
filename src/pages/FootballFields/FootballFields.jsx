@@ -5,7 +5,7 @@ import FootballFieldCard from  '../../components/specific/FootballFieldCard/Foot
 import Styles from './FootballFields.module.css'
 import FootballFieldFilter from '../../components/specific/FootballFieldFilter/FootballFieldFilter';
 
-const FootballFields = () => {
+const FootballFields = ({ user }) => {
   const url = import.meta.env.VITE_APP_URL_BASE;
   const urlBase = `${url}/footballfields`;
   const [footballFieldData, setfootballFieldData] = useState([]);
@@ -46,6 +46,7 @@ const FootballFields = () => {
               grassType={footballField.grassType}
               players={footballField.players}
               imgUrl={footballField.imgUrl}
+              user={ user }
             />)
           }
         </div>
