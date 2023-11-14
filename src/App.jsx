@@ -13,6 +13,7 @@ import ProductItem from './pages/productItem/ProductItem';
 import Login from './components/specific/login/Login';
 import Register from './components/specific/register/Register';
 import { useState, useEffect } from 'react';
+import Reservations from './pages/Reservations/Reservations';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/products' element={<Products/>}/>       
         <Route path='/canchas' element={<FootballFields/>}/>
+        <Route path='/canchas/:id' element={<Reservations user={ user }/>}/>
         <Route path='/galeria' element={<Gallery/>}/>
         <Route path='/about' Component={AboutUs}/>
         <Route path='/admin' element={<Administrator user={user}/>}/>
