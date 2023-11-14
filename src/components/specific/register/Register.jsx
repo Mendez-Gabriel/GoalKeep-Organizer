@@ -14,8 +14,8 @@ const Register = () => {
     const { card, img, logoIconStyle, bgImage, textTitle } = style;
     const imageMessi = 'https://res.cloudinary.com/dptlgyfq5/image/upload/v1699462256/Login_oqbqnz.jpg';
 
-    const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
-    const BaseApi = `${url}user/register`;
+    const url = import.meta.env.VITE_APP_URL_BASE
+    const BaseApi = `${url}/user/register`;
 
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
     const [error, setError] = useState(null);
@@ -60,7 +60,7 @@ const Register = () => {
                 console.log(response.data);
             })
             .catch((err) => {
-                console.log(err.response.data.error);
+                console.log(err);
                 setError(err.response.data.error);
             })
             .finally(() => { console.log('Peticion Finalizada') })

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import './CardList.css';
+import style from './CardList.module.css';
 import axios from 'axios';
 import { useEffect } from 'react';
 
 function CardList() {
-  const baseurl =  'http://localhost:8000/gallerycard'
+  const {cardContainer, Card, overlay} = style;
+  const url = import.meta.env.VITE_APP_URL_BASE;
+  const baseurl =  `${url}/gallerycard`;
   const [selectedImage, setSelectedImage] = useState(null);
   const [cardData, setCardData] = useState([
   ]);
@@ -26,16 +28,16 @@ function CardList() {
   }, [])
   
   return (
-    <div className="card-container">
+    <div className={cardContainer}>
       {cardData.map((card) => (
-        <div key={card._id} className="card" onClick={() => handleImageClick(card.Image)}>
+        <div key={card._id} className={Card} onClick={() => handleImageClick(card.Image)}>
           <h2>{card.name}</h2>
           <p>{card.description}</p>
         </div>
       ))}
 
       {selectedImage && (
-        <div className="overlay" onClick={() => setSelectedImage(null)}>
+        <div className={overlay} onClick={() => setSelectedImage(null)}>
           <img src={selectedImage} alt="Imagen ampliada" />
         </div>
       )}

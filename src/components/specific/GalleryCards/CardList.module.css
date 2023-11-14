@@ -1,25 +1,23 @@
-.card-container {
-  margin-bottom: 50px;
-  margin-left: 20px;
-  margin-right: 20px;
+.cardContainer {
+  margin: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
 @media screen and (max-width: 768px) {
-  .card-container {
+  .cardContainer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 480px) {
-  .card-container {
+  .cardContainer {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-.card {
+.Card {
   background: #f0f0f0;
   border: 1px solid #ccc;
   padding: 4rem;
@@ -29,7 +27,7 @@
   transition: transform 0.3s;
 }
 
-.card:hover {
+.Card:hover {
   transform: scale(1.05);
 }
 

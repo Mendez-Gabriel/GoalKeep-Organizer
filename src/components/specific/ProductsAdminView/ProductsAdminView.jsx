@@ -6,7 +6,7 @@ import { Trash3Fill, PenFill, XCircle, CheckCircle } from 'react-bootstrap-icons
 
 const ProductsAdminView = () => {
 
-  const urlBase = 'http://localhost:8080'
+  const urlBase = import.meta.env.VITE_APP_URL_BASE;
   const [reload, setReload] = useState(false);
   const [productData, setProductData] = useState([]);
   const [productCategoryData, setProductCategoryData] = useState([]);
@@ -51,12 +51,14 @@ const ProductsAdminView = () => {
   const handleSubmit = async (e,isCategory) => {
     e.preventDefault();
     if(isCategory){
-      try {
-        const { data } = await axios.post(`${urlBase}/productCategory`,categoryDataForm);
-        console.log(data)
-      } catch (error) {
-        console.log(error)
-      }
+      if(confirm('Desea Agregar esta categoria?')){
+        try {
+          const { data } = await axios.post(`${urlBase}/productCategory`,categoryDataForm);
+          console.log(data)
+        } catch (error) {
+          console.log(error)
+        }
+      }else alert('Operacion cancelada')
     }else{
       try {
         const { data } = await axios.post(`${urlBase}/products`,dataForm);
@@ -152,7 +154,7 @@ const ProductsAdminView = () => {
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h1 className="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <h1 className="modal-title fs-5" id="staticBackdropLabel">Crear Categoria</h1>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
@@ -275,8 +277,13 @@ const ProductsAdminView = () => {
                     <label htmlFor="imgUrlInput">URL Imagen</label>
                   </div>
                   <div className="form-check form-switch mb-3">
-											<input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onChange={(e) => {setNewAvailable(!newAvailable)}} name={'available'} />
-											<label className="form-check-label" htmlFor="flexSwitchCheckChecked">Cambiar Diponibilidad</label>
+                    {
+                      newAvailable?
+                      <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onChange={(e) => {setNewAvailable(!newAvailable)}} name={'available'} checked/>
+											:
+                      <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onChange={(e) => {setNewAvailable(!newAvailable)}} name={'available'} />
+                    }
+											<label className="form-check-label" htmlFor="flexSwitchCheckChecked">{newAvailable?'Declarar faltante':'Declarar en stock'}</label>
 										</div>
                   <div className='row gap-3 gap-md-0 justify-content-around'>
                     <button type="button" className={`col-10 col-md-4 ${createButton}`} data-bs-dismiss="modal">Cerrar</button>

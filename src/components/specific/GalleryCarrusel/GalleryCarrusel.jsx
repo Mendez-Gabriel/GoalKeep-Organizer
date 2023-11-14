@@ -4,7 +4,9 @@ import 'react-multi-carousel/lib/styles.css';
 import axios from 'axios';
 
 const GalleryCarrusel = () => {
-  const baseurl = 'http://localhost:8000/gallerycarrusel'; 
+
+  const url = import.meta.env.VITE_APP_URL_BASE;
+  const baseurl = `${url}/gallerycarrusel`; 
   const [ galleryData, setGalleryData ] = useState([
   ]);
   
@@ -40,7 +42,6 @@ const GalleryCarrusel = () => {
 
     fetchCarruselData();
   }, []);
-  console.log(galleryData)
 
   return (
     <div className={`py-5`}>
