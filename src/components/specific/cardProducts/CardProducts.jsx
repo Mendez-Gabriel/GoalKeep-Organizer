@@ -16,7 +16,7 @@ const CardProducts = ({products, updateSelectedItem}) => {
     
     return (     
         <div className="d-flex justify-content-center">
-            <Link  to={`/product/${_id}`} onClick={() => updateSelectedItem(products)} 
+            <Link to={`/products/${_id}`} onClick={() => updateSelectedItem(products)} 
             className=' link-underline link-underline-opacity-0 '>
                     <div className={`card ${card} ${boxShadow}`}>
                         <img src={Image} className={`card-img-top  ${img}`} alt="..." />

@@ -25,4 +25,8 @@
   background-color: #1E1E1E;
   border: solid 2px white;
 }
+.infoSection h1, h3 {
+  color: #61bc84;
+  -webkit-text-stroke: 1px white;
+}
 
