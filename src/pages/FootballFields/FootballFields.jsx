@@ -5,7 +5,7 @@ import FootballFieldCard from  '../../components/specific/FootballFieldCard/Foot
 import Styles from './FootballFields.module.css'
 import FootballFieldFilter from '../../components/specific/FootballFieldFilter/FootballFieldFilter';
 
-const FootballFields = () => {
+const FootballFields = ({ user }) => {
   const url = import.meta.env.VITE_APP_URL_BASE;
   const urlBase = `${url}/footballfields`;
   const [footballFieldData, setfootballFieldData] = useState([]);
@@ -37,14 +37,16 @@ const FootballFields = () => {
         <aside className={`px-0 my-3 col-12 justify-content-center ${Styles.sideBar}`}>
           <FootballFieldFilter handleFilter={addFilters} deleteFiltters={clearFiltters}/>
         </aside>
-        <div className='container-fluid row col-11  justify-content-center mx-0 px-0 gap-3'>
+        <div className='container-fluid row col-11 col-md-8 col-lg-7  justify-content-center mx-0 px-0 gap-3'>
           {
             footballFieldData.map(footballField => <FootballFieldCard
               key={footballField._id}
+              id={footballField._id}
               name={footballField.name}
               grassType={footballField.grassType}
               players={footballField.players}
               imgUrl={footballField.imgUrl}
+              user={ user }
             />)
           }
         </div>
