@@ -37,7 +37,7 @@ function App() {
         <Route path='/canchas' element={<FootballFields/>}/>
         <Route path='/galeria' element={<Gallery/>}/>
         <Route path='/about' Component={AboutUs}/>
-        <Route path='/admin' element={<Administrator/>}/>
+        <Route path='/admin' element={<Administrator user={user}/>}/>
         <Route path='/Fundadores' Component={CardsIntegrantes}/>
         <Route path='/product/:id' element={<ProductItem  user={user}/>}/>
         <Route path='/user/login' element={<Login setUser={setUser} user={user}/>} />

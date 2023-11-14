@@ -23,6 +23,8 @@ const CardProductsItem = ({ products, user }) => {
         setShow(false);
     };
 
+    console.log(user)
+
     return (
         <div className={bgOscuroMedio}>
             <div className='container'>
@@ -59,14 +61,19 @@ const CardProductsItem = ({ products, user }) => {
                                     </div>
                                 </div>
                                 {user ? 
-                                ( <Link to={'*'} className='btn btn-success' >Agregar al Carrito</Link> )
-                                :
-                                (
-                                    <>
-                                        <Button variant="success" onClick={handleShow}>Agregar al Carrito</Button>
-                                        <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} textBtn={'Iniciar Sesion'} textTitle={'Necesitas iniciar sesion para continuar'}/>
-                                    </>
-                                )}
+                                    user?.loginUser.userPasswordHidden.active ?
+                                        <Link to={'*'} className='btn btn-success' >Agregar al Carrito</Link> 
+                                        :
+                                        <>
+                                            <Button variant="success" onClick={handleShow}>Agregar al Carrito</Button>
+                                            <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} textBtn={'Iniciar Sesion'} textTitle={'Su cuenta fue Inabilitada por el administrador'}/>
+                                        </>                                
+                                    :                                  
+                                        <>
+                                            <Button variant="success" onClick={handleShow}>Agregar al Carrito</Button>
+                                            <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} textBtn={'Iniciar Sesion'} textTitle={'Necesitas iniciar sesion para continuar'}/>
+                                        </>
+                                }
                                 
                             </div>
                         </div>
