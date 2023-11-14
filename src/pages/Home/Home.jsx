@@ -29,18 +29,6 @@ const Home = () => {
           <h1 className=''><strong className={`fst-italic ms-3 ${textSize}`}>GoalKeep Organizer</strong></h1>
         </div>
 
-        {/* <div className='d-flex'>
-          <div className='container d-flex justify-content-between my-5 '>
-            <div className='col'>
-              <h1 className={textSize}>RESERVA</h1>
-              <h1><strong className={textSize}>TU CANCHA</strong></h1>
-            </div>
-            <div>
-            <Link to={'/canchas'} className='btn btn-success m-4 col'><h5>RESERVA HOY</h5></Link>
-            </div>
-          </div>
-        </div> */}
-
         <div class="container my-5">
           <div class="row">
             <div class="col-12 col-sm-6">

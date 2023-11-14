@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useState, useEffect } from 'react'
-import FootballFieldCard from  '../../components/specific/FootballFieldCard/FootballFieldCard'
+import FootballFieldCard from  '../../components/specific/footballFieldCard/FootballFieldCard'
 import Styles from './FootballFields.module.css'
 import FootballFieldFilter from '../../components/specific/FootballFieldFilter/FootballFieldFilter';
 
