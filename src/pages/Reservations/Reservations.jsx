@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { infoSection } from './Reservations.module.css'
+import TurnPicker from '../../components/specific/TurnPicker/TurnPicker';
 
 
 const Reservations = () => {
@@ -32,15 +33,18 @@ const Reservations = () => {
   return (
     <>
       <section className={`${infoSection} align-items-center container-fluid justify-content-center row mt-5 py-5 px-0 mx-0`}>
-        <div className='col-md-7 col-12 mx-0 px-0'>
+        <div className='justify-content-center row col-md-7 col-12 mx-0 px-0'>
           <img src={fieldData.imgUrl} alt={fieldData.name} className='img-fluid'/>
         </div>
         <div className='col-md-3 col-12 mx-0 py-0 '>
           <ul className='class="list-group list-group-flush text-center'>
-            <li className='list-group-item'>Cancha: {fieldData.name}</li>
-            <li className='list-group-item'>Cesped: {fieldData.grassType}</li>
-            <li className='list-group-item'>Jugadores: {fieldData.players}</li>
+            <li className='list-group-item'><strong>Cancha:</strong> {fieldData.name}</li>
+            <li className='list-group-item'><strong>Cesped:</strong> {fieldData.grassType}</li>
+            <li className='list-group-item'><strong>Jugadores:</strong> {fieldData.players}</li>
           </ul>
+        </div>
+        <div className='col-12 justify-content-center mx-0 px-0'>
+          <TurnPicker/>
         </div>
       </section>
     </>
