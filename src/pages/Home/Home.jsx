@@ -5,6 +5,7 @@ import axios from 'axios';
 import { logoIconStyle, bgLightCream, bgLightGreen } from './Home.module.css';
 import iconLogo from '../../assets/Icon/Icon.svg';
 import CarrouselProducts from '../../components/general/carrouselProducts/CarrouselProducts';
+import  CarruselSlide  from '../../components/general/carrucelSlide/CarruselSlide';
 
 
 const Home = () => {
@@ -26,6 +27,9 @@ const Home = () => {
       <div className='d-flex justify-content-center'>
         <img src={iconLogo} className={logoIconStyle}/>
         <h1 className='fst-italic ms-3'><strong>GoalKeep Organizer</strong></h1>
+      </div>
+      <div className='bg-light my-5'>
+        <CarruselSlide />
       </div>
       <div className='containter mt-5'>
         <CarrouselProducts setItem={item} urlProducts={urlProducts} titleCarrousel={'Productos'} bgCarousel={bgLightCream} titleColor={'ms-5 fst-italic'}/>

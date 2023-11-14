@@ -60,7 +60,7 @@ const Register = () => {
                 console.log(response.data);
             })
             .catch((err) => {
-                console.log(err.response.data.error);
+                console.log(err);
                 setError(err.response.data.error);
             })
             .finally(() => { console.log('Peticion Finalizada') })

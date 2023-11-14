@@ -23,7 +23,6 @@ const FootballFields = () => {
     const fetchFootballFieldsData = async () => {
       try {
         const  {data}  = await axios.get(apiUrl,queryParams);
-        console.log(data.footballFields);
         setfootballFieldData(data.footballFields);
       } catch (error) {
         console.log(error);
