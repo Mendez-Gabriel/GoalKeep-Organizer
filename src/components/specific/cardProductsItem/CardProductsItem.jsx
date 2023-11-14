@@ -1,13 +1,29 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { SiAmericanexpress, SiVisa, SiMastercard, SiMercadopago } from 'react-icons/si';
 import style from './CardProductsItems.module.css';
 import ButtonGeneral from '../../general/buttonGeneral/ButtonGeneral';
+import ModalM from '../modal/ModalM';
+import Button from 'react-bootstrap/Button';
 
-const CardProductsItem = ({ products }) => {
-
+const CardProductsItem = ({ products, user }) => {
+    
     const { name, Image, price, description } = products
     const { bgOscuroMedio, bgPhotoFutbol, bgGradiente, textGradient } = style
 
+    const navigate = useNavigate()
+
+    const [show, setShow] = useState(false);
+
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+    const handleLogout = () => {
+        navigate('/user/login');
+        setShow(false);
+    };
+
+    console.log(user)
 
     return (
         <div className={bgOscuroMedio}>
@@ -44,7 +60,21 @@ const CardProductsItem = ({ products }) => {
                                         <p className="card-text fs-6 text">12 cuotas fijas de <span className='text-warning'>${(price / 12).toFixed(2)}</span></p>
                                     </div>
                                 </div>
-                                <ButtonGeneral text={'Agregar al Carrito'} buttonStyle={'btn-success'} />
+                                {user ? 
+                                    user?.loginUser.userPasswordHidden.active ?
+                                        <Link to={'*'} className='btn btn-success' >Agregar al Carrito</Link> 
+                                        :
+                                        <>
+                                            <Button variant="success" onClick={handleShow}>Agregar al Carrito</Button>
+                                            <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} textBtn={'Iniciar Sesion'} textTitle={'Su cuenta fue Inabilitada por el administrador'}/>
+                                        </>                                
+                                    :                                  
+                                        <>
+                                            <Button variant="success" onClick={handleShow}>Agregar al Carrito</Button>
+                                            <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} textBtn={'Iniciar Sesion'} textTitle={'Necesitas iniciar sesion para continuar'}/>
+                                        </>
+                                }
+                                
                             </div>
                         </div>
                     </div>

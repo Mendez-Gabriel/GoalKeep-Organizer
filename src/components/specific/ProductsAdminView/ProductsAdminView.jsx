@@ -6,7 +6,7 @@ import { Trash3Fill, PenFill, XCircle, CheckCircle } from 'react-bootstrap-icons
 
 const ProductsAdminView = () => {
 
-  const urlBase = 'http://localhost:8080'
+  const urlBase = import.meta.env.VITE_APP_URL_BASE;
   const [reload, setReload] = useState(false);
   const [productData, setProductData] = useState([]);
   const [productCategoryData, setProductCategoryData] = useState([]);

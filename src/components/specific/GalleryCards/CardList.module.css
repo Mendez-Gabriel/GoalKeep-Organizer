@@ -1,0 +1,53 @@
+.cardContainer {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .cardContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cardContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.Card {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 4rem;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.Card:hover {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;  
+  z-index: 999;
+}
+
+.overlay img {
+  padding: 80px;
+  max-width: 95%; 
+  max-height: 95%; 
+  object-fit: contain;
+}

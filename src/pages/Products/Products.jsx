@@ -12,58 +12,24 @@ import Pagination from '../../components/general/pagination/Pagination';
 
 const Products = () => {
 
-    const url = import.meta.env.VITE_APP_URL_BASE_PRODUCTS
-    const baseApi = `${url}products?`;
+    const url = import.meta.env.VITE_APP_URL_BASE
+    const baseApi = `${url}/products?`;
 
     const [products, setProducts] = useState([]);
     const [urlApi, setUrlApi] = useState(baseApi);
     const [page, setPage] = useState([]);
     const [activeBtn, setActiveBtn] = useState('');
-    const [dataForm, setDataForm] = useState({
-        name: '',
-        description: '',
-        brand: '',
-        Image: '',
-        price: '',
-        available: false,
-        productCategory: ''
-    });
-
-    const handleForm = (event) => {
-        const { value, name, type } = event.target
-
-        let newValue;
-
-        if (type === 'checkbox') {
-            newValue = !dataForm.available;
-        } else {
-            newValue = value;
-        }
-
-        setDataForm((dataForm) => ({
-            ...dataForm,
-            [name]: newValue
-        }));
-    };
-
-    useEffect(() => {
-    }, [dataForm]);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        console.log(dataForm);
-
-        axios.post(baseApi, dataForm)
-         .then((responese) => {console.log(responese)})
-         .catch((error) => {console.log(error)})
-         .finally(() => {console.log('Peticion Finalizada')})
-    };
 
     const handleSearch = (click) => {
         console.log(click.target.value)
         setActiveBtn(click.target.value);
         const Search = `${baseApi}name=${click.target.value}`;
+        setUrlApi(Search);
+    };
+
+    const handleFilter = (searchValue) => {
+        console.log(searchValue);
+        const Search = `${baseApi}name=${searchValue}`;
         setUrlApi(Search);
     };
 
@@ -76,7 +42,7 @@ const Products = () => {
             })
             .catch((err) => { console.log(err) })
     }, [urlApi])
-
+    console.log(products)
 
     return (
         <>
@@ -88,67 +54,19 @@ const Products = () => {
                     <div className='d-flex justify-content-center'>
                         <Input type={'text'} setSearchProduct={handleSearch} placeholder={'Buscar Productos'} />
                     </div>
-
-
-                    {/* Comienzo de mi front modal */}
-
-                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">abrir input</button>
-                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h1 className="modal-title fs-5" id="exampleModalLabel">Agregar un producto</h1>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div className="modal-body">
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="mb-3">
-                                            <Input type={'text'} setSearchProduct={handleForm} name={'name'} placeholder={'Nombre de Producto'} />
-                                        </div>
-                                        <div className="mb-3">
-                                            <Input type={'text'} setSearchProduct={handleForm} name={'description'} placeholder={'Descripcion'} />
-                                        </div>
-                                        <div className="mb-3">
-                                            <Input type={'text'} setSearchProduct={handleForm} name={'brand'} placeholder={'Marca'} />
-                                        </div>
-                                        <div className="mb-3">
-                                            <Input type={'url'} setSearchProduct={handleForm} name={'Image'} placeholder={'URL de imagen'} />
-                                        </div>
-                                        <div className="mb-3">
-                                            <Input type={'number'} setSearchProduct={handleForm} name={'price'} placeholder={'Precio'} />
-                                        </div>                                       
-                                        <div className="mb-3">
-                                            <Input type={'text'} setSearchProduct={handleForm} name={'productCategory'} placeholder={'Id de Categoria'} />
-                                        </div>
-                                        <div className="form-check form-switch mb-3">
-                                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onChange={(event) => handleForm(event)} name={'available'} />
-                                            <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Diponibilidad</label>
-                                        </div>
-                                        <div>
-                                            <button type="submit" className="btn btn-primary" >Agregar Producto</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Fin de mi front modal */}
-
-
                     <div className='d-flex justify-content-center mt-3'>
-                        <ButtonGeneral text={'Borrar filtros'} buttonStyle={'bg-danger text-light btn-sm m-3'} click={() => { handleSearch('') }} />
+                        <ButtonGeneral text={'Borrar filtros'} buttonStyle={'bg-danger text-light btn-sm m-3'} click={() => { handleFilter('') }} />
                     </div>
                     <div className='d-flex justify-content-center'>
                         <Dropdown text={'Accesorios'} dropdownStyle={'btn-secondary'} />
                         <div className="dropdown-menu">
-                            <ButtonDropdown text={'Pelotas'} click={() => handleSearch('pelota')} buttonStyle={activeBtn === 'pelota' ? 'active' : ''} />
+                            <ButtonDropdown text={'Pelotas'} click={() => handleFilter('pelota')} buttonStyle={activeBtn === 'pelota' ? 'active' : ''} />
                         </div>
                         <Dropdown text={'Indumentaria'} dropdownStyle={'btn-secondary'} />
                         <div className="dropdown-menu">
-                            <ButtonDropdown text={'Camisetas'} click={() => { handleSearch('Camiseta') }} buttonStyle={activeBtn === 'Camiseta' ? 'active' : ''} />
-                            <ButtonDropdown text={'Pantalones'} click={() => { handleSearch('pantalones') }} buttonStyle={activeBtn === 'pantalones' ? 'active' : ''} />
-                            <ButtonDropdown text={'Botines'} click={() => { handleSearch('botines') }} buttonStyle={activeBtn === 'botines' ? 'active' : ''} />
+                            <ButtonDropdown text={'Camisetas'} click={() => { handleFilter('camiseta') }} buttonStyle={activeBtn === 'Camiseta' ? 'active' : ''} />
+                            <ButtonDropdown text={'Pantalones'} click={() => { handleFilter('short') }} buttonStyle={activeBtn === 'pantalones' ? 'active' : ''} />
+                            <ButtonDropdown text={'Botines'} click={() => { handleFilter('botines') }} buttonStyle={activeBtn === 'botines' ? 'active' : ''} />
                         </div>
                     </div>
                 </div>

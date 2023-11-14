@@ -1,21 +1,35 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { logoIconStyle, bgLightCream, bgLightGreen } from './Home.module.css';
+import iconLogo from '../../assets/Icon/Icon.svg';
+import CarrouselProducts from '../../components/general/carrouselProducts/CarrouselProducts';
+
 
 const Home = () => {
+  const params = useParams();
 
-  // const navigate = useNavigate();
-  
-  // useEffect(() => {
-  //   if(!localStorage.getItem('user')) {
-  //     navigate('/user/login');
-  //   }   
-  // }, [])
-  
+    const url = import.meta.env.VITE_APP_URL_BASE
+    const urlProducts = `${url}/products`;
+
+    const item = [];
+
+    useEffect(() => { 
+      const { data } = axios.get(`${urlProducts}?id=${params.id}`)
+        .then(({ data }) => { item(data.results[0]) })
+        .catch((err) => {console.log(err)})   
+    }, []);
 
   return (
-    <div className='mt-5 pt-5'>
-      <h1>Home</h1> 
+    <div className={`mt-5 pt-5 ${bgLightGreen}`}>
+      <div className='d-flex justify-content-center'>
+        <img src={iconLogo} className={logoIconStyle}/>
+        <h1 className='fst-italic ms-3'><strong>GoalKeep Organizer</strong></h1>
+      </div>
+      <div className='containter mt-5'>
+        <CarrouselProducts setItem={item} urlProducts={urlProducts} titleCarrousel={'Productos'} bgCarousel={bgLightCream} titleColor={'ms-5 fst-italic'}/>
+      </div>
     </div>
   )
 }

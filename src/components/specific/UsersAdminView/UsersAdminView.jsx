@@ -5,8 +5,8 @@ import { createButton, tableSection} from '../FootballFieldAdminView/FootballFie
 import { InfoCircle,  XCircle, CheckCircle } from 'react-bootstrap-icons';
 
 const UsersAdminView = () => {
-
-  const urlBase = 'http://localhost:8080';
+  
+  const urlBase = import.meta.env.VITE_APP_URL_BASE;
   const [reload, setReload] = useState(false);
   const [userData, setUserData] = useState([]);
   const [queryParams, setQueryParams] = useState({});
