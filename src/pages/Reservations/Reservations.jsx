@@ -56,7 +56,7 @@ const Reservations = ({ user }) => {
           const { data } = await axios({
             method:'get',
             url:`${urlBase}/reservation`,
-            params:{day: day}
+            params:{day: day, footballField: params.id}
           });
           console.log(data.reservations);
           setOcuppiedTurns(data.reservations);
