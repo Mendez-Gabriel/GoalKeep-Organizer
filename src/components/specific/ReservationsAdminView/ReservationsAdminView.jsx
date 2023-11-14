@@ -1,76 +1,163 @@
 import React from 'react'
 import { createButton, tableSection} from '../FootballFieldAdminView/FootballFieldAdminView.module.css';
-import { Trash3Fill, PenFill } from 'react-bootstrap-icons';
+import { InfoCircle } from 'react-bootstrap-icons';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 const ReservationsAdminView = () => {
+  const urlBase = import.meta.env.VITE_APP_URL_BASE;
+  const [reload, setReload] = useState(false)
+  const [userData, setUserData] = useState([]);
+  const [footballFieldData, setFootballFieldData] = useState([]);
+  const [reservationData, setReservationData] = useState([]);
+  const [selectedReservation, setSelectedReservation] = useState(null)
+  const [newUser, setNewUser] = useState('');
+  const [newFootballField, setNewFootballField] = useState('');
+  const [newDay, setNewDay] = useState('');
+  const [newHour, setNewHour] = useState({start:0,end:0});
+
+  const cancelTurn = async ( reservationId ) => {
+    if(confirm('Desea eliminar esta reservacion?')){
+      try {
+      const {data} = await axios({
+        method:'delete',
+        url:`${urlBase}/reservation`,
+        params:{ reservationId : reservationId }
+      });
+      alert(data.message);
+      setReload(!reload);
+    } catch (error) {
+      console.log(error);
+    };
+  }
+  };
+
+  
+  useEffect(()=>{
+    const fetchUserData = async () =>{
+      try {
+        const { data } = await axios({
+          method:'get',
+          url:`${urlBase}/user`,
+          params:{}
+        });
+        setUserData(data.allUsers);
+      } catch (error) {
+        console.log(error);
+      };
+    };
+    const fetchFieldsData = async() => {
+      try {
+        const { data } = await axios({
+          method:'get',
+          url:`${urlBase}/footballfields`,
+          params:{}
+        });
+        setFootballFieldData(data.footballFields);
+      } catch (error) {
+        console.log(error);
+      };
+    };
+    const fetchReservationsData = async ()=>{
+      try {
+        const { data } = await axios({
+          method:'get',
+          url:`${urlBase}/reservation`,
+          params:{}
+        });
+        setReservationData(data.reservations);
+      } catch (error) {
+        console.log(error);
+      };
+    };
+    fetchReservationsData();
+    fetchFieldsData();
+    fetchUserData();
+  },[reload]);
+  useEffect(()=>{
+    selectedReservation&&setNewUser(userData.find((user)=> user._id === selectedReservation.user)?.userName);
+    selectedReservation&&setNewFootballField(footballFieldData.find((field)=> field._id === selectedReservation.footballField)?.name);
+    selectedReservation&&setNewDay(selectedReservation.day);
+    selectedReservation&&setNewHour(selectedReservation.hour);
+  },[selectedReservation])
   return (
     <>
-      <div className='d-flex justify-content-center'>
-        <button type="button" className={createButton} data-bs-toggle="modal" data-bs-target="#fieldCreationModal">
-          Crear una nueva cancha
-        </button>
-
-        <div className="modal fade" id="fieldCreationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="staticBackdropLabel">Datos de Cancha</h1>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div className="modal-body">
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="nameInput" placeholder="name@example.com" />
-                  <label htmlFor="nameInput">Nombre</label>
+      <div className="modal fade" id="reservationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="reservationModalLabel">Modal title</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+                <div className="form-floating mb-3">
+                  <input type="text" className="form-control" name='user' id="userInput" placeholder="name@example.com"
+                    value={newUser} disabled />
+                  <label htmlFor="lastNameInput">User</label>
                 </div>
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="grassTypeInput" placeholder="name@example.com" />
-                  <label htmlFor="grassTypeInput">Tipo de cesped</label>
+                <div className="form-floating mb-3">
+                  <input type="text" className="form-control" name='user' id="fieldInput" placeholder="name@example.com"
+                    value={newFootballField} disabled />
+                  <label htmlFor="lastNameInput">Cancha</label>
                 </div>
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="playersInput" placeholder="name@example.com" />
-                  <label htmlFor="playersInput">Jugadores</label>
+                <div className="form-floating mb-3">
+                  <input type="text" className="form-control" name='user' id="dayInput" placeholder="name@example.com"
+                    value={newDay} disabled />
+                  <label htmlFor="lastNameInput">Dia</label>
                 </div>
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="imgUrlInput" placeholder="name@example.com" />
-                  <label htmlFor="imgUrlInput">URL Imagen</label>
+                <div className="form-floating mb-3">
+                  <input type="text" className="form-control" name='user' id="hourInput" placeholder="name@example.com"
+                    value={`De ${newHour.start} a ${newHour.end}hs`} disabled />
+                  <label htmlFor="lastNameInput">Dia</label>
                 </div>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className={createButton} data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" className={createButton}>Guardar Cancha</button>
-              </div>
+          
+                <div className='row gap-3 gap-md-0 justify-content-around'>
+                  <button type="button" className={`col-10 col-md-4 ${createButton}`} data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" className={`col-10 col-md-4 ${createButton}`} htmlFor='#userUpdateForm' onClick={()=>cancelTurn(selectedReservation._id)}>Cancelar Turno</button>
+                </div>
             </div>
           </div>
         </div>
       </div>
 
       <div className={`col-12 col-md-9 mx-0 px-0 py-4 p-md-4 ${tableSection}`}>
-        <table class="table table-striped table-centered mb-0">
+        <table className="table table-striped table-centered mb-0">
           <thead>
             <tr>
-              <th>Cancha</th>
-              <th>Cesped</th>
-              <th>Jugadores</th>
-              <th>Acciones</th>
+              <th>Usuario</th>
+              <th className='d-none d-md-block'>Cancha</th>
+              <th>Dia</th>
+              <th>Hora</th>
+              <th>Mas</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="table-user">
-                <img src="assets/images/users/avatar-2.jpg" alt="table-user" className="me-2 rounded-circle" />
-                Risa D. Pearson
-              </td>
-              <td>AC336 508 2157</td>
-              <td>July 24, 1950</td>
-              <td className="d-flex justify-content-around">
-                <PenFill color='#2E8B57' size={30} />
-                <Trash3Fill color='#c21d03' size={30} />
-              </td>
-            </tr>
+            {
+              reservationData.map((reservation) => (
+                <tr key={reservation._id}>
+                  <td>
+                    {
+                      userData&&
+                      userData.find((user)=> user._id === reservation.user)?.userName
+                    }                    
+                  </td>
+                  <td className='d-none d-md-block'>
+                    {
+                      footballFieldData &&
+                      footballFieldData.find((field) => field._id === reservation.footballField)?.name
+                    }
+                  </td>
+                  <td>{reservation.day}</td>
+                  <td>De {reservation.hour.start} a {reservation.hour.end}hs</td>
+                  <td><InfoCircle color='#61bc84' size={20} role='button' data-bs-toggle='modal' data-bs-target='#reservationModal' onClick={()=>setSelectedReservation(reservation)}/></td>
+                </tr>
+              ))
+            }
           </tbody>
         </table>
 
-
+          
       </div>
     </>
   )
