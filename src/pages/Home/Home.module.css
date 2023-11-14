@@ -1,12 +1,25 @@
 .logoIconStyle {
-    width: 3rem;
+    width: 5rem;
 }
 
 .bgLightCream{
-    background-color: #c6ffe6;
+    background-color: #c6ffe6; 
   }
+
+.textSize{
+    font-size: 3em;
+}
 
 .bgLightGreen{
     background-color: #8FBC8F;
 }
 
+@media (max-width: 500px) {
+    .textSize{
+        font-size: 2rem;
+    }
+
+    .logoIconStyle{
+        width: 3rem;
+    }
+  }
