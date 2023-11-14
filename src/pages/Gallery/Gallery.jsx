@@ -2,7 +2,6 @@ import React from 'react'
 import GalleryCarrusel from '../../components/specific/GalleryCarrusel/GalleryCarrusel'
 import CardList from '../../components/specific/GalleryCards/CardList'
 
-
 const Gallery = () => {
   return (
     <div>
