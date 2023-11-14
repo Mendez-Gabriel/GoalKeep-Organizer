@@ -23,8 +23,6 @@ const CardProductsItem = ({ products, user }) => {
         setShow(false);
     };
 
-    console.log(user)
-
     return (
         <div className={bgOscuroMedio}>
             <div className='container'>

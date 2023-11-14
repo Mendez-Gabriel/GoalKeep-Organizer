@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { card, bgOscuroMedio } from './Products.module.css'
+import { card, bgOscuroMedio } from './Products.module.css';
 import axios from 'axios';
 import CardProducts from '../../components/specific/cardProducts/CardProducts';
 import Input from '../../components/general/input/input';
@@ -12,7 +12,7 @@ import Pagination from '../../components/general/pagination/Pagination';
 
 const Products = () => {
 
-    const url = import.meta.env.VITE_APP_URL_BASE
+    const url = import.meta.env.VITE_APP_URL_BASE;
     const baseApi = `${url}/products?`;
 
     const [products, setProducts] = useState([]);
@@ -41,15 +41,12 @@ const Products = () => {
                 setProducts(data.info.docs);
             })
             .catch((err) => { console.log(err) })
-    }, [urlApi])
-    console.log(products)
+    }, [urlApi]);
 
     return (
         <>
             <div className={`flex-column mt-5 pt-5 ${bgOscuroMedio}`}>
-
                 <h1 className='text-center fst-italic text-warning mb-5'>Nuestros productos</h1>
-
                 <div className='flex-column justify-content-center'>
                     <div className='d-flex justify-content-center'>
                         <Input type={'text'} setSearchProduct={handleSearch} placeholder={'Buscar Productos'} />
@@ -96,6 +93,6 @@ const Products = () => {
 
         </>
     )
-}
+};
 
 export default Products;
