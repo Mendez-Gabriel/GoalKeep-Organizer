@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import style from './AboutUs.module.css';
-import logoIcon from '../../../../Public/Icon/Icon.svg';
+import logoIcon from '../../../assets/Icon/Icon.svg';
 
 const AboutUs = () => {
   const {aboutUsContainer, aboutUsContent, aboutUsImage, aboutUsText, aboutUsButton} = style

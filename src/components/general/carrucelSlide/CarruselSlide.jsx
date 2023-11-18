@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './CarruselSlide.module.css';
-import logoIcon from '../../../../Public/Icon/Icon.svg';
+import logoIcon from '../../../assets/Icon/Icon.svg';
 
 function SlideCarrusel() {
   const {slider, slidetrack, slide, } = style

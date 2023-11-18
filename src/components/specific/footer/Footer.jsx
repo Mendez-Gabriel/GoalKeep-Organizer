@@ -1,5 +1,5 @@
 import React from 'react';
-import iconLogo from '../../../../Public/Icon/Icon.svg';
+import iconLogo from '../../../assets/Icon/Icon.svg';
 import styleFooter from './Footer.module.css';
 import ButtonLink from '../butonLink/ButtonLink';
 import { Instagram, Facebook, Twitter } from 'react-bootstrap-icons'

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { logoIconStyle, bgLightCream, bgLightGreen, textSize } from './Home.module.css';
-import iconLogo from '../../../Public/Icon/Icon.svg';
+import iconLogo from '../../assets/Icon/Icon.svg';
 import CarrouselProducts from '../../components/general/carrouselProducts/CarrouselProducts';
 import  CarruselSlide  from '../../components/general/carrucelSlide/CarruselSlide';
 
