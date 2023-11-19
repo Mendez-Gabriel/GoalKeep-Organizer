@@ -29,13 +29,13 @@ const Home = () => {
           <h1 className=''><strong className={`fst-italic ms-3 ${textSize}`}>GoalKeep Organizer</strong></h1>
         </div>
 
-        <div class="container my-5">
-          <div class="row">
-            <div class="col-12 col-sm-6">
+        <div className="container my-5">
+          <div className="row">
+            <div className="col-12 col-sm-6">
               <h1 className={textSize}>RESERVA</h1>
               <h1><strong className={textSize}>TU CANCHA</strong></h1>
             </div>
-            <div class="col-12 col-sm-6 d-flex  align-items-center">
+            <div className="col-12 col-sm-6 d-flex  align-items-center">
               <Link to={'/canchas'} className='btn btn-success d-flex justify-content-center  m-4 col '><h5>RESERVA HOY</h5></Link>
             </div>
           </div>
