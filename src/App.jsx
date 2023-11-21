@@ -8,12 +8,14 @@ import CardsIntegrantes from './components/specific/Integrantes/Integrantes';
 import FootballFields from './pages/FootballFields/FootballFields';
 import Home from './pages/Home/Home';
 import Products from './pages/Products/Products';
-import ErrorPage from './pages/Error/ErrorPage';
 import ProductItem from './pages/productItem/ProductItem';
 import Login from './components/specific/login/Login';
 import Register from './components/specific/register/Register';
 import { useState, useEffect } from 'react';
 import Reservations from './pages/Reservations/Reservations';
+import ContactPage from './pages/paginacontacto/PaginaContacto'
+import PaginaError404 from './components/general/paginaError404/PaginaError404'
+
 
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
     <BrowserRouter>
     <NavBar setUser={setUser} user={user}/>
       <Routes>
+      ContactPage
+        <Route path='/contact' element={<ContactPage/>}/> 
         <Route path='/' element={<Home/>}/>
         <Route path='/products' element={<Products/>}/>       
         <Route path='/canchas' element={<FootballFields user={ user }/>}/>
@@ -44,7 +48,7 @@ function App() {
         <Route path='/products/:id' element={<ProductItem  user={user}/>}/>
         <Route path='/user/login' element={<Login setUser={setUser} user={user}/>} />
         <Route path='/user/register' element={<Register user={user}/>}/>
-        <Route path='*' element={<ErrorPage/>}/>
+        <Route path='*' element={<PaginaError404/>}/>
       </Routes>
     <Footer/>
     </BrowserRouter>
