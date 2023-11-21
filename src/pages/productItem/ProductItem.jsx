@@ -17,7 +17,7 @@ const ProductItem = ({ user }) => {
       const { data } = axios.get(`${urlProducts}?id=${params.id}`)
         .then(({ data }) => { setItem(data.results[0]) })
         .catch((err) => {console.log(err)})   
-    }, [])
+    }, []);
  
   return (
     <>

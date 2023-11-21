@@ -50,6 +50,7 @@ const FootballFieldAdminView = () => {
     } catch (error) {
       console.log(error);
     };
+    e.target.reset();
   }
   const handleDelete = async ( id ) => {
     if(confirm('Desea Eliminar esta Cancha?')){

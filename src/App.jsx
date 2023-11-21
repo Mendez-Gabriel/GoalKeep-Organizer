@@ -47,7 +47,7 @@ function App() {
         <Route path='/Fundadores' element={<CardsIntegrantes/>}/>
         <Route path='/products/:id' element={<ProductItem  user={user}/>}/>
         <Route path='/user/login' element={<Login setUser={setUser} user={user}/>} />
-        <Route path='/user/register' element={<Register/>}/>
+        <Route path='/user/register' element={<Register user={user}/>}/>
         <Route path='*' element={<PaginaError404/>}/>
       </Routes>
     <Footer/>

@@ -68,6 +68,7 @@ const ProductsAdminView = () => {
       };
     }
     setReload(!reload);
+    e.target.reset();
   }
   const handleDelete = async(id) => {
     if(confirm('Desea eliminar el producto?')){
