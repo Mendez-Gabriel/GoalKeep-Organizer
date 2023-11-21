@@ -9,7 +9,7 @@ import { FaEyeSlash, FaEye } from 'react-icons/fa6';
 import InputReact from '../../general/inputReact/InputReact';
 import AlertError from '../../general/alertError/AlertError';
 
-const Register = () => {
+const Register = ({ user }) => {
 
     const { card, img, logoIconStyle, bgImage, textTitle } = style;
     const imageMessi = 'https://res.cloudinary.com/dptlgyfq5/image/upload/v1699462256/Login_oqbqnz.jpg';
@@ -64,6 +64,8 @@ const Register = () => {
                 setError(err.response.data.error);
             })
             .finally(() => { console.log('Peticion Finalizada') })
+        
+        event.target.reset();
     };
 
     useEffect(() => {
@@ -82,7 +84,7 @@ const Register = () => {
                     </div>
                     <div className={`col-10 col-sm-8 col-md-5 col-xxl-3 d-flex align-items-center ${bgImage}`}>
                         <div className="container">
-                            {registrationSuccess ?
+                            {registrationSuccess || user ?
                                 (
                                     <div className='text-center'>
                                         <h1 className={`fw-bold fst-italic ms-3 ${textTitle}`}>Registro con exito</h1>

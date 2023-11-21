@@ -64,10 +64,8 @@ const Login = ({ setUser, user }) => {
             setError(err.response.data.error)
         })
         .finally(() => { console.log('Peticion Finalizada') })
-    }
 
-    const handleGoBack = () => {
-        navigate(-1);
+        event.target.reset();
     };
 
     return (
@@ -84,9 +82,6 @@ const Login = ({ setUser, user }) => {
                                 <div className='text-center'>
                                     <h1 className={`fw-bold fst-italic ms-3 ${textTitle}`}>Bienvenido/a</h1>
                                     <h1 className={`fw-bold fst-italic ms-3 ${textTitle}`}><strong>{data.name}</strong></h1>
-                                    <div>
-                                        <button onClick={handleGoBack} className='btn btn-success mt-5'>Volver a la pagina anterior</button>
-                                    </div>
                                     <Link to={'/'} className='btn btn-success mt-5'>Ir a Home</Link>
                                 </div>
                                  )
