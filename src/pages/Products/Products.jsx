@@ -42,7 +42,6 @@ const Products = () => {
             })
             .catch((err) => { console.log(err) })
     }, [urlApi]);
-    console.log(products)
 
     return (
         <>
