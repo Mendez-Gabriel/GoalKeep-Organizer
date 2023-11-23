@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { infoSection, button } from './Reservations.module.css'
+import { infoSection, button, infoCard } from './Reservations.module.css'
 import TurnPicker from '../../components/specific/TurnPicker/TurnPicker';
 import { Trash3Fill, XOctagon } from 'react-bootstrap-icons';
 import dayjs from 'dayjs';
@@ -31,7 +31,6 @@ const Reservations = ({ user }) => {
     const [endingHour, setEndingHour] = useState('');
     const [day, setDay] = useState('')
     const [reload, setReload] = useState(false);
-    const dateFormat = new Intl.DateTimeFormat('es-ES', {month: 'long',day: 'numeric'});
 
     const handleReservation = async () =>{
       if(!startHour||!endingHour||!day){
@@ -110,7 +109,7 @@ const Reservations = ({ user }) => {
           const { data } = await axios({
             method: 'get',
             url: `${urlBase}/reservation`,
-            params: { user: userData._id }
+            params: { user: userData._id, footballField: params.id }
           });
           setUserTurns(data.reservations);
         } catch (error) {
@@ -123,24 +122,26 @@ const Reservations = ({ user }) => {
   return (
     <>
       <section className={`${infoSection} align-items-center container-fluid justify-content-center row mt-5 py-5 px-0 mx-0`}>
-        <h1 className='text-center'>Reservaciones</h1>
-        <div className='justify-content-center row col-md-7 col-12 mx-0 px-0'>
-          <img src={fieldData.imgUrl} alt={fieldData.name} className='img-fluid'/>
-        </div>
-        <div className='col-md-3 col-12 mx-0 py-0 '>
-          <ul className='list-group list-group-flush text-center'>
-            <li className='list-group-item'><strong>Cancha:</strong> {fieldData.name}</li>
+        <div className={`${infoCard} justify-content-center align-items-start row col-md-7 col-12 mx-0  p-4 gap-5`}>
+          <div className='col-12 p-0 ratio ratio-16x9'>
+            <img src={fieldData.imgUrl} alt={fieldData.name} className='img-fluid'/>
+          </div>
+          <ul className='list-group list-group-flush'>
+            <li className='list-group-item text-center'><strong>{fieldData.name?.toUpperCase()}</strong></li>
             <li className='list-group-item'><strong>Cesped:</strong> {fieldData.grassType}</li>
             <li className='list-group-item'><strong>Jugadores:</strong> {fieldData.players}</li>
             <li className='list-group-item'><strong>Mis turnos:</strong></li>
             {
+              userTurns.length===0
+              ?
+              <li className='list-group-item'>No tienes turnos en esta cancha</li>
+              :
               userTurns.map((turn) => (
                 <li key={turn._id} className='list-group-item'>{`Dia ${dayjs.utc(turn.day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')} de ${turn.hour.start} a ${turn.hour.end}hs `}
                   <XOctagon size={25} color='red' role='button' onClick={()=>handleCancelation(turn._id)} /></li>
               ))
             }      
           </ul>
-        </div>
         <h3 className='text-center mt-5'>Elija Fecha y Horario</h3>
           <TurnPicker
             setDay={setDay}
@@ -148,8 +149,7 @@ const Reservations = ({ user }) => {
             setEnd={setEndingHour}
             disabledTurns={ocuppiedTurns}
           />
-        <div className='row justify-content-center col-12 mt-5'>
-          <button className={`col-3 ${button}`} onClick={handleReservation}>Realizar Reserva</button>
+          <button className={`col-10 ${button}`} onClick={handleReservation}>Realizar Reserva</button>
         </div>
       </section>
     </>

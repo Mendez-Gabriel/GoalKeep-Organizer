@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { useState, useEffect } from 'react'
 import FootballFieldCard from  '../../components/specific/footballFieldCard/FootballFieldCard'
-import Styles from './FootballFields.module.css'
+import { sideBar, seccionCanchas, cardContainer} from './FootballFields.module.css'
 import FootballFieldFilter from '../../components/specific/FootballFieldFilter/FootballFieldFilter';
 
 const FootballFields = ({ user }) => {
@@ -32,12 +32,12 @@ const FootballFields = ({ user }) => {
   },[apiUrl,queryParams]);
   return (
     <>
-      <section className={`container-fluid  row justify-content-around  mt-5 py-5 px-0 mx-0 ${Styles.seccionCanchas}`}>
+      <section className={`container-fluid  row justify-content-around  mt-5 py-5 px-0 mx-0 ${seccionCanchas}`}>
         <h1 className='text-center'>Nuestras Canchas</h1>
-        <aside className={`px-0 my-3 col-12 justify-content-center ${Styles.sideBar}`}>
+        <aside className={`w-50 p-3 my-3 col-12 justify-content-center ${sideBar}`}>
           <FootballFieldFilter handleFilter={addFilters} deleteFiltters={clearFiltters}/>
         </aside>
-        <div className='container-fluid row col-11 col-md-8 col-lg-7  justify-content-center mx-0 px-0 gap-3'>
+        <div className={`${cardContainer}  row col-12 col-md-8 col-lg-7  justify-content-center mx-0 p-4 gap-5`}>
           {
             footballFieldData.map(footballField => <FootballFieldCard
               key={footballField._id}

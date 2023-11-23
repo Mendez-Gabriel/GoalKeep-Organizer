@@ -2,7 +2,8 @@
 .cardContainer {
   position: relative;
   height: 300px;
-  border-radius: 10px;
+  border-radius: 1em;
+  border: 3px solid #61bc84;
 }
 
 .overlay {
