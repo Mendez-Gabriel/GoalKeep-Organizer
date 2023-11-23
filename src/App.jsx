@@ -15,6 +15,7 @@ import { useState, useEffect } from 'react';
 import Reservations from './pages/Reservations/Reservations';
 import ContactPage from './pages/paginacontacto/PaginaContacto'
 import PaginaError404 from './components/general/paginaError404/PaginaError404'
+import ProtectedRoutes from '../routes/ProtectedRoutes';
 
 
 
@@ -40,9 +41,13 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/products' element={<Products/>}/>       
         <Route path='/canchas' element={<FootballFields user={ user }/>}/>
-        <Route path='/canchas/:id' element={<Reservations user={ user }/>}/>
+        <Route path='/canchas/:id' element={
+          <ProtectedRoutes user={user}>
+            <Reservations user={ user }/>
+          </ProtectedRoutes>
+        }/>
         <Route path='/galeria' element={<Gallery/>}/>
-        <Route path='/about' element={<AboutUs/>}/>
+        <Route path='/about' element={<AboutUs/>}/> 
         <Route path='/admin' element={<Administrator user={user}/>}/>
         <Route path='/Fundadores' element={<CardsIntegrantes/>}/>
         <Route path='/products/:id' element={<ProductItem  user={user}/>}/>

@@ -42,7 +42,7 @@ const Reservations = ({ user }) => {
         const dataForm = {
           user: userData._id,
           footballField: params.id,
-          day: dayjs.utc(day),
+          day: day,
           hour:{
             start: startHour,
             end: endingHour
@@ -71,7 +71,6 @@ const Reservations = ({ user }) => {
             params:{ reservationId : id}
           });
           setReload(!reload);
-          console.log(data)
         } catch (error) {
           console.log(error)
         }
@@ -84,9 +83,8 @@ const Reservations = ({ user }) => {
           const { data } = await axios({
             method:'get',
             url:`${urlBase}/reservation`,
-            params:{day: dayjs(day), footballField: params.id}
+            params:{day: day, footballField: params.id}
           });
-          console.log(data.reservations);
           setOcuppiedTurns(data.reservations);
         } catch (error) {
           console.log(error)
@@ -102,7 +100,6 @@ const Reservations = ({ user }) => {
             url: apiUrl,
             params:queryParams
           });
-          console.log(data.footballFields[0]);
           setFieldData(data.footballFields[0]);
         } catch (error) {
           console.log(error);
@@ -115,7 +112,6 @@ const Reservations = ({ user }) => {
             url: `${urlBase}/reservation`,
             params: { user: userData._id }
           });
-          console.log(data.reservations);
           setUserTurns(data.reservations);
         } catch (error) {
           console.log(error);
@@ -139,7 +135,7 @@ const Reservations = ({ user }) => {
             <li className='list-group-item'><strong>Mis turnos:</strong></li>
             {
               userTurns.map((turn) => (
-                <li className='list-group-item'>{`Dia ${dayjs.utc(turn.day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM')} de ${turn.hour.start} a ${turn.hour.end}hs `}
+                <li key={turn._id} className='list-group-item'>{`Dia ${dayjs.utc(turn.day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')} de ${turn.hour.start} a ${turn.hour.end}hs `}
                   <XOctagon size={25} color='red' role='button' onClick={()=>handleCancelation(turn._id)} /></li>
               ))
             }      
