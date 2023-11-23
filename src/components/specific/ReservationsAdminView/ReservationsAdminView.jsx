@@ -3,6 +3,12 @@ import { createButton, tableSection} from '../FootballFieldAdminView/FootballFie
 import { InfoCircle } from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 
 const ReservationsAdminView = () => {
@@ -148,7 +154,7 @@ const ReservationsAdminView = () => {
                       footballFieldData.find((field) => field._id === reservation.footballField)?.name
                     }
                   </td>
-                  <td>{reservation.day}</td>
+                  <td>{dayjs.utc(reservation.day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')}</td>
                   <td>De {reservation.hour.start} a {reservation.hour.end}hs</td>
                   <td><InfoCircle color='#61bc84' size={20} role='button' data-bs-toggle='modal' data-bs-target='#reservationModal' onClick={()=>setSelectedReservation(reservation)}/></td>
                 </tr>
