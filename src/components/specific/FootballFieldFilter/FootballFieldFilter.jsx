@@ -49,7 +49,7 @@ const FootballFieldFilter = ({handleFilter, deleteFiltters}) => {
         checked={grassTypeParams==='Mixto'} onChange={(e)=>setGrassTypeParams(e.target.value)}/>
           <label className="htmlForm-check-label" htmlFor="radioMixto">Mixto</label>
       </div>
-      <div className='d-flex justify-content-center gap-3'>
+      <div className='d-flex justify-content-center gap-3 mt-3'>
         <button type="button" className="btn btn-success" onClick={
           (e)=>{
           e.preventDefault();
