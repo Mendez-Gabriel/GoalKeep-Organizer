@@ -5,6 +5,13 @@ import { useState, useEffect } from 'react';
 import { infoSection, button } from './Reservations.module.css'
 import TurnPicker from '../../components/specific/TurnPicker/TurnPicker';
 import { Trash3Fill, XOctagon } from 'react-bootstrap-icons';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 
 
 
@@ -64,7 +71,6 @@ const Reservations = ({ user }) => {
             params:{ reservationId : id}
           });
           setReload(!reload);
-          console.log(data)
         } catch (error) {
           console.log(error)
         }
@@ -79,7 +85,6 @@ const Reservations = ({ user }) => {
             url:`${urlBase}/reservation`,
             params:{day: day, footballField: params.id}
           });
-          console.log(data.reservations);
           setOcuppiedTurns(data.reservations);
         } catch (error) {
           console.log(error)
@@ -95,7 +100,6 @@ const Reservations = ({ user }) => {
             url: apiUrl,
             params:queryParams
           });
-          console.log(data.footballFields[0]);
           setFieldData(data.footballFields[0]);
         } catch (error) {
           console.log(error);
@@ -108,7 +112,6 @@ const Reservations = ({ user }) => {
             url: `${urlBase}/reservation`,
             params: { user: userData._id }
           });
-          console.log(data.reservations);
           setUserTurns(data.reservations);
         } catch (error) {
           console.log(error);
@@ -132,7 +135,7 @@ const Reservations = ({ user }) => {
             <li className='list-group-item'><strong>Mis turnos:</strong></li>
             {
               userTurns.map((turn) => (
-                <li className='list-group-item'>{`Dia ${dateFormat.format(new Date(turn.day))} de ${turn.hour.start} a ${turn.hour.end}hs `}
+                <li key={turn._id} className='list-group-item'>{`Dia ${dayjs.utc(turn.day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')} de ${turn.hour.start} a ${turn.hour.end}hs `}
                   <XOctagon size={25} color='red' role='button' onClick={()=>handleCancelation(turn._id)} /></li>
               ))
             }      
