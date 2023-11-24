@@ -5,7 +5,7 @@ import style from './CardProducts.module.css';
 const CardProducts = ({products, updateSelectedItem}) => {
 
     const { Image, name, price, available, _id} = products;
-    const { img, div, card, title, bgOscuroBajo, bgClaroMedio,textColorCream, boxShadow} = style;
+    const { img, div, card, title, bgOscuroBajo, bgClaroMedio,textColorCream, boxShadow, createButton} = style;
 
     let avalible;
     if(available){
@@ -15,10 +15,10 @@ const CardProducts = ({products, updateSelectedItem}) => {
     }
     
     return (     
-        <div className="d-flex justify-content-center">
+        <div className={`d-flex justify-content-center `}>
             <Link to={`/products/${_id}`} onClick={() => updateSelectedItem(products)} 
-            className=' link-underline link-underline-opacity-0 '>
-                    <div className={`card ${card} ${boxShadow}`}>
+            className={`link-underline link-underline-opacity-0 `}>
+                    <div className={`card my-5 ${card} ${boxShadow} ${createButton}`}>
                         <img src={Image} className={`card-img-top  ${img}`} alt="..." />
                         <div className={`card-body ${bgOscuroBajo}`}>
                             <div className={`${div}`}>
