@@ -56,8 +56,6 @@ const Products = () => {
     return (
         <>
             <div className={`flex-column mt-5 pt-5 ${bgOscuroMedio}`}>
-                {/* <h1 className={`text-center fst-italic text-warning mb-5 `}>Nuestros productos</h1> */}
-                
                 <div className='flex-column justify-content-center'>
                     <div className={`d-flex justify-content-center mb-4`}>
                         <Input type={'text'} setSearchProduct={handleSearch} placeholder={'Buscar Productos'} inputStyles={inputStyles} />
