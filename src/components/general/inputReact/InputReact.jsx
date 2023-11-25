@@ -1,17 +1,15 @@
 import React from 'react';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Input from '../input/Input';
+import { inputStyles } from '../../../pages/Products/Products.module.css';
 
-const InputReact = ({ margin, type, handleChange, handleClick, text, name, placeholder }) => {
+
+const InputReact = ({ type, handleChange, handleClick, text, name, placeholder, className, margin }) => {
     return (
         <>
-            <InputGroup className={margin}>
-                <Form.Control placeholder={placeholder} type={type} onChange={(event) => { handleChange(event) }} name={name}/>
-                <Button id="basic-addon1" onClick={(click) => { handleClick(click) }}>
-                    {text}
-                </Button>
-            </InputGroup>
+            <div className={`d-flex flex-wrap ${margin}`}>
+                <Input placeholder={placeholder} setSearchProduct={handleChange} type={type} name={name} />
+                <button type='button' className={`${inputStyles} mx-1 mt-1 mt-sm-0`} onClick={(click) => {handleClick(click)}}>{text}</button>
+            </div>
         </>
     )
 }
