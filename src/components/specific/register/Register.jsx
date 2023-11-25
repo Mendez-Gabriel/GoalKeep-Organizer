@@ -8,10 +8,11 @@ import axios from 'axios';
 import { FaEyeSlash, FaEye } from 'react-icons/fa6';
 import InputReact from '../../general/inputReact/InputReact';
 import AlertError from '../../general/alertError/AlertError';
+import ButtonGeneral from '../../general/buttonGeneral/ButtonGeneral';
 
 const Register = ({ user }) => {
 
-    const { card, img, logoIconStyle, bgImage, textTitle } = style;
+    const { card, img, logoIconStyle, bgImage, textTitle, createButton, createButtonSubmit } = style;
     const imageMessi = 'https://res.cloudinary.com/dptlgyfq5/image/upload/v1699462256/Login_oqbqnz.jpg';
 
     const url = import.meta.env.VITE_APP_URL_BASE
@@ -25,6 +26,7 @@ const Register = ({ user }) => {
         lastName: '',
         userName: '',
         password: '',
+        confirmPassword:'',
         email: '',
     });
 
@@ -48,7 +50,7 @@ const Register = ({ user }) => {
         } else {
             setActiveEye(false)
         }
-    }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -99,15 +101,16 @@ const Register = ({ user }) => {
                                             <h1 className={`text-light fw-bold fst-italic ms-3 ${textTitle}`}>GoalKeep Organizer</h1>
                                         </div>
                                         <form className='m-3 needs-validation' onSubmit={handleSubmit} noValidate>
-                                            <Input margin={'mt-1'} placeholder={'Nombre'} setSearchProduct={handleChange} type={'text'} name={'name'} />
-                                            <Input margin={'mt-1'} placeholder={'Apellido'} setSearchProduct={handleChange} type={'text'} name={'lastName'} />
-                                            <Input margin={'mt-1'} placeholder={'Usuario'} setSearchProduct={handleChange} type={'text'} name={'userName'} />
-                                            <InputReact placeholder={'Contraseña'} margin={'mt-1'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye /> : <FaEyeSlash />} name={'password'} error={error} setError={setError} />
-                                            <Input margin={'mt-1 mb-2'} placeholder={'Email'} setSearchProduct={handleChange} type={'email'} name={'email'} />
+                                            <Input margin={'mt-2'} placeholder={'Nombre'} setSearchProduct={handleChange} type={'text'} name={'name'} />
+                                            <Input margin={'mt-2'} placeholder={'Apellido'} setSearchProduct={handleChange} type={'text'} name={'lastName'} />
+                                            <Input margin={'mt-2'} placeholder={'Usuario'} setSearchProduct={handleChange} type={'text'} name={'userName'} />
+                                            <InputReact placeholder={'Contraseña'} margin={'mt-2'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye /> : <FaEyeSlash />} name={'password'} className={createButton}/>
+                                            <Input margin={'mt-2 mb-2'} placeholder={'Confirmar Contraseña'} setSearchProduct={handleChange} type={'password'} name={'confirmPassword'} />
+                                            <Input margin={'mt-2 mb-2'} placeholder={'Email'} setSearchProduct={handleChange} type={'email'} name={'email'} />
                                             {error && (
                                                 <AlertError setError={setError} error={error} />
                                             )}
-                                            <button type="submit" className="btn btn-primary mt-1">Finalizar Registro</button>
+                                            <button type="submit" className={` mt-1 ${createButtonSubmit}`}>Finalizar Registro</button>
                                         </form>
                                         <div className='container d-flex mt-5 pt-1'>
                                             <p className={`d-flex fw-bold ${textTitle}`}>

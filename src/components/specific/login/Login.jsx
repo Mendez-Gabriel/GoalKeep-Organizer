@@ -7,7 +7,6 @@ import Input from '../../general/input/Input';
 import axios from 'axios';
 import { FaEyeSlash, FaEye } from 'react-icons/fa6';
 import InputReact from '../../general/inputReact/InputReact';
-import Alert from '../../general/alertError/AlertError';
 import AlertError from '../../general/alertError/AlertError';
 
 
@@ -15,7 +14,7 @@ const Login = ({ setUser, user }) => {
 
     const navigate = useNavigate();
 
-    const { card, img, logoIconStyle, bgImage, textTitle } = style;
+    const { card, img, logoIconStyle, bgImage, textTitle, createButtonSubmit } = style;
     const imageMessi = 'https://res.cloudinary.com/dptlgyfq5/image/upload/v1699462256/Login_oqbqnz.jpg';
 
     const url = import.meta.env.VITE_APP_URL_BASE
@@ -97,7 +96,7 @@ const Login = ({ setUser, user }) => {
                                         )}
                                         <Input margin={'mb-5'} placeholder={'Nombre de Usuario'} setSearchProduct={handleChange} type={'text'} name={'userName'} />
                                         <InputReact placeholder={'Contraseña'} margin={'mb-5'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye /> : <FaEyeSlash />} name={'password'} />
-                                        <button type="submit" className='btn btn-primary mb-5'>Iniciar Sesion</button>
+                                        <button type="submit" className={`${createButtonSubmit} mb-5`}>Iniciar Sesion</button>
                                     </form>
                                     <div className='container d-flex mt-5 pt-5'>
                                         <p className={`d-flex fw-bold ${textTitle}`}>
