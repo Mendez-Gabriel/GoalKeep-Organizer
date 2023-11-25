@@ -32,9 +32,9 @@ const FootballFields = ({ user }) => {
   },[apiUrl,queryParams]);
   return (
     <>
-      <section className={`container-fluid  row justify-content-around  mt-5 py-5 px-0 mx-0 ${seccionCanchas}`}>
+      <section className={`container-fluid  row justify-content-center  mt-5 py-5 px-0 mx-0 ${seccionCanchas}`}>
         <h1 className='text-center'>Nuestras Canchas</h1>
-        <aside className={`w-50 p-3 my-3 col-12 justify-content-center ${sideBar}`}>
+        <aside className={`col-12 col-md-6 p-3 my-3 justify-content-center ${sideBar}`}>
           <FootballFieldFilter handleFilter={addFilters} deleteFiltters={clearFiltters}/>
         </aside>
         <div className={`${cardContainer}  row col-12 col-md-8 col-lg-7  justify-content-center mx-0 p-4 gap-5`}>
