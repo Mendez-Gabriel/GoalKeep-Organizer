@@ -92,8 +92,8 @@ const NavBar = ({ setUser, user }) => {
                             (<Button variant="danger" onClick={handleShow}>Cerrar Sesion</Button>)
                             :
                             (<div className="btn-group me-2" role="group" aria-label="Second group">
-                                <Link to={'/user/login'} className='btn btn-success'>Inicia Sesion</Link>
-                                <Link to={'user/register'} className='btn btn-warning'>Registrate</Link>
+                                <Link to={'/user/login'} className='btn btn-success' onClick={() => handleShowCanvas(showCanvas)}>Inicia Sesion</Link>
+                                <Link to={'user/register'} className='btn btn-warning' onClick={() => handleShowCanvas(showCanvas)}>Registrate</Link>
                             </div>)}
                         <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} />
                     </div>
