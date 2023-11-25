@@ -99,7 +99,7 @@ const NavBar = ({ setUser, user }) => {
                     </div>
                 </Offcanvas.Body>
             </Offcanvas>
-            <nav className="navbar navbar-expand-lg fixed-top bg-dark bg-gradient">
+            <nav className="navbar navbar-expand-lg fixed-top bg-dark">
                 <div className="container-fluid">
                     <img src={logoIcon} alt="logoIcon" id={logoIconStyle} />
                     <Button variant="" className={`d-lg-none ${navicon} ${tonggler ? open : ''}`} onClick={toggleMenu}>
