@@ -1,5 +1,5 @@
 import React from 'react';
-import { card, bgOscuroMedio, createButton, inputStyles } from '../../../pages/Products/Products.module.css';
+import { inputStyles } from '../../../pages/Products/Products.module.css';
 
 const Input = ({ setSearchProduct, margin, placeholder, inputStyle, name, type, error, setError }) => {
     return (
