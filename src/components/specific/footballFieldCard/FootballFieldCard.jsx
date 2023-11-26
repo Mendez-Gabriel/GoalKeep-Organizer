@@ -26,11 +26,11 @@ function FootballFieldCard({  name, grassType, players, imgUrl, id, user }) {
       </div>
       <div className={styles.overlay}></div>
       {user?.loginUser.userPasswordHidden.active ?
-      (<div className={styles.button}><Link to={`/canchas/${id}`}> Ver Disponibilidad </Link></div>)
+      (<div className={`d-flex justify-content-center  ${styles.button}`}><Link to={`/canchas/${id}`}> Ver Disponibilidad </Link></div>)
       :
       (
         <>
-            <div className={styles.button}><Link > Necesitas Iniciar sesion para reservar </Link></div>
+            <div className={`d-flex justify-content-center ${styles.button}`}><Link > Necesitas Iniciar sesion para reservar </Link></div>
         </>
       ) }
       
