@@ -37,7 +37,7 @@ const Home = () => {
           <h6 className='text-end'><strong>Fútbol 5:</strong> 6000/hr</h6>
           <h6 className='text-end'><strong>Fútbol 7:</strong> $8000/hr</h6>
           <h6 className='text-end'><strong>Fútbol 11:</strong> $10000/hr</h6>
-          <p className='text-end'>*Los turnos tienen un mínimo una hora de duración y podés pedir todos los que necesites, dependiendo de su disponibilidad</p>
+          <p className='text-end'>*Los turnos tienen un mínimo una hora de duración y podés pedir todos los que necesites, dependiendo de su disponibilidad, desde 09 a 22hr</p>
         </div>
         <div className='col-12 col-md-6  row d-flex justify-content-center my-5'>
           <img src={scaloneta} alt="scaloneta" className='object-fit-contain img-fluid' />
