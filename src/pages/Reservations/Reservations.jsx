@@ -127,7 +127,7 @@ const Reservations = ({ user }) => {
             <img src={fieldData.imgUrl} alt={fieldData.name} className='img-fluid'/>
           </div>
           <ul className='list-group list-group-flush'>
-            <li className='list-group-item text-center'><strong>{fieldData.name?.toUpperCase()}</strong></li>
+            <li className='list-group-item text-center'><strong style={{fontSize:'2rem'}}>{fieldData.name?.toUpperCase()}</strong></li>
             <li className='list-group-item'><strong>Cesped:</strong> {fieldData.grassType}</li>
             <li className='list-group-item'><strong>Jugadores:</strong> {fieldData.players}</li>
             <li className='list-group-item'><strong>Mis turnos:</strong></li>
@@ -137,12 +137,12 @@ const Reservations = ({ user }) => {
               <li className='list-group-item'>No tienes turnos en esta cancha</li>
               :
               userTurns.map((turn) => (
-                <li key={turn._id} className='list-group-item'>{`Dia ${dayjs.utc(turn.day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')} de ${turn.hour.start} a ${turn.hour.end}hs `}
+                <li key={turn._id} className='fst-italic list-group-item'>{`Dia ${dayjs.utc(turn.day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')} de ${turn.hour.start} a ${turn.hour.end}hs `}
                   <XOctagon size={25} color='red' role='button' onClick={()=>handleCancelation(turn._id)} /></li>
               ))
             }      
           </ul>
-        <h3 className='text-center mt-5'>Elija Fecha y Horario</h3>
+        <h3 className='text-center mt-5'>ELIJA FECHA Y HORARIO</h3>
           <TurnPicker
             setDay={setDay}
             setStart={setStartHour}
