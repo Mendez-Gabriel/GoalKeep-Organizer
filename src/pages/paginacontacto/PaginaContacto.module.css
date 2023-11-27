@@ -60,3 +60,12 @@
 .infoItem {
   margin: 5px 0;
 }
+
+.FormButton {
+  padding: 10px;
+  background-color: #2E8B57;
+  color:  #e0e0e0;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
