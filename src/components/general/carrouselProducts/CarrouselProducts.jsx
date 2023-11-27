@@ -6,10 +6,14 @@ import 'react-multi-carousel/lib/styles.css';
 import CardProducts from '../../specific/cardProducts/CardProducts';
 import configCarrousel from './configCarrouselProducts';
 import { bgOscuroMedio } from './CarrouselProducts.module.css';
+import { Container } from 'react-bootstrap';
+import ContainerCardPleaceholder from '../containerCardPleaceholder/ContainerCardPleaceholder';
+import CardPleaseholder from '../cardPleaseholder/CardPleaseholder';
 
 const Carrousel = ({ setItem, urlProducts, titleCarrousel, titleColor, bgCarousel }) => {
 
   const [products, setProducts] = useState([]);
+  const [loader, setLoader] = useState(true);
 
   let numeroAleatorio = Math.floor(Math.random() * 4) + 1;
 
@@ -17,7 +21,10 @@ console.log(numeroAleatorio);
 
   useEffect(() => {
     const { data } = axios.get(`${urlProducts}?page=${numeroAleatorio}`)
-      .then(({ data }) => { setProducts(data.info.docs) })
+      .then(({ data }) => { 
+        setProducts(data.info.docs);
+        setLoader(false);
+       })
       .catch((err) => { console.log(err) })
   }, []);
 
@@ -30,9 +37,22 @@ console.log(numeroAleatorio);
       <h1 className={titleColor}>{titleCarrousel}</h1>
       <div className='pt-3 '>
         <Carousel responsive={configCarrousel} infinite={true} containerClass=''>
-          {products.map((product) => (
-            <CardProducts products={product}  key={product._id} updateSelectedItem={updateSelectedItem}/>
-          ))}
+          { loader ? 
+            (
+              [1, 2, 3, 4, 5].map((index) => (
+                <div key={index}>
+                  <CardPleaseholder />
+                </div>
+              ))
+              
+            )
+          :
+            (
+              products.map((product) => (
+                <CardProducts products={product}  key={product._id} updateSelectedItem={updateSelectedItem}/>
+              ))
+            )
+          }
         </Carousel>
       </div>
     </div>
