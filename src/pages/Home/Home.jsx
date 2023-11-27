@@ -39,7 +39,7 @@ const Home = () => {
           <h6 className='text-end'><strong>Fútbol 11:</strong> $10000/hr</h6>
           <p className='text-end'>*Los turnos tienen un mínimo una hora de duración y podés pedir todos los que necesites, dependiendo de su disponibilidad, desde 09 a 22hr</p>
         </div>
-        <div className='col-12 col-md-6  row d-flex justify-content-center my-5'>
+        <div className='col-12 col-md-6  row d-flex justify-content-center my-5 mx-0 px-0'>
           <img src={scaloneta} alt="scaloneta" className='object-fit-contain img-fluid' />
           <Link className={`col-8 col-md-6 text-decoration-none ${footballFieldsButton} text-center`} to={'/canchas'}>Subite, vamos a conocer nuestras canchas</Link>
         </div>
