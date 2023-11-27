@@ -30,7 +30,7 @@ function FootballFieldCard({  name, grassType, players, imgUrl, id, user }) {
       :
       (
         <>
-            <div className={`d-flex justify-content-center ${styles.button}`}><Link > Necesitas Iniciar sesion para reservar </Link></div>
+            <div className={`d-flex justify-content-center ${styles.button}`}><Link >Solo usuarios habilitados pueden reservar</Link></div>
         </>
       ) }
       
