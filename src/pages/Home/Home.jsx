@@ -30,16 +30,16 @@ const Home = () => {
           <h4 className='fst-italic text-center' style={{color:'#345e37'}}>¿Sale fulbo?</h4>
           <div className='d-flex justify-content-center my-5'>
             <img src={iconLogo} className={logoIconStyle} />
-            <h2 className=''><strong className={`ms-3 ${textSize}`}>GoalKeep Organizer</strong></h2>
+            <h2 className=''><strong className={`fst-italic ms-3 ${textSize}`}>GoalKeep Organizer</strong></h2>
           </div>
-          <h5 className='mb-5'>En Goalkeep te ofrecemos las mejores canchas con una amplia variedad de césped y tamaño. Contamos con servicio WiFi gratis y cada cancha tiene su propio asador para que vos y tus amigos disfruten de un excelente tercer tiempo. Además, hay a tu disposición vestidores y duchas...</h5>
-          <h3>Precios:</h3>
-          <h5><strong>Fútbol 5:</strong> 6000/hr</h5>
-          <h5><strong>Fútbol 7:</strong> $8000/hr</h5>
-          <h5><strong>Fútbol 11:</strong> $10000/hr</h5>
-          <p>*Los turnos tienen un mínimo una hora de duración y podés pedir todos los que necesites, dependiendo de su disponibilidad</p>
+          <h4 className='fst-italic mb-5'>En Goalkeep te ofrecemos las mejores canchas con una amplia variedad de césped y tamaño. Contamos con servicio WiFi gratis y cada cancha tiene su propio asador para que vos y tus amigos disfruten de un excelente tercer tiempo. Además, hay a tu disposición vestidores y duchas...</h4>
+          <h3 className='text-end'>Precios:</h3>
+          <h6 className='text-end'><strong>Fútbol 5:</strong> 6000/hr</h6>
+          <h6 className='text-end'><strong>Fútbol 7:</strong> $8000/hr</h6>
+          <h6 className='text-end'><strong>Fútbol 11:</strong> $10000/hr</h6>
+          <p className='text-end'>*Los turnos tienen un mínimo una hora de duración y podés pedir todos los que necesites, dependiendo de su disponibilidad, desde 09 a 22hr</p>
         </div>
-        <div className='col-12 col-md-6  row d-flex justify-content-center my-5'>
+        <div className='col-12 col-md-6  row d-flex justify-content-center my-5 mx-0 px-0'>
           <img src={scaloneta} alt="scaloneta" className='object-fit-contain img-fluid' />
           <Link className={`col-8 col-md-6 text-decoration-none ${footballFieldsButton} text-center`} to={'/canchas'}>Subite, vamos a conocer nuestras canchas</Link>
         </div>

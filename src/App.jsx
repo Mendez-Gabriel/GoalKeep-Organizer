@@ -16,6 +16,7 @@ import Reservations from './pages/Reservations/Reservations';
 import ContactPage from './pages/paginacontacto/PaginaContacto'
 import PaginaError404 from './components/general/paginaError404/PaginaError404'
 import ProtectedRoutes from '../routes/ProtectedRoutes';
+import FormContacto from './pages/paginacontacto/FormContacto'
 
 
 
@@ -37,7 +38,8 @@ function App() {
     <NavBar setUser={setUser} user={user}/>
       <Routes>
       ContactPage
-        <Route path='/contact' element={<ContactPage/>}/> 
+        <Route path='/contact' element={<ContactPage/>}/>
+        <Route path='/FormContacto' element={<FormContacto/>}/>  
         <Route path='/' element={<Home/>}/>
         <Route path='/products' element={<Products/>}/>       
         <Route path='/canchas' element={<FootballFields user={ user }/>}/>
