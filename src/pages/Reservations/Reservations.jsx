@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { infoSection, button, infoCard } from './Reservations.module.css'
+import { ToastContainer, toast } from 'react-toastify';
+import { infoSection, button, infoCard, createButton } from './Reservations.module.css'
 import TurnPicker from '../../components/specific/TurnPicker/TurnPicker';
 import { Trash3Fill, XOctagon } from 'react-bootstrap-icons';
 import dayjs from 'dayjs';
@@ -31,13 +32,17 @@ const Reservations = ({ user }) => {
     const [endingHour, setEndingHour] = useState('');
     const [day, setDay] = useState('')
     const [reload, setReload] = useState(false);
+    const [cancelationId, setCancelationId] = useState('');
 
     const handleReservation = async () =>{
       if(!startHour||!endingHour||!day){
-        alert('Por favor elija fecha y horario');
+        toast.warning('Por favor elija fecha y horario');
         return
       }
-      if(confirm('Seguro que desea realizar esta reserva?')){
+      if(endingHour<startHour){
+        toast.warning('Elija un horario valido');
+        return
+      }
         const dataForm = {
           user: userData._id,
           footballField: params.id,
@@ -53,28 +58,26 @@ const Reservations = ({ user }) => {
             url:`${urlBase}/reservation`,
             data: dataForm
           });
-          alert(`Reserva realizada para el dia ${dataForm.day} de ${dataForm.hour.start} a ${dataForm.hour.end}hs`);
+          toast.success(`Reserva realizada para el dia ${dayjs.utc(day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')} de ${dataForm.hour.start} a ${dataForm.hour.end}hs`);
           setReload(!reload);
         } catch (error) {
-          alert('Fecha no disponible');
+          toast.error('Fecha no disponible');
           console.log(error);
         };
-      }else alert('Operacion cancelada.')
     };
-    const handleCancelation = async (id) => {
-      if(confirm('Desea cancelar el turno?')){
-        try {
-          const { data } = await axios({
-            method:'delete',
-            url:`${urlBase}/reservation`,
-            params:{ reservationId : id}
-          });
-          setReload(!reload);
-        } catch (error) {
-          console.log(error)
-        }
-      }else alert('Operacion Cancelada')
+  const handleCancelation = async (id) => {
+    try {
+      const { data } = await axios({
+        method: 'delete',
+        url: `${urlBase}/reservation`,
+        params: { reservationId: id }
+      });
+      toast.error('Turno cancelado exitosamente')
+      setReload(!reload);
+    } catch (error) {
+      console.log(error)
     }
+  }
 
     useEffect(()=>{
       const fetchReservationData = async () => {
@@ -122,6 +125,37 @@ const Reservations = ({ user }) => {
   return (
     <>
       <section className={`${infoSection} align-items-center container-fluid justify-content-center row mt-5 py-5 px-0 mx-0`}>
+        <ToastContainer
+          theme='colored'
+          autoClose={3000}
+          position='top-center'
+        />
+        <div class="modal fade" id="turnCancelationConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="turnCancelationConfirmModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h5 className='text-center'>¿Desea cancelar este turno?</h5>
+              </div>
+              <div class="modal-footer">
+                <button type="button" className={createButton} data-bs-dismiss="modal" onClick={() => toast.warning('Operación cancelada')}>Cancelar</button>
+                <button type="button" className={createButton} data-bs-dismiss="modal" onClick={() => handleCancelation(cancelationId)}>Borrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="reservationConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="reservationConfirmModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h5 className='text-center'>{day?`¿Reservar esta cancha para el dia: ${dayjs.utc(day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')}?`:'¿Realizar Reserva?'}</h5>
+              </div>
+              <div class="modal-footer">
+                <button type="button" className={createButton} data-bs-dismiss="modal" onClick={() => toast.warning('Operación cancelada')}>Cancelar</button>
+                <button type="button" className={createButton} data-bs-dismiss="modal" onClick={handleReservation}>Reservar</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className={`${infoCard} justify-content-center align-items-start row col-md-7 col-12 mx-0  p-4 gap-5`}>
           <div className='col-12 p-0 ratio ratio-16x9'>
             <img src={fieldData.imgUrl} alt={fieldData.name} className='img-fluid'/>
@@ -138,7 +172,7 @@ const Reservations = ({ user }) => {
               :
               userTurns.map((turn) => (
                 <li key={turn._id} className='fst-italic list-group-item'>{`Dia ${dayjs.utc(turn.day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')} de ${turn.hour.start} a ${turn.hour.end}hs `}
-                  <XOctagon size={25} color='red' role='button' onClick={()=>handleCancelation(turn._id)} /></li>
+                  <XOctagon size={25} color='red' role='button' data-bs-toggle="modal" data-bs-target="#turnCancelationConfirmModal" onClick={()=>setCancelationId(turn._id)} /></li>
               ))
             }      
           </ul>
@@ -149,7 +183,7 @@ const Reservations = ({ user }) => {
             setEnd={setEndingHour}
             disabledTurns={ocuppiedTurns}
           />
-          <button className={`col-10 ${button}`} onClick={handleReservation}>Realizar Reserva</button>
+          <button className={`col-10 ${button}`} data-bs-toggle="modal" data-bs-target="#reservationConfirmModal">Realizar Reserva</button>
         </div>
       </section>
     </>
