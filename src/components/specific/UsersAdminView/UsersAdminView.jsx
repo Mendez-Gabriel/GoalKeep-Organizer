@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { createButton, tableSection} from '../FootballFieldAdminView/FootballFieldAdminView.module.css';
 import { InfoCircle,  XCircle, CheckCircle } from 'react-bootstrap-icons';
+import { toast } from 'react-toastify';
 
 const UsersAdminView = () => {
   
@@ -29,12 +30,12 @@ const UsersAdminView = () => {
           data: query,
           url: `${urlBase}/user/${id}` 
         });
-        console.log(response);
+        toast.success('Usuario modificado exitosamente');
       } catch (error) {
         console.log(error);
       };
       setReload(!reload);
-    }else alert('Operacion Cancelada.')
+    }else toast.warning('Operación cancelada')
   };
 
   useEffect(()=>{

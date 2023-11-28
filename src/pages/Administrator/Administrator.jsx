@@ -7,6 +7,7 @@ import ReservationsAdminView from '../../components/specific/ReservationsAdminVi
 import ProductsAdminView from '../../components/specific/ProductsAdminView/ProductsAdminView';
 import { adminSection } from './Administrator.module.css'
 import { MdOutlineDangerous } from 'react-icons/md';
+import { ToastContainer } from 'react-toastify';
 
 const Administrator = ({ view, user }) => {
 
@@ -22,6 +23,10 @@ const Administrator = ({ view, user }) => {
         (
           <>
             <h2 className='text-center'>Elija que coleccion desea administrar</h2>
+            <ToastContainer
+              theme='colored'
+              autoClose={3000}
+            />
             <AdminToggler handleViewChange={changeView} />
             {
               CurrentView === 'footballFields' ? <FootballFieldAdminView />

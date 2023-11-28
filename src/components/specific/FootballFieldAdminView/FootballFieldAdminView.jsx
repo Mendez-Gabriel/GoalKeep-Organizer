@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { createButton, tableSection} from './FootballFieldAdminView.module.css';
 import { Trash3Fill, PenFill } from 'react-bootstrap-icons';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const FootballFieldAdminView = () => {
@@ -26,7 +28,6 @@ const FootballFieldAdminView = () => {
   const [newGrassType, setNewGrassType] = useState('');
   const [newImgUrl, setNewImgUrl] = useState('');
 
-
   const clearFiltters = ()=>{
     setQueryParams({});
   };
@@ -46,6 +47,7 @@ const FootballFieldAdminView = () => {
     try {
       const response = await axios.post(urlBase,dataForm);
       console.log(response.data);
+      toast.success('Cancha creada exitosamente');
       setReload(!reload);
     } catch (error) {
       console.log(error);
@@ -53,7 +55,6 @@ const FootballFieldAdminView = () => {
     e.target.reset();
   }
   const handleDelete = async ( id ) => {
-    if(confirm('Desea Eliminar esta Cancha?')){
       try {
         const response = await axios({
           url : urlBase,
@@ -62,16 +63,13 @@ const FootballFieldAdminView = () => {
             footballFieldId : id
           }
         })
-        console.log(response.data);
-        alert('Cancha Borrada')
+        toast.error('Cancha eliminada');
         setReload(!reload);
       } catch (error) {
         console.log(error);
       };
-    }else alert('Operacion Cancelada');
   };
   const handleUpdate = async ( footballFieldId ) => {
-    if(confirm('Desea actualizar esta cancha?')){
       const query = {
         newName : newName,
         newGrassType : newGrassType,
@@ -85,13 +83,12 @@ const FootballFieldAdminView = () => {
           url: urlBase,
           data: query
         });
-        console.log(response.data);
+        toast.success('Cambios realizados exitosamente');
       } catch (error) {
         console.log(error)
       }
       setSelectedFootballField(selectedFootballField);
       setReload(!reload);
-    }else alert('Operacion Cancelada.')
   } 
 
   useEffect(()=>{
@@ -154,7 +151,7 @@ const FootballFieldAdminView = () => {
                       <label htmlFor="imgUrlInput">URL Imagen</label>
                   </div>
                   <div className='row gap-3 gap-md-0 justify-content-around'>
-                    <button type="button" className={`col-10 col-md-4 ${createButton}`} data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" className={`col-10 col-md-4 ${createButton}`} data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" className={`col-10 col-md-4 ${createButton}`} htmlFor='#fieldCreationForm'>Guardar Cancha</button>
                   </div>
                 </form>
@@ -199,13 +196,38 @@ const FootballFieldAdminView = () => {
               </div>
               <div className="modal-footer">
                 <button type="button" className={createButton} data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" className={createButton} data-bs-dismiss="modal" onClick={(e)=>handleUpdate(selectedFootballField._id)}>Guardar Cambios</button>
+                <button type="button" className={createButton} data-bs-toggle="modal" data-bs-target='#updateConfirmModal'>Guardar Cambios</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+      <div class="modal fade" id="updateConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 className='text-center'>¿Desea guardar los cambios?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>toast.warning('Operación cancelada')}>No</button>
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>handleUpdate(selectedFootballField._id)}>Si</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="deleteConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 className='text-center'>¿Seguro que desea eliminar esta cancha?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>toast.warning('Operación cancelada')}>Cancelar</button>
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>handleDelete(selectedFootballField._id)}>Borrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className={`col-12 col-md-9 mx-0 px-0 py-4 p-md-4 ${tableSection}`}>
         <table className="table table-striped table-centered mb-0">
           <thead>
@@ -227,7 +249,7 @@ const FootballFieldAdminView = () => {
                   <td className='d-none d-md-block'>{footballField.players}</td>
                   <td >
                     <PenFill color='#2E8B57' size={25} role='button' onClick={()=>setSelectedFootballField(footballField)} data-bs-toggle="modal" data-bs-target="#updateFieldModal"/>
-                    <Trash3Fill color='#c21d03' size={25} role='button' onClick={()=>handleDelete(footballField._id)}/>
+                    <Trash3Fill color='#c21d03' size={25} role='button' data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"  onClick={()=>setSelectedFootballField(footballField)}/>
                   </td>
                 </tr>
               ))
