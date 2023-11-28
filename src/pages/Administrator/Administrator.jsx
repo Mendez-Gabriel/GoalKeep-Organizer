@@ -26,7 +26,6 @@ const Administrator = ({ view, user }) => {
             <ToastContainer
               theme='colored'
               autoClose={3000}
-              position='top-center'
             />
             <AdminToggler handleViewChange={changeView} />
             {
