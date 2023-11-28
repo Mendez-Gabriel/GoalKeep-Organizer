@@ -2,6 +2,7 @@ import React from 'react'
 import { createButton, tableSection} from '../FootballFieldAdminView/FootballFieldAdminView.module.css';
 import { InfoCircle } from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -24,19 +25,17 @@ const ReservationsAdminView = () => {
   const [newHour, setNewHour] = useState({start:0,end:0});
 
   const cancelTurn = async ( reservationId ) => {
-    if(confirm('Desea eliminar esta reservacion?')){
       try {
       const {data} = await axios({
         method:'delete',
         url:`${urlBase}/reservation`,
         params:{ reservationId : reservationId }
       });
-      alert(data.message);
+      toast.success(data.message);
       setReload(!reload);
     } catch (error) {
       console.log(error);
     };
-  }
   };
 
   
@@ -89,11 +88,11 @@ const ReservationsAdminView = () => {
   },[selectedReservation])
   return (
     <>
-      <div className="modal fade" id="reservationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+      <div className="modal fade" id="reservationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="reservationModalLabel">Modal title</h1>
+              <h1 className="modal-title fs-5" id="reservationModalLabel">Reserva</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -120,13 +119,25 @@ const ReservationsAdminView = () => {
           
                 <div className='row gap-3 gap-md-0 justify-content-around'>
                   <button type="button" className={`col-10 col-md-4 ${createButton}`} data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" className={`col-10 col-md-4 ${createButton}`} htmlFor='#userUpdateForm' onClick={()=>cancelTurn(selectedReservation._id)}>Cancelar Turno</button>
+                  <button type="submit" className={`col-10 col-md-4 ${createButton}`} data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">Cancelar Turno</button>
                 </div>
             </div>
           </div>
         </div>
       </div>
-
+      <div class="modal fade" id="deleteConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 className='text-center'>¿Seguro que desea cancelar esta reserva?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>toast.warning('Operación cancelada')}>No</button>
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>cancelTurn(selectedReservation._id)}>Si</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className={`col-12 col-md-9 mx-0 px-0 py-4 p-md-4 ${tableSection}`}>
         <table className="table table-striped table-centered mb-0">
           <thead>

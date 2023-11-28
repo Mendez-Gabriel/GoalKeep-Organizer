@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { createButton, tableSection} from '../FootballFieldAdminView/FootballFieldAdminView.module.css';
 import { Trash3Fill, PenFill, XCircle, CheckCircle } from 'react-bootstrap-icons';
+import { toast } from 'react-toastify';
 
 const ProductsAdminView = () => {
 
@@ -54,15 +55,15 @@ const ProductsAdminView = () => {
       if(confirm('Desea Agregar esta categoria?')){
         try {
           const { data } = await axios.post(`${urlBase}/productCategory`,categoryDataForm);
-          console.log(data)
+          toast.success('Categoria creada')
         } catch (error) {
           console.log(error)
         }
-      }else alert('Operacion cancelada')
+      }else toast.warning('Operación cancelada')
     }else{
       try {
         const { data } = await axios.post(`${urlBase}/products`,dataForm);
-        console.log( {creado: data.newProduct } );
+        toast.success('Producto agregado exitosamente');
       } catch (error) {
         console.log(error);
       };
@@ -71,20 +72,15 @@ const ProductsAdminView = () => {
     e.target.reset();
   }
   const handleDelete = async(id) => {
-    if(confirm('Desea eliminar el producto?')){
       try {
         const response = await axios.delete(`${urlBase}/products/${id}`);
-        console.log(response.data)
+        toast.error('Producto Eliminado exitosamente');
       } catch (error) {
         console.log(error)
       }
-      alert('Producto eliminado con exito.')
       setReload(!reload);
-    }else alert('Operacion cancelada.');
   }
-  const handleUpdate = async (e,id) => {
-    e.preventDefault();
-    if(confirm('Desea actualizar el producto?')){
+  const handleUpdate = async (id) => {
       let query = {
       name: newName,
       description: newDescription,
@@ -101,13 +97,11 @@ const ProductsAdminView = () => {
           data: query,
           url: `${urlBase}/products/${id}`
         });
-        console.log(data);
+        toast.success('Producto actualizado exitosamente')
       } catch (error) {
         console.log(error);
       };
-      alert('Producto actualizado exitosamente.')
       setReload(!reload);
-    }else alert('Operacion cancelada.')
   }
 
   useEffect(() => {
@@ -241,7 +235,7 @@ const ProductsAdminView = () => {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                <form id='productUpdateForm' onSubmit={(e) => handleUpdate(e,selectedPRoduct._id)}>
+                <form id='productUpdateForm'>
                   <div className="form-floating mb-3">
                     <input type="text" className="form-control" name='name' id="nameInput" placeholder="name@example.com"
                       onChange={(e) => { setnewName(e.target.value) }} value={newName} />
@@ -288,13 +282,39 @@ const ProductsAdminView = () => {
 										</div>
                   <div className='row gap-3 gap-md-0 justify-content-around'>
                     <button type="button" className={`col-10 col-md-4 ${createButton}`} data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" className={`col-10 col-md-4 ${createButton}`} htmlFor='#productUpdateForm'>Guardar Cambios</button>
+                    <button type="button" className={`col-10 col-md-4 ${createButton}`} data-bs-toggle="modal" data-bs-target="#updateConfirmModal">Guardar Cambios</button>
                   </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
+      <div class="modal fade" id="updateConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 className='text-center'>¿Desea guardar los cambios?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>toast.warning('Operación cancelada')}>No</button>
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>handleUpdate(selectedPRoduct._id)}>Si</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="deleteConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 className='text-center'>¿Seguro que desea eliminar este producto?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>toast.warning('Operación cancelada')}>Cancelar</button>
+              <button type="button" className={createButton} data-bs-dismiss="modal" onClick={()=>handleDelete(selectedPRoduct._id)}>Borrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className={`col-12 col-md-9 mx-0 px-0 py-4 p-md-4 ${tableSection}`}>
         <table className="table table-striped table-centered mb-0">
@@ -319,7 +339,7 @@ const ProductsAdminView = () => {
                   <td>{product.available?<CheckCircle size={25} color='#2196F3'/>:<XCircle size={25} color='#c21d03'/>}</td>
                   <td>
                     <PenFill color='#2E8B57' size={25} role='button' onClick={()=>setSelectedPRoduct(product)} data-bs-toggle="modal" data-bs-target="#productUpdateModal"/>
-                    <Trash3Fill color='#c21d03' size={25} role='button' onClick={()=>handleDelete(product._id)}/>
+                    <Trash3Fill color='#c21d03' size={25} role='button' onClick={()=>setSelectedPRoduct(product)} data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"/>
                   </td>
                 </tr>
               ))
