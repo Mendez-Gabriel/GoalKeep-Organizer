@@ -17,7 +17,6 @@ const Carrousel = ({ setItem, urlProducts, titleCarrousel, titleColor, bgCarouse
 
   let numeroAleatorio = Math.floor(Math.random() * 4) + 1;
 
-console.log(numeroAleatorio);
 
   useEffect(() => {
     const { data } = axios.get(`${urlProducts}?page=${numeroAleatorio}`)
@@ -31,7 +30,7 @@ console.log(numeroAleatorio);
   const updateSelectedItem = (selectedItem) => {
     setItem(selectedItem);
   };  
-   console.log(products)
+   
   return (
     <div className={`py-5 ${bgCarousel}`}>
       <h1 className={titleColor}>{titleCarrousel}</h1>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import axios from 'axios';
+import GeneralPleaceholder from '../../general/generalPleaceholder/GeneralPleaceholder';
 
 const GalleryCarrusel = () => {
 
@@ -9,7 +10,7 @@ const GalleryCarrusel = () => {
   const baseurl = `${url}/gallerycarrusel`; 
   const [ galleryData, setGalleryData ] = useState([
   ]);
-  
+  const [loader, setLoader] = useState(true)
 
   const responsive = {
     superLargeDesktop: {
@@ -35,6 +36,7 @@ const GalleryCarrusel = () => {
       try {
         const { data } = await axios.get(baseurl);
         setGalleryData(data.carruselsInfo);
+        setLoader(false)
       } catch (error) {
         console.log(error);
       }
@@ -45,7 +47,13 @@ const GalleryCarrusel = () => {
 
   return (
     <div className={`py-5`}>
-      <div className='pt-3 '>
+      {loader ? 
+      (
+        <GeneralPleaceholder />
+      )
+      :
+      (
+        <div className='pt-3 '>
         <Carousel responsive={responsive} infinite={true} containerClass='p-5'>
           {galleryData.map((imagenCarrusel) => (
             <div key={imagenCarrusel._id}>
@@ -54,6 +62,8 @@ const GalleryCarrusel = () => {
           ))}
         </Carousel>
       </div>
+      )  
+    }  
     </div>
   );
 };
