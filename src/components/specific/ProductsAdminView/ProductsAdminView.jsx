@@ -146,7 +146,7 @@ const ProductsAdminView = () => {
         </button>
         
         <div className="modal fade" id="productCategoryCreationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div className="modal-dialog">
+          <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
                 <h1 className="modal-title fs-5" id="staticBackdropLabel">Crear Categoria</h1>
@@ -290,7 +290,7 @@ const ProductsAdminView = () => {
           </div>
         </div>
       <div class="modal fade" id="updateConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateConfirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
               <h5 className='text-center'>¿Desea guardar los cambios?</h5>
@@ -303,7 +303,7 @@ const ProductsAdminView = () => {
         </div>
       </div>
       <div class="modal fade" id="deleteConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
               <h5 className='text-center'>¿Seguro que desea eliminar este producto?</h5>
