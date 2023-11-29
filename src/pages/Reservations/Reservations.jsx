@@ -131,7 +131,7 @@ const Reservations = ({ user }) => {
           position='top-center'
         />
         <div class="modal fade" id="turnCancelationConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="turnCancelationConfirmModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body">
                 <h5 className='text-center'>¿Desea cancelar este turno?</h5>
@@ -144,7 +144,7 @@ const Reservations = ({ user }) => {
           </div>
         </div>
         <div class="modal fade" id="reservationConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="reservationConfirmModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body">
                 <h5 className='text-center'>{day?`¿Reservar esta cancha para el dia: ${dayjs.utc(day).add(1,'day').tz('America/Argentina/Buenos_Aires').format('DD [de] MMM[,] YYYY')}?`:'¿Realizar Reserva?'}</h5>

@@ -89,7 +89,7 @@ const ReservationsAdminView = () => {
   return (
     <>
       <div className="modal fade" id="reservationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="reservationModalLabel">Reserva</h1>
@@ -126,7 +126,7 @@ const ReservationsAdminView = () => {
         </div>
       </div>
       <div class="modal fade" id="deleteConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
               <h5 className='text-center'>¿Seguro que desea cancelar esta reserva?</h5>

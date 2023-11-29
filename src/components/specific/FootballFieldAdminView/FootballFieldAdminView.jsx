@@ -203,7 +203,7 @@ const FootballFieldAdminView = () => {
         </div>
       </div>
       <div class="modal fade" id="updateConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateConfirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
               <h5 className='text-center'>¿Desea guardar los cambios?</h5>
@@ -216,7 +216,7 @@ const FootballFieldAdminView = () => {
         </div>
       </div>
       <div class="modal fade" id="deleteConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
               <h5 className='text-center'>¿Seguro que desea eliminar esta cancha?</h5>
