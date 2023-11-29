@@ -76,11 +76,9 @@ const Products = () => {
                 </div>
                 <div className='container d-flex justify-content-center'>
                     <div className='row m-3 w-100 justify-content-center'>
-                        
-
                         {loader ?
                             (
-                                <div className={`d-flex justify-content-center  border border-primary`}>
+                                <div className={`d-flex justify-content-center`}>
                                     <ContainerCardPleaceholder />
                                 </div>
                             )
