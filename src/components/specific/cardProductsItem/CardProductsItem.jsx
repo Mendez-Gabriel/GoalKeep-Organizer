@@ -51,10 +51,10 @@ const CardProductsItem = ({ products, user }) => {
                     </div>
                     {user ?
                         user?.loginUser.userPasswordHidden.active ?
-                            <Link to={'*'} className='btn btn-success' ></Link>
+                            <Link to={'*'} className={`m-2 mt-5 rounded-pill ${createButton}`} ></Link>
                             :
                             <>
-                                <Button variant="success" className='vw-100 m-3 rounded-pill' onClick={handleShow}>Agregar al Carrito</Button>
+                                <button variant="success" className={`m-2 mt-5 rounded-pill ${createButton}`} onClick={handleShow}>Agregar al Carrito</button>
                                 <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} textBtn={'Iniciar Sesion'} textTitle={'Su cuenta fue Inabilitada por el administrador'} />
                             </>
                         :
