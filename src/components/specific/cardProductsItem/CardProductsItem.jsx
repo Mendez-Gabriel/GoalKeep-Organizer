@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button';
 const CardProductsItem = ({ products, user }) => {
 
     const { name, Image, price, description } = products;
-    console.log(createButton)
 
     const navigate = useNavigate()
 

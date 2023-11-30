@@ -10,12 +10,13 @@ import { House, Flag, Shop, CardImage, InfoCircle, Phone, PersonFill } from 'rea
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import ModalM from '../modal/ModalM';
 import Button from 'react-bootstrap/Button';
+import Collapse from 'react-bootstrap/Collapse';
 
 
 
 const NavBar = ({ setUser, user }) => {
 
-    const { logoIconStyle, navicon, open } = styleNavBar;
+    const { logoIconStyle, navicon, open, shows, offcanvas, index } = styleNavBar;
     const containerIcon = 'container d-flex p-2'
 
     const [show, setShow] = useState(false);
@@ -44,17 +45,19 @@ const NavBar = ({ setUser, user }) => {
 
     return (
         <header>
-            <Offcanvas show={menuOpen} onHide={handleClose} responsive="lg" className='bg-dark d-lg-none'>
-                <Offcanvas.Header closeButton>
-                    <div className={containerIcon}>
-                        <img src={logoIcon} alt="logoIcon" id={logoIconStyle} />
+            <div className={`${offcanvas} bg-dark my-3 offcanvas-start d-lg-none ${menuOpen ? shows : '' } ${index}`} id="offcanvas" aria-labelledby="offcanvasLabel">
+                <div className="offcanvas-header">
+                <div className={containerIcon}>
                         <ul className='navbar-nav'>
                             <ButtonLink Text={user?.loginUser.userPasswordHidden.userName} link={'/login'} className={'fs-3'} />
                         </ul>
                     </div>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <div className={containerIcon}>
+                    <div className=' bg-secondary bg-gradient m-2'>
+                        <button type="button" className="btn-close m-2" data-bs-dismiss="offcanvas" aria-label="Close" onClick={handleClose}></button>
+                    </div>
+                </div>
+                <div className="offcanvas-body">
+                <div className={containerIcon}>
                         <House color='#919847' size={30} />
                         <ButtonLink Text={'Home'} link={'/'} click={() => handleShowCanvas(showCanvas)} />
                     </div>
@@ -85,11 +88,11 @@ const NavBar = ({ setUser, user }) => {
                     </div>
                     <div className={containerIcon}>
                         <Phone color='#919847' size={30} />
-                        <ButtonLink Text={'Contacto'} link={'/contactos'} click={() => handleShowCanvas(showCanvas)} />
+                        <ButtonLink Text={'Contacto'} link={'/contact'} click={() => handleShowCanvas(showCanvas)} />
                     </div>
                     <div className='mt-5'>
                         {user ?
-                            (<Button variant="danger" onClick={handleShow}>Cerrar Sesion</Button>)
+                            (<Button variant="danger" className='m-3' onClick={handleShow}>Cerrar Sesion</Button>)
                             :
                             (<div className="btn-group me-2" role="group" aria-label="Second group">
                                 <Link to={'/user/login'} className='btn btn-success' onClick={() => handleShowCanvas(showCanvas)}>Inicia Sesion</Link>
@@ -97,12 +100,12 @@ const NavBar = ({ setUser, user }) => {
                             </div>)}
                         <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} />
                     </div>
-                </Offcanvas.Body>
-            </Offcanvas>
+                </div>
+            </div>
             <nav className="navbar navbar-expand-lg fixed-top bg-dark">
                 <div className="container-fluid">
                     <img src={logoIcon} alt="logoIcon" id={logoIconStyle} />
-                    <Button variant="" className={`d-lg-none ${navicon} ${tonggler ? open : ''}`} onClick={toggleMenu}>
+                    <Button variant="" className={`d-lg-none ${navicon} ${menuOpen ? open : ''}`} onClick={toggleMenu}>
                         <span></span>
                         <span></span>
                         <span></span>

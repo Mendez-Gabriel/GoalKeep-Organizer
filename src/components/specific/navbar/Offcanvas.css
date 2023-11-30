@@ -1,0 +1,21 @@
+.offcanvas-transition-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  
+  .offcanvas-transition-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .offcanvas-transition-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .offcanvas-transition-exit-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 300ms, transform 300ms;
+  }

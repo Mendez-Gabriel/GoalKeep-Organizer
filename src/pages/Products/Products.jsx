@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { card, bground, createButton, inputStyles } from './Products.module.css';
+import { card, bgOscuroMedio, createButton, inputStyles } from './Products.module.css';
 import axios from 'axios';
 import CardProducts from '../../components/specific/cardProducts/CardProducts';
 import Input from '../../components/general/input/Input';
@@ -56,7 +56,7 @@ const Products = () => {
 
     return (
         <>
-            <div className={`flex-column mt-5 pt-5 ${bground}`}>
+            <div className={`flex-column mt-5 pt-5 ${bgOscuroMedio}`}>
                 <div className='flex-column justify-content-center'>
                     <div className={`d-flex justify-content-center mb-4`}>
                         <Input type={'text'} setSearchProduct={handleSearch} placeholder={'Buscar Productos'} inputStyles={inputStyles} />
@@ -76,9 +76,11 @@ const Products = () => {
                 </div>
                 <div className='container d-flex justify-content-center'>
                     <div className='row m-3 w-100 justify-content-center'>
+                        
+
                         {loader ?
                             (
-                                <div className={`d-flex justify-content-center`}>
+                                <div className={`d-flex justify-content-center  border border-primary`}>
                                     <ContainerCardPleaceholder />
                                 </div>
                             )
