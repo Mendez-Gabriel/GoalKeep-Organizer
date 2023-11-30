@@ -7,25 +7,31 @@ const CardsIntegrantes = () => {
       id: 1,
       name: 'Duhart Neme Alejo',
       age: 20,
-      profession: 'Progrogramador Full Stack Junior',
-      description: 'Estudiante de Rolling Code y Intento De Programador de videojuegos.',
+      profession: 'Programador Full Stack Junior',
+      description: 'Estudiante de Rolling Code School y Estudiante para Programador de videojuegos.',
       image: 'https://res.cloudinary.com/dptlgyfq5/image/upload/c_crop,g_auto,h_800,w_800/fundadores/ytmfqebe5lmw4fn8xwp7.jpg',
+      linkedin: 'https://www.linkedin.com/in/alejo-duhart-neme-97aa872a2/',
+      github: 'https://github.com/Alejo-Duhart',
     },
     {
       id: 2,
-      name: 'Matias Roger Narcoti',
+      name: 'Matias Roger Narcotti',
       age: 28,
-      profession: 'Desarrollador Full Stack Trainee',
-      description: 'Apasionado por el ingles, la Programacion y en aprender cosas nuevas.',
+      profession: 'Desarrollador Full Stack Junior',
+      description: 'Apasionado por el inglés, la Programación y en aprender cosas nuevas.',
       image: 'https://res.cloudinary.com/dptlgyfq5/image/upload/c_crop,g_auto,h_800,w_800/fundadores/s4ecuplh0neelbwgu2eu.jpg',
+      linkedin: 'https://www.linkedin.com/in/matias-roger-narcotti-dev/',
+      github: 'https://github.com/MatiRoger',
     },
     {
       id: 3,
-      name: 'Mendez Gabriel Dario',
+      name: 'Mendez Gabriel  Dario',
       age: 28,
-      profession: 'Programador',
-      description: 'apasionado programador dedicado a crear soluciones innovadoras y eficientes.',
+      profession: 'Desarrollador Full Stack Junior',
+      description: 'Apasionado programador dedicado a crear soluciones innovadoras y eficientes.',
       image: 'https://res.cloudinary.com/dptlgyfq5/image/upload/c_crop,g_auto,h_800,w_800/fundadores/pjrjnhzlclwxbw8mtxbb.jpg',
+      linkedin: 'https://www.linkedin.com/in/gabriel-mendez-976370236',
+      github: 'https://github.com/Mendez-Gabriel',
     },
   ];
 
@@ -35,9 +41,11 @@ const CardsIntegrantes = () => {
         <div key={integrante.id} className={styles.cardIntegrante}>
           <img src={integrante.image} alt={`Persona ${integrante.id}`} />
           <h2>{integrante.name}</h2>
-          <p>Edad:{integrante.age}</p>
-          <p>Profesión:{integrante.profession}</p>
+          <p>Edad: {integrante.age}</p>
+          <p>Profesión: {integrante.profession}</p>
           <p>{integrante.description}</p>
+          <p>LinkedIn: <a href={integrante.linkedin} target="_blank" rel="noopener noreferrer">{integrante.name}/LinkedIn</a></p>
+          <p>GitHub: <a href={integrante.github} target="_blank" rel="noopener noreferrer">{integrante.name}/Github</a></p>
         </div>
       ))}
     </div>

@@ -17,7 +17,7 @@ const AboutUs = () => {
           Bienvenido a GoalKeep Organizer, tu destino principal para experimentar el fútbol de una manera única y emocionante. Nos enorgullece ser líderes en el alquiler de canchas de fútbol, ofreciendo instalaciones de primera clase para que disfrutes de tu pasión por el deporte rey.
           </h6>
           <Link to="/Fundadores">
-            <button className={aboutUsButton}>Fundadores  </button>
+            <button className={aboutUsButton}>Fundadores</button>
           </Link>
         </div>
       </div>
