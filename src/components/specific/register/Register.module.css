@@ -1,0 +1,59 @@
+.card {
+    width: 100%;
+    height: 100%;
+}
+
+.img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.logoIconStyle {
+    width: 3rem;
+}
+
+.textTitle{
+    text-shadow: 5px 4px 9px rgba(0, 0, 0, 1);
+    color: #c6ffe6;
+}
+
+.bgImage {
+    background-color: rgb(251, 207, 40);
+    background-image: url(https://img.freepik.com/foto-gratis/campo-hierba-verde-fondo_1252-1100.jpg?w=740&amp;t=st=1699466819~exp=1699467419~hmac=bf886d0fd48fd85415e3ec3bc73d5f7d4102c116cc01368983d52a92f8c699c5);
+    background-size: cover;
+    background-position: left top;
+    background-repeat: repeat;
+}
+
+.createButton {
+    font-size: 1rem;
+    padding: 0.8em 2em;
+    background-color: #454545;
+    border: 3px solid #61bc84;
+    border-radius: 1em;
+    color: #FFFFFF;
+    font-weight: bolder;
+    transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s;
+    box-shadow: -5px 5px 0px 0px #2E8B57;
+  }
+  
+  .createButton:hover {
+    transform: translate(5px, -5px);
+  }
+
+  .createButtonSubmit {
+    font-size: 1rem;
+    padding: 0.8em 2em;
+    background-color: #61bc84;
+    border: 3px solid #61bc84;
+    border-radius: 1em;
+    color: #FFFFFF;
+    font-weight: bolder;
+    transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s;
+    box-shadow: -5px 5px 0px 0px #2E8B57;
+  }
+  
+  .createButtonSubmit:hover {
+    transform: translate(5px, -5px);
+  }

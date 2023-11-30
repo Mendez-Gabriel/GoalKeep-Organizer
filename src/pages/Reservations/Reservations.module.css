@@ -1,0 +1,43 @@
+.infoSection{
+  background-color: #1E1E1E;
+}
+.infoSection li {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #FFFFFF;
+  background-color: inherit;
+}
+.infoSection li strong{
+  text-align: start;
+  color: #61bc84;
+  font-weight: 900;
+  -webkit-text-stroke: 1px #1E1E1E;
+}
+.button {
+  text-align: center;
+  text-decoration: none;
+  width: 200px;
+  padding: 12px 48px;
+  text-align: center;
+  color: white;
+  background-color: #1E1E1E;
+  border: solid 2px white;
+  border-radius: 1em;
+}
+.infoSection h1 {
+  color: #61bc84;
+}
+.infoSection h3{
+  color: #61bc84;
+}
+.infoCard{
+  background-color: #454545;
+  border-radius: 1em;
+  transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s;
+  border: 3px solid #61bc84;
+  box-shadow: -5px 5px 0px 0px #2E8B57;
+}
+.infoCard img {
+  object-fit: cover;
+  border-radius: 20px;
+}

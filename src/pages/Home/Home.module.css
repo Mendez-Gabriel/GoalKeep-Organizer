@@ -1,0 +1,43 @@
+.logoIconStyle {
+    width: 3rem;
+}
+
+.bgLightCream{
+    background-color: #c6ffe6; 
+  }
+
+.textSize{
+    font-size: 2em;
+}
+
+.bgLightGreen{
+    background: rgb(143,188,143);
+    background: linear-gradient(108deg, rgba(143,188,143,1) 45%, rgba(52,94,55,1) 45%);
+}
+.bgLightGreen h4{
+    font-weight: 400;
+}
+.bgLightGreen h5{
+    font-weight: 400;
+}
+.footballFieldsButton {
+    font-size: 1rem;
+    padding: 0.8em 2em;
+    background-color: #454545;
+    border: 3px solid #61bc84;
+    border-radius: 1em;
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s;
+    box-shadow: -5px 5px 0px 0px #2E8B57;
+  }
+
+@media (max-width: 500px) {
+    .textSize{
+        font-size: 1.4rem;
+    }
+
+    .logoIconStyle{
+        width: 3rem;
+    }
+  }

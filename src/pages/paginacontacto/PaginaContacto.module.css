@@ -1,0 +1,62 @@
+.contactoDiv{
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background: url('https://res.cloudinary.com/dptlgyfq5/image/upload/v1699984628/paginacontacto/nhedq8jc1x0ooobqxogb.jpg') center/cover no-repeat;
+  flex-direction: column;
+}
+
+.contactContainer {
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: #e0e0e0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+.contactHeading{
+  color: #059c00; 
+}
+
+.infoHeading {
+  color: #059c00; 
+}
+
+.infoSection{
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: #e0e0e0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contactIntro {
+  margin-bottom: 20px;
+}
+
+
+.contactForm {
+  display: grid;
+  gap: 10px;
+}
+
+.contactInfo {
+  margin-top: 20px;
+}
+
+
+.infoItem {
+  margin: 5px 0;
+}

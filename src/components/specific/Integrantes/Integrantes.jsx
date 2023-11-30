@@ -7,13 +7,13 @@ const CardsIntegrantes = () => {
       id: 1,
       name: 'Duhart Neme Alejo',
       age: 20,
-      profession: 'Programador Full Stack Junior',
-      description: 'Estudiante de Rolling Code y Intento de Programador de videojuegos.',
+      profession: 'Progrogramador Full Stack Junior',
+      description: 'Estudiante de Rolling Code y Intento De Programador de videojuegos.',
       image: 'https://res.cloudinary.com/dptlgyfq5/image/upload/c_crop,g_auto,h_800,w_800/fundadores/ytmfqebe5lmw4fn8xwp7.jpg',
     },
     {
       id: 2,
-      name: 'Roger Narcoti Matias',
+      name: 'Matias Roger Narcoti',
       age: 28,
       profession: 'Desarrollador Full Stack Trainee',
       description: 'Apasionado por el ingles, la Programacion y en aprender cosas nuevas.',
@@ -24,7 +24,7 @@ const CardsIntegrantes = () => {
       name: 'Mendez Gabriel Dario',
       age: 28,
       profession: 'Programador',
-      description: 'Apasionado programador dedicado a crear soluciones innovadoras y eficientes.',
+      description: 'apasionado programador dedicado a crear soluciones innovadoras y eficientes.',
       image: 'https://res.cloudinary.com/dptlgyfq5/image/upload/c_crop,g_auto,h_800,w_800/fundadores/pjrjnhzlclwxbw8mtxbb.jpg',
     },
   ];
@@ -35,8 +35,8 @@ const CardsIntegrantes = () => {
         <div key={integrante.id} className={styles.cardIntegrante}>
           <img src={integrante.image} alt={`Persona ${integrante.id}`} />
           <h2>{integrante.name}</h2>
-          <p>Age: {integrante.age}</p>
-          <p>Profession: {integrante.profession}</p>
+          <p>Edad:{integrante.age}</p>
+          <p>Profesión:{integrante.profession}</p>
           <p>{integrante.description}</p>
         </div>
       ))}
