@@ -99,3 +99,22 @@
     transform: rotate(-45deg);
     transition-delay: 100ms;
   }
+
+  /* Offcanvas.module.css */
+.offcanvas {
+  position: fixed;
+  top: 1;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.shows {
+  transform: translateX(0);
+}
+
+.index{
+  z-index: 5000;
+}

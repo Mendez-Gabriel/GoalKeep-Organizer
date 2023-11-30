@@ -17,7 +17,6 @@ const Carrousel = ({ setItem, urlProducts, titleCarrousel, titleColor, bgCarouse
 
   let numeroAleatorio = Math.floor(Math.random() * 4) + 1;
 
-
   useEffect(() => {
     const { data } = axios.get(`${urlProducts}?page=${numeroAleatorio}`)
       .then(({ data }) => { 
