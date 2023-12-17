@@ -58,10 +58,8 @@ const Register = ({ user }) => {
             .then((response) => {
                 if (response.status !== 200) throw new Error('No se pudo realizar la peticion');
                 setRegistrationSuccess(true)
-                console.log(response.data);
             })
             .catch((err) => {
-                console.log(err);
                 setError(err.response.data.error);
             })
             .finally(() => { console.log('Peticion Finalizada') })
