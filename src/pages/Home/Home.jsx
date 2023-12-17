@@ -17,11 +17,7 @@ const Home = () => {
 
     const item = [];
 
-    useEffect(() => { 
-      const { data } = axios.get(`${urlProducts}?id=${params.id}`)
-        .then(({ data }) => { item(data.results[0]) })
-        .catch((err) => {console.log(err)})   
-    }, []);
+  
 
   return (
     <div className={`mt-5 pt-5 ${bgLightGreen}`}>
