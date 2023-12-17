@@ -50,7 +50,9 @@ const CardProductsItem = ({ products, user }) => {
                     </div>
                     {user ?
                         user?.loginUser.userPasswordHidden.active ?
-                            <Link to={'*'} className={`m-2 mt-5 rounded-pill ${createButton}`} ></Link>
+                            <button className={`mt-5 rounded-pill ${createButton}`}>
+                                <Link to={'*'} className={`m-2 text-success mx-2 link-underline link-underline-opacity-0`} >Agregar al Carrito</Link>
+                            </button>
                             :
                             <>
                                 <button variant="success" className={`m-2 mt-5 rounded-pill ${createButton}`} onClick={handleShow}>Agregar al Carrito</button>
