@@ -7,18 +7,18 @@ const CardFieldPleaceholder = () => {
 
     return (
         <div>
-            <div class={`card mb-3 ${createButton}`}>
-                <img src={urlImg} class={`card-img-top ${img}`} alt="..." />
-                <div class="card-body">
-                    <h5 class="card-title placeholder-glow">
-                        <span class="placeholder col-6"></span>
+            <div className={`card mb-3 ${createButton}`}>
+                <img src={urlImg} className={`card-img-top ${img}`} alt="..." />
+                <div className="card-body">
+                    <h5 className="card-title placeholder-glow">
+                        <span className="placeholder col-6"></span>
                     </h5>
-                    <p class="card-text placeholder-glow">
-                        <span class="placeholder col-7"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-6"></span>
-                        <span class="placeholder col-8"></span>
+                    <p className="card-text placeholder-glow">
+                        <span className="placeholder col-7"></span>
+                        <span className="placeholder col-4"></span>
+                        <span className="placeholder col-4"></span>
+                        <span className="placeholder col-6"></span>
+                        <span className="placeholder col-8"></span>
                     </p>
                 </div>
             </div>

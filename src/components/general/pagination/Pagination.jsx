@@ -3,6 +3,8 @@ import ReactPaginate from 'react-paginate';
 
 const Pagination = ({ totalPages, setUrlApi, baseApi }) => {
 
+  const pageCount = totalPages && Number.isInteger(totalPages) ? totalPages : 1;
+
     const handlePageClick = (event) => {
         setUrlApi(`${baseApi}page=${event.selected+1}`);
     }
@@ -10,7 +12,7 @@ const Pagination = ({ totalPages, setUrlApi, baseApi }) => {
   return (
     <div>
         <ReactPaginate
-            pageCount={totalPages}
+            pageCount={pageCount}
             className='pagination'
             breakLabel="..."
             nextLabel="next >"
