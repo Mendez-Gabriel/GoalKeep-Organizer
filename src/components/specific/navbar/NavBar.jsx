@@ -3,14 +3,12 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logoIcon from '../../../assets/Icon/Icon.svg';
 import styleNavBar from './NavBar.module.css';
-import BottonTonggler from '../../specific/bottonTonggler/BottonTonggler';
 import ButtonLink from '../butonLink/ButtonLink';
 import Dropdown from '../dropdown/Dropdown';
 import { House, Flag, Shop, CardImage, InfoCircle, Phone, PersonFill } from 'react-bootstrap-icons';
-import Offcanvas from 'react-bootstrap/Offcanvas'
 import ModalM from '../modal/ModalM';
 import Button from 'react-bootstrap/Button';
-import Collapse from 'react-bootstrap/Collapse';
+
 
 
 
