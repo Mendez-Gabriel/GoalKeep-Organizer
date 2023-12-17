@@ -49,17 +49,15 @@ const Login = ({ setUser, user }) => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(dataForm)
+
         axios.post(BaseApi, dataForm)
         .then((response) => {
             if (response.status !== 200) throw new Error('No se pudo realizar la peticion');
-            console.log(response.data);
             setData(response.data.loginUser.userPasswordHidden)
             setUser(response.data)
             localStorage.setItem('user', JSON.stringify(response.data));
         })
         .catch((err) => {
-            console.log('Error en :', err.response.data.error);
             setError(err.response.data.error)
         })
         .finally(() => { console.log('Peticion Finalizada') })
