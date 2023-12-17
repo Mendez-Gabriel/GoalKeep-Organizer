@@ -24,7 +24,6 @@ const Products = () => {
     const [loader, setLoader] = useState(true);
 
     const handleSearch = (click) => {
-        console.log(click.target.value)
         setActiveBtn(click.target.value);
         const Search = `${baseApi}name=${click.target.value}`;
         setUrlApi(Search);
@@ -32,7 +31,6 @@ const Products = () => {
 
     const handleFilter = (searchValue) => {
         const Search = `${baseApi}productCategory=${searchValue}`;
-        console.log(Search);
         setUrlApi(Search);
     };
 
