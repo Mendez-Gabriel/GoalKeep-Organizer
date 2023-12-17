@@ -116,5 +116,9 @@
 }
 
 .index{
-  z-index: 5000;
+  z-index: 1050;
+}
+
+.zindex{
+  z-index: 3000;
 }

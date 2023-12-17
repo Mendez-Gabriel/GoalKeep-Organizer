@@ -80,7 +80,7 @@ const Products = () => {
 
                         {loader ?
                             (
-                                <div className={`d-flex justify-content-center  border border-primary`}>
+                                <div className={`d-flex justify-content-center`}>
                                     <ContainerCardPleaceholder />
                                 </div>
                             )
