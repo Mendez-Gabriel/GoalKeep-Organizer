@@ -16,17 +16,20 @@ import Collapse from 'react-bootstrap/Collapse';
 
 const NavBar = ({ setUser, user }) => {
 
-    const { logoIconStyle, navicon, open, shows, offcanvas, index } = styleNavBar;
+    const { logoIconStyle, navicon, open, shows, offcanvas, index, zindex } = styleNavBar;
     const containerIcon = 'container d-flex p-2'
 
     const [show, setShow] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [tonggler, setTonggler] = useState()
+    
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen)
         setTonggler(true)
     }
+
+
 
 
     const handleShow = () => setShow(true);
@@ -42,12 +45,14 @@ const NavBar = ({ setUser, user }) => {
         setUser(null);
     };
 
+    const actived = user?.loginUser?.userPasswordHidden?.active
+        ;
 
     return (
         <header>
-            <div className={`${offcanvas} bg-dark my-3 offcanvas-start d-lg-none ${menuOpen ? shows : '' } ${index}`} id="offcanvas" aria-labelledby="offcanvasLabel">
+            <div className={`${offcanvas} bg-dark my-3 offcanvas-start d-lg-none ${menuOpen ? shows : ''} ${index}`} id="offcanvas" aria-labelledby="offcanvasLabel">
                 <div className="offcanvas-header">
-                <div className={containerIcon}>
+                    <div className={containerIcon}>
                         <ul className='navbar-nav'>
                             <ButtonLink Text={user?.loginUser.userPasswordHidden.userName} link={'/login'} className={'fs-3'} />
                         </ul>
@@ -57,7 +62,7 @@ const NavBar = ({ setUser, user }) => {
                     </div>
                 </div>
                 <div className="offcanvas-body">
-                <div className={containerIcon}>
+                    <div className={containerIcon}>
                         <House color='#919847' size={30} />
                         <ButtonLink Text={'Home'} link={'/'} click={() => handleShowCanvas(showCanvas)} />
                     </div>
@@ -131,15 +136,18 @@ const NavBar = ({ setUser, user }) => {
                         </ul>
                     </div>
                     <div className='d-none d-lg-block'>
-                        {user ?
+                        {actived ?
                             (<Button variant="danger" onClick={handleShow}>Cerrar Sesion</Button>)
                             :
                             (<div className="btn-group me-2" role="group" aria-label="Second group">
                                 <Link to={'/user/login'} className='btn btn-success'>Inicia Sesion</Link>
                                 <Link to={'user/register'} className='btn btn-warning'>Registrate</Link>
                             </div>)}
-                        <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} textBtn={'Cerrar Sesion'} textTitle={'¿Seguro que deseas cerrar sesion?'} />
+                        <div className={zindex}>
+                            <ModalM show={show} onClickCancel={handleClose} onClickClose={handleLogout} onHide={handleClose} textBtn={'Cerrar Sesion'} textTitle={'¿Seguro que deseas cerrar sesion?'} />
+                        </div>
                     </div>
+                    
                 </div>
             </nav>
         </header>

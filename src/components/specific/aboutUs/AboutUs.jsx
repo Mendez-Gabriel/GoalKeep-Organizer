@@ -8,7 +8,7 @@ const AboutUs = () => {
   const imageUrl = {logoIcon}; 
 
   return (
-    <div className={aboutUsContainer}>
+    <div className={`${aboutUsContainer} mt-5`}>
       <div className={aboutUsContent}>
       <img className={aboutUsImage} src={logoIcon} alt="Sobre nosotros" />
         <div className={aboutUsText}>

@@ -8,7 +8,6 @@ import axios from 'axios';
 import { FaEyeSlash, FaEye } from 'react-icons/fa6';
 import InputReact from '../../general/inputReact/InputReact';
 import AlertError from '../../general/alertError/AlertError';
-import ButtonGeneral from '../../general/buttonGeneral/ButtonGeneral';
 
 const Register = ({ user }) => {
 
@@ -26,7 +25,7 @@ const Register = ({ user }) => {
         lastName: '',
         userName: '',
         password: '',
-        confirmPassword:'',
+        confirmPassword: '',
         email: '',
     });
 
@@ -66,7 +65,7 @@ const Register = ({ user }) => {
                 setError(err.response.data.error);
             })
             .finally(() => { console.log('Peticion Finalizada') })
-        
+
         event.target.reset();
     };
 
@@ -78,7 +77,7 @@ const Register = ({ user }) => {
     }, [registrationSuccess]);
 
     return (
-        <div className='' tabIndex={'2'}>
+        <div className='mt-5' tabIndex={'2'}>
             <div className={`${card}`}>
                 <div className="row g-0 vh-100">
                     <div className="col-2 col-sm-4 col-md-7 col-xxl-9">
@@ -86,11 +85,15 @@ const Register = ({ user }) => {
                     </div>
                     <div className={`col-10 col-sm-8 col-md-5 col-xxl-3 d-flex align-items-center ${bgImage}`}>
                         <div className="container">
-                            {registrationSuccess || user ?
+                            {registrationSuccess ?
                                 (
                                     <div className='text-center'>
-                                        <h1 className={`fw-bold fst-italic ms-3 ${textTitle}`}>Registro con exito</h1>
-                                        <Link to={'/user/login'} onClick={handleClick2} className='btn btn-success mt-5'>Ir a Iniciar Sesion</Link>
+                                        <h1 className={`fw-bold fst-italic ms-3 ${textTitle}`}>Se Registro con exito</h1>
+                                        <button className={`mt-5 ${createButtonSubmit}`}>
+                                            <Link to={'/user/login'} className={`text-light mx-2 link-underline link-underline-opacity-0`}>
+                                                Ir a Inicia sesion
+                                            </Link>
+                                        </button>
                                     </div>
                                 )
                                 :
@@ -104,7 +107,7 @@ const Register = ({ user }) => {
                                             <Input margin={'mt-2'} placeholder={'Nombre'} setSearchProduct={handleChange} type={'text'} name={'name'} />
                                             <Input margin={'mt-2'} placeholder={'Apellido'} setSearchProduct={handleChange} type={'text'} name={'lastName'} />
                                             <Input margin={'mt-2'} placeholder={'Usuario'} setSearchProduct={handleChange} type={'text'} name={'userName'} />
-                                            <InputReact placeholder={'Contraseña'} margin={'mt-2'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye /> : <FaEyeSlash />} name={'password'} className={createButton}/>
+                                            <InputReact placeholder={'Contraseña'} margin={'mt-2'} type={activeEye ? 'text' : 'password'} handleChange={handleChange} handleClick={handleClick} text={activeEye ? <FaEye /> : <FaEyeSlash />} name={'password'} className={createButton} />
                                             <Input margin={'mt-2 mb-2'} placeholder={'Confirmar Contraseña'} setSearchProduct={handleChange} type={'password'} name={'confirmPassword'} />
                                             <Input margin={'mt-2 mb-2'} placeholder={'Email'} setSearchProduct={handleChange} type={'email'} name={'email'} />
                                             {error && (

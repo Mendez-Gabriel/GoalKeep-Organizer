@@ -49,7 +49,7 @@ const Login = ({ setUser, user }) => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+        console.log(dataForm)
         axios.post(BaseApi, dataForm)
         .then((response) => {
             if (response.status !== 200) throw new Error('No se pudo realizar la peticion');
@@ -67,16 +67,16 @@ const Login = ({ setUser, user }) => {
         event.target.reset();
     };
 
+
     return (
-        <div>
-            <div className={`${card}`}>
-                <div className="row g-0 vh-100">
-                    <div className="col-2 col-sm-4 col-md-7 col-xxl-9">
-                        <img src={imageMessi} className={`img-fluid vh-100 ${img}`} />
-                    </div>
-                    <div className={`col-10 col-sm-8 col-md-5 col-xxl-3 d-flex align-items-center ${bgImage}`}>
-                        <div className="container">
-                            {user ?
+        <div className="mt-5">
+            <div className="row g-0 vh-100">
+                <div className="col-2 col-sm-4 col-md-7 col-xxl-9">
+                    <img src={imageMessi} className={`img-fluid vh-100 ${img}`} />
+                </div>
+                <div className={`col-10 col-sm-8 col-md-5 col-xxl-3 d-flex align-items-center ${bgImage}`}>
+                    <div className="container">
+                        {user ?
                                 (
                                 <div className='text-center'>
                                     <h1 className={`fw-bold fst-italic ms-3 ${textTitle}`}>Bienvenido/a</h1>
@@ -107,7 +107,6 @@ const Login = ({ setUser, user }) => {
                                         </p>
                                     </div>
                                 </>)}
-                        </div>
                     </div>
                 </div>
             </div>

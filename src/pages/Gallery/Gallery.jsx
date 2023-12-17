@@ -6,7 +6,7 @@ import SlideCarrusel from '../../components/general/carrucelSlide/CarruselSlide'
 
 const Gallery = () => {
   return (
-    <div>
+    <div className='mt-5'>
       <div>
         <GalleryCarrusel/>
       </div>

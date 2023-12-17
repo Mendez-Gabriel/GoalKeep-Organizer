@@ -7,7 +7,7 @@ const ContactPage = () => {
     FormButton} = style
 
   return (
-    <div className={contactoDiv}>
+    <div className={`${contactoDiv} mt-5`}>
       <div className={contactContainer}>
       <h1 className={contactHeading}>Contacto</h1>
       <p className={contactIntro}>¡Estamos encantados de escucharte! Puedes contactarnos utilizando la información de contacto a continuación:</p>
