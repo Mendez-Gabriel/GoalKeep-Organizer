@@ -17,7 +17,6 @@ import ContactPage from './pages/paginacontacto/PaginaContacto'
 import PaginaError404 from './components/general/paginaError404/PaginaError404'
 import ProtectedRoutes from '../routes/ProtectedRoutes';
 import FormContacto from './pages/paginacontacto/FormContacto'
-import EmailValidation from './components/specific/emailValidation/EmailValidation';
 
 
 
@@ -56,7 +55,6 @@ function App() {
         <Route path='/products/:id' element={<ProductItem  user={user}/>}/>
         <Route path='/user/login' element={<Login setUser={setUser} user={user}/>} />
         <Route path='/user/register' element={<Register user={user}/>}/>
-        <Route path='/user/emailValidate/:id' element={<EmailValidation />} />
         <Route path='*' element={<PaginaError404/>}/>
       </Routes>
     <Footer/>
