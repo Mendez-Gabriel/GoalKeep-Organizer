@@ -3,6 +3,7 @@ import iconLogo from '../../../assets/Icon/Icon.svg';
 import styleFooter from './Footer.module.css';
 import ButtonLink from '../butonLink/ButtonLink';
 import { Instagram, Facebook, Twitter } from 'react-bootstrap-icons'
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const { logoIconStyle } = styleFooter;
@@ -23,9 +24,9 @@ const Footer = () => {
                         <ButtonLink link={'*'} Text={'Informacion Legal'}/>
                     </ul>
                     <ul className="nav justify-content-evenly m-2">
-                        <Instagram color='#919847' size={25}/>
-                        <Facebook color='#919847' size={25}/>
-                        <Twitter color='#919847' size={25}/>         
+                        <a href="http://www.instagram.com"><Instagram color='#919847' size={25}/></a>
+                        <a href="http://www.facebook.com"><Facebook color='#919847' size={25}/></a>
+                        <a href="http://twitter.com/?lang=es"><Twitter color='#919847' size={25}/></a>                    
                     </ul>
                 </div>
             </nav>
