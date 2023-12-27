@@ -62,7 +62,6 @@ const Register = ({ user }) => {
             .catch((err) => {
                 setError(err.response.data.error);
             })
-            .finally(() => { console.log('Peticion Finalizada') })
 
         event.target.reset();
     };
