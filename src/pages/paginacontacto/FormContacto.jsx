@@ -42,10 +42,9 @@ const FormContacto = () => {
     emailjs.sendForm('service_bytecoderolling', 'template_t67ahad', form.current, '9LC3zCvDcC9CTWgeS')
       .then((result) => {
         alert('¡El correo electrónico se envió con éxito!');
-        console.log(result.text);
-      }, (error) => {
+      })
+      .catch((error) => {
         alert('Hubo un error al enviar el correo electrónico. Por favor, inténtelo de nuevo más tarde.');
-        console.log(error.text);
       });
   };
 
