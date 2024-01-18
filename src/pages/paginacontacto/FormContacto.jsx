@@ -14,6 +14,11 @@ const FormContacto = () => {
     const email = form.current.user_email.value;
     const message = form.current.message.value;
 
+    if (!/^[a-zA-Z\s]+$/.test(name)) {
+      alert('El nombre solo debe contener letras y espacios.');
+      return;
+    }
+    
     if (name.trim().length < 2 || name.trim().length > 50) {
       alert('El nombre debe tener entre 2 y 50 caracteres.');
       return;
